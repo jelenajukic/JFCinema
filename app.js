@@ -12,7 +12,9 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
-    
+
+// ensure login
+const ensureLogin = require('connect-ensure-login');
 
 mongoose
   .connect('mongodb://localhost/fjcinema', {useNewUrlParser: true})
@@ -80,6 +82,11 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
-      
+
+// user profile route 
+const profileRoute = require('./routes/profile');
+app.use('/profile', 
+  ensureLogin.ensureLoggedIn('/auth/login'), // not logged in? go to login page.
+  profileRoute); // else go to profile route
 
 module.exports = app;
