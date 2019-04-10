@@ -1,7 +1,9 @@
 # JF - Cinema
 
 ## Instructions
-- .env file
+.env file
+- PORT=3000
+- ENV=DEVELOPMENT
 
 ### Functionalities
 
