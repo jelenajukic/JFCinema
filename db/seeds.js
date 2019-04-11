@@ -85,7 +85,6 @@ let movies = [
 ]
 
 
-
 var userCreate = User.create(users)
   // -> If you want to delete the current users, use this instead of User.create(users)
   // var userCreate = User.deleteMany()
@@ -101,7 +100,7 @@ var userCreate = User.create(users)
   })
 
 // Seeds movie
-var movieCreate = Movie.create(movies)
+// var movieCreate = Movie.create(movies)
   // -> If you want to delete the current movies, use this instead of Movie.create(movies)
   var movieCreate = Movie.deleteMany()
     .then(() => {

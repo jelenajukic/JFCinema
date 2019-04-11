@@ -3,10 +3,12 @@ const router  = express.Router();
 
 const Movie = require('../models/Movie');
 
-// -> /movie
+// -> /movie (overview)
 router.get('/', (req, res, next) => {
-  Movie.find({})
-  res.render('movie/overview.hbs');
+  Movie.find({status: 'active'}).sort({'releaseDate': -1}).limit(10)
+    .then(movies => {
+      res.render('movie/overview.hbs', {movies: movies});
+    })
 });
 
 module.exports = router;
