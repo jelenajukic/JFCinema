@@ -21,7 +21,7 @@ mongoose
 let users = [
   {
     username: "Fedde",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
     email: "fedde@fedde.nl",
     role: "USER"
   },
@@ -85,12 +85,12 @@ let movies = [
 ]
 
 
-var userCreate = User.create(users)
+// var userCreate = User.create(users)
   // -> If you want to delete the current users, use this instead of User.create(users)
-  // var userCreate = User.deleteMany()
-  //   .then(() => {
-  //     return User.create(users)
-  //   })
+  var userCreate = User.deleteMany()
+    .then(() => {
+      return User.create(users)
+    })
   .then(usersCreated => {
     console.log(`${usersCreated.length} users created with the following ids:`);
     console.log(usersCreated.map(u => u._id));
