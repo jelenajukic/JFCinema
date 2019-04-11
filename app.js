@@ -83,7 +83,10 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
-// user profile route 
+const movieRoute = require('./routes/movie');
+app.use('/movie', movieRoute);
+
+// user profile route (logged in user)
 const profileRoute = require('./routes/profile');
 app.use('/profile', 
   ensureLogin.ensureLoggedIn('/auth/login'), // not logged in? go to login page.

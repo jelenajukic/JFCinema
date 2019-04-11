@@ -11,4 +11,7 @@ a {
   border-radius: 10px;
   margin: 20px 0; }
 
+.movie-poster {
+  max-width: 150px; }
+
 /*# sourceMappingURL=style.css.map */
