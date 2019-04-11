@@ -2,19 +2,17 @@
 
 <form action="/auth/signup" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-
-  <br><br>
+  <input id="username" type="text" name="username" placeholder="JonSnow"> 
 
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
   
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="Your e-mail">
+
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}
-
-  <br><br>
 
   <button>Create account</button>
 

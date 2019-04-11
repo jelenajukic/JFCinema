@@ -5,4 +5,13 @@ body {
 a {
   color: #00B7FF; }
 
+.error-message {
+  background-color: #e97a7a;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0; }
+
+.movie-poster {
+  max-width: 150px; }
+
 /*# sourceMappingURL=style.css.map */
