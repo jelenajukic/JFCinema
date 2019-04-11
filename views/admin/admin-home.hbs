@@ -1,0 +1,16 @@
+<h1>Hello {{user.username}}</h1><br><br>
+
+{{#each cinemas}}
+<div>
+  <div style="font-size:20px;">{{name}}</div>
+  <button class="edit-cinema"><a href="/admin/edit-cinema/{{id}}">EDIT</a></button>
+  <button class="add-room">ADD SCREENING</button>
+</div><br>
+{{/each}}
+
+<hr>
+<div>
+  <button><a href="/admin/add-cinema">CREATE NEW CINEMA</a></button>
+</div>
+
+

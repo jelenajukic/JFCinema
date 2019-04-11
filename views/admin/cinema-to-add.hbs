@@ -1,0 +1,69 @@
+
+
+
+<form id="add-cinema" action="/admin/add-cinema/" method="POST">
+  <div>
+    <h1>Add new cinema</h1>
+  </div><br>
+  <div>
+    <h1>Name</h1>
+    <label for="name">Cinema name</label>
+    <input type="text" name="name" id="cinema-name"><br>
+    <h1>Address</h1>
+    <label for="street-name">Street name</label>
+    <input type="text" name="streetName" id="street-name"><br>
+    <label for="street-number">Street number</label>
+    <input type="number" name="streetNumber" id="street-number"><br>
+    <label for="postcode">Postcode</label>
+    <input type="text" name="postcode" id="postcode"><br>
+    <label for="owner">Owner</label>
+    <input type="text" name="owner" id="owner"><br>
+    <label for="city">City</label>
+    <input type="text" name="city" id="city"><br>
+
+  </div>
+
+  <br>
+  <div>
+    <h2><b>Working days and hours</b></h2>
+    <label><b>Week days:</b></label><br><br>
+    from: <input type="time" name="timeWeekdaysStart" class="start-time"><span> -
+    </span> <input type="time" name="timeWeekdaysEnd" class="end-time"><br><br>
+    <label><b>Saturdays and Sundays:</b></label><br><br>
+    from: <input type="time" name="timeWeekendStart" class="start-time"}><span> -
+    </span><input type="time" name="timeWeekendEnd" class="end-time"}><br><br>
+  </div>
+
+  <div>
+    <h2><b>Transport</b></h2>
+    <h3>Transport with auto:</h3>
+    <textarea name="auto" rows="10" cols="30">{{transport.auto}}</textarea><br>
+    <h3>Public transport:</h3>
+    <textarea name="publicTransport" rows="10" cols="30">{{transport.publicTransport}}</textarea><br>
+  </div>
+
+  {{!-- <div>
+    <h2><b>Rooms:</b></h2>
+    {{#each rooms}}
+    <h3>{{name}}</h3>
+    <label for="roomName">Room name:</label>
+    <input type="text" name="roomName" class="room-name" value={{name}}><br><br>
+    <label for="capacity">Room capacity:</label>
+    <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br>
+    <label for="screenType">Screen Type:</label>
+    {{!-- <input type="text" name="screenType" class="screenType" value={{screenType}}><br><br> --}}
+    {{!-- <select name="screenType" id="">
+      <option value="2D">2D</option>
+      <option value="3D">3D</option>
+    </select>
+    {{/each}} --}}
+  {{!-- </div> --}}
+
+  <br>
+
+
+  <input type="submit" value="ADD CINEMA">
+
+</form>
+{{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/cinema.js"></script> --}}
