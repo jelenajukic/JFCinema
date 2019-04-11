@@ -8,7 +8,8 @@ const movieSchema = new Schema({
   releaseDate: {type: Date},
   genre: {type: Array},
   rating: {type: Number},
-  imageUrl: {type: String} 
+  imageUrl: {type: String},
+  status: {type: String, enum: ['active', 'inactive']}
 }, {
   timestamps: {
     createdAt: 'created_at',
