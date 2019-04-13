@@ -11,28 +11,29 @@ const cinemaSchema = new Schema({
     name: String,
     streetNumber: Number,
     postcode: String,
+    city: {
+      type: String,
+      required: true
+    }
   },
-  
+
   workingSchema: [{
-      startTime: String,
-      endTime: String,
-      day: String
-    }],
+    startTime: String,
+    endTime: String,
+    day: String
+  }],
   transport: {
-      auto: String,
-      publicTransport: String
-    },
+    auto: String,
+    publicTransport: String
+  },
 
   owner: String,
-  city: {
-    type: String,
-    required: true
-  },
+  
   rooms: [{
     capacity: {
       type: Number,
       min: 40,
-      max: 500
+      max: 500,
     },
     name: {
       type: String,
@@ -41,7 +42,10 @@ const cinemaSchema = new Schema({
     screenType: {
       type: String,
       enum: ["2D", "3D"]
-    }
+    },
+    timeSlots:{type:Array, default:['10:00', '13:00', '16:00', '19:00', '22:00']}
+      
+    
   }]
 
 });

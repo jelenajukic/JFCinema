@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Cinema = require('../models/cinema')
-
+const Movie = require('../models/Movie')
+const Screening = require('../models/screening')
 // -> /profile
 router.get('/admin-home', (req, res, next) => {
 
@@ -49,7 +50,6 @@ router.post('/edit-cinema/:id', (req, res, next) => {
     }]
   }
   
-  
 
   let updatedCinema = {
     name: req.body.name,
@@ -57,9 +57,10 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       name: req.body.streetName,
       streetNumber: req.body.streetNumber,
       postcode: req.body.postcode,
+      city: req.body.city
     },
     owner: req.body.owner,
-    city: req.body.city,
+   
 
     workingSchema: [{
         startTime: req.body.timeWeekdaysStart,
@@ -87,7 +88,7 @@ router.post('/edit-cinema/:id', (req, res, next) => {
     }, {
       new: true
     })
-    .then(cinema => res.redirect('/profile'))
+    .then(cinema => res.redirect('/admin/admin-home'))
     .catch(error => console.log(error));
 
 });
@@ -100,8 +101,43 @@ router.post('/add-cinema/', (req, res, next) => {
   res.render('admin/cinema-to-add')
 });
 
+router.get('/add-screening/:id', (req, res, next) => {
+ 
+  Cinema.findOne({
+    _id: req.params.id
+  })
+  .then(cinema => {return cinema})
+  .then(cinema=> Movie.find().then(movie=> res.render('admin/screening-to-add',{movie:movie, cinema:cinema} ))
+  .catch(error=>console.log(error)))
+  .catch(error => console.log(error));
+});
+
+router.post('/add-screening/:id', (req, res, next) => {
+
+  let obj= req.body;
+
+  // let roomId= req.body.roomID
+  // console.log(roomId)
+  console.log(obj)
+
+  
+  Screening.create(obj)
+  .then(()=>res.redirect('/admin/admin-home'))
+  .catch(error=>console.log(error));
+ 
+ }) ;
 
 
 
+router.get('/movie', (req, res, next) => {
+  Movie.find({})
+  .then(movies=>res.send(movies))
+  .catch(error=>console.log("error"))
+});
+
+router.get('/room/:id/:date', (req, res, next) => {
+  Screening.find({'roomID':req.params.id, 'date':req.params.date})
+  .then(screenings => res.send(screenings))
+});
 
 module.exports = router;

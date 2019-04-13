@@ -2,23 +2,34 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const screeningSchema = new Schema({
-  rooms: [{
+  roomID: {
     type: Schema.ObjectId,
     ref: 'Room'
-  }],
+  },
   timeStart: String,
-  movies: {
+  movieID: {
     type: Schema.ObjectId,
     ref: 'Movie'
   },
-  plot: [{
-    row: Number,
-    seatNo: Number,
-    available: Boolean
+  seatPlan: [{
+    row: {
+      type: Number,
+      deafult: 0
+    },
+    seatNo: {
+      type: Number,
+      default: 0
+    },
+    available: {
+      type: Boolean,
+      deafult: true
+    }
   }],
-  price: {
-    priceKid: String,
-    priceAdult: String
+  date: Date
+}, {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   }
 
 });

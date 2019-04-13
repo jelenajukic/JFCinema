@@ -8,7 +8,7 @@ Hello {{name}}, I will edit you
   <div>
     <h1>Name</h1>
     <label for="name">Cinema name</label>
-    <input type="text" name="name" id="cinema-name" value={{name}}><br>
+    <input type="text" name="name" id="cinema-name" value="{{name}}"><br>
     <h1>Address</h1>
     <label for="street-name">Street name</label>
     <input type="text" name="streetName" id="street-name" value={{address.name}}><br>
@@ -19,7 +19,7 @@ Hello {{name}}, I will edit you
     <label for="owner">Owner</label>
     <input type="text" name="owner" id="owner" value={{owner}}><br>
     <label for="city">City</label>
-    <input type="text" name="city" id="city" value={{city}}><br>
+    <input type="text" name="city" id="city" value={{address.city}}><br>
 
   </div>
 
@@ -47,7 +47,7 @@ Hello {{name}}, I will edit you
     {{#each rooms}}
     <h3>{{name}}</h3>
     <label for="roomName">Room name:</label>
-    <input type="text" name="roomName" class="room-name" value={{name}}><br><br>
+    <input type="text" name="roomName" class="room-name" value="{{name}}"><br><br>
     <label for="capacity">Room capacity:</label>
     <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br>
     <label for="screenType">Screen Type:</label>

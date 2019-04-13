@@ -1,0 +1,33 @@
+<h1>You are adding new screening in cinema {{cinema.name}}</h1>
+
+<form action="/admin/add-screening/{{cinema._id}}/" id="add-screening" method="post">
+  <h3>Select the room for screening</h3>
+
+  <fieldset id="roomID">
+    {{#each cinema.rooms}}
+    {{name}}:<input type="radio" value={{_id}} name="roomID" required><br>
+    {{/each}}
+  </fieldset>
+
+  <h3>Select date for screening:</h3>
+  <input type="date" id="screening-date" name="date" disabled required>
+
+  <h3>Select the movie for screening</h3>
+  <fieldset id="movieID">
+    {{#each movie}}
+    {{title}}:<input type="radio" value={{_id}} name="movieID" required><br>
+    {{/each}}
+  </fieldset>
+  <fieldset id="timeStart">
+    <div id="time-slot">
+
+
+
+
+    </div>
+  </fieldset>
+
+  <button type="submit">create screening</button>
+</form>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/screening-to-add.js"></script>
