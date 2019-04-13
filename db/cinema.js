@@ -28,6 +28,7 @@ let cinema = [{
       name: "Utrechtstraat",
       streetNumber: 80,
       postcode: "3446AP",
+      city: "Utrecht"
     },
 
     workingSchema: [{
@@ -45,15 +46,17 @@ let cinema = [{
     },
 
     owner: "Fedde",
-    city: "Utrecht",
+
     rooms: [{
       capacity: 70,
       name: 'Room1_UTR',
       screenType: "2D"
+
     }, {
       capacity: 80,
       name: 'Room2_UTR',
       screenType: "3D"
+
     }]
   },
   {
@@ -62,6 +65,7 @@ let cinema = [{
       name: "Amsterdaamsraat",
       streetNumber: 82,
       postcode: "7678AR",
+      city: "Amsterdam"
     },
 
     workingSchema: [{
@@ -79,7 +83,7 @@ let cinema = [{
     },
 
     owner: "Jelena",
-    city: "Amsterdam",
+
     rooms: [{
       capacity: 60,
       name: 'Room1_AMS',
