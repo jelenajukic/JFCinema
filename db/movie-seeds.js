@@ -1,52 +1,17 @@
-// To execute this seed, run from the root of the project
-// $ node db/seeds.js
-
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
-
-const User = require("../models/User");
+const mongoose = require("mongoose"); 
 const Movie = require('../models/Movie');
 
 
 mongoose
-  .connect('mongodb://localhost/fjcinema', { useNewUrlParser: true })
+  .connect('mongodb://localhost/fjcinema', {
+    useNewUrlParser: true
+  })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
-
-let users = [
-  {
-    username: "Fedde",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    email: "fedde@fedde.nl",
-    role: "USER"
-  },
-  {
-    username: "Fedde-admin",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    email: 'fedde@feddeadmin.nl',
-    role: 'ADMIN'
-  },
-  {
-    username: "Jelena",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    email: 'Jelena@jelena.nl',
-    role: 'USER'
-  },
-  {
-    username: "Jelena-admin",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    email: 'Jelena@jelenaadmin.nl',
-    role: 'ADMIN'
-  }
-]
-
-// api: https://www.themoviedb.org/movie/8587-the-lion-king?language=en-US
-// omdb is not free anymore
 
 let movies = [
   {
@@ -83,41 +48,18 @@ let movies = [
     status: 'active'
   }
 ]
-
-
-// var userCreate = User.create(users)
-  // -> If you want to delete the current users, use this instead of User.create(users)
-  var userCreate = User.deleteMany()
-    .then(() => {
-      return User.create(users)
-    })
-  .then(usersCreated => {
-    console.log(`${usersCreated.length} users created with the following ids:`);
-    console.log(usersCreated.map(u => u._id));
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
+ 
 // Seeds movie
-// var movieCreate = Movie.create(movies)
+//  Movie.create(movies)
   // -> If you want to delete the current movies, use this instead of Movie.create(movies)
-  var movieCreate = Movie.deleteMany()
+ Movie.deleteMany()
     .then(() => {
-      return Movie.create(movies)
+      console.log('deleted movies');
+      return Movie.create(movies);
     })
   .then(moviesCreated => {
     console.log(`${moviesCreated.length} movies created with the following titles:`);
     console.log(moviesCreated.map(u => u.title));
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-// -- Close connection -- //
-// promise all to close connections
-Promise.all([movieCreate, userCreate])
-  .then(() => {
     mongoose.disconnect();
     console.log('DB: connection closed')
   })
@@ -125,3 +67,4 @@ Promise.all([movieCreate, userCreate])
     mongoose.disconnect();
     console.log('DB connection closed with error: ', err);
   })
+ 

@@ -1,0 +1,27 @@
+<h2>{{cinema.name}}</h2>
+
+<div>
+  <h3>Opening hours</h3>
+  <table>
+    {{#each cinema.workingSchema}}
+    <tr>
+      <td>{{this.day}}</td>
+      <td>{{startTime}}</td>
+      <td>{{endTime}}</td>
+    </tr>
+    {{/each}}
+  </table>
+</div>
+
+<div>
+  <h3>Rooms</h3>
+  <table>
+    {{#each cinema.rooms}}
+    <tr>
+      <td>{{name}}</td>
+      <td>Capacity: {{capacity}}</td>
+      <td>Screentype: {{screenType}}</td>
+    </tr>
+    {{/each}}
+  </table>
+</div>

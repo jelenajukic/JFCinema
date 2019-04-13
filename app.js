@@ -89,8 +89,13 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
+// movie (user)
 const movieRoute = require('./routes/movie');
 app.use('/movie', movieRoute);
+
+// cinema (user)
+const cinemaRoute = require('./routes/cinema');
+app.use('/cinema', cinemaRoute);
 
 // user profile route (logged in user)
 const profileRoute = require('./routes/profile');
@@ -98,10 +103,6 @@ app.use('/profile',
   ensureLogin.ensureLoggedIn('/auth/login'), // not logged in? go to login page.
   profileRoute); // else go to profile route
 
-
-
-
-  
 const adminRoute = require('./routes/admin');
 app.use('/admin', ensureLogin.ensureLoggedIn('/auth/admin-login'), adminRoute);
 
