@@ -1,0 +1,12 @@
+<p>Your current e-mail is: <b>"{{user.email}}"</b></p>
+
+<form action="/profile/edit/email" method="POST" id="form-container"> 
+<label for="email">New e-mail</label>
+<input id="email" type="email" name="email" value={{user.email}} required>
+
+{{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}}
+
+<button>Confirm change</button>
+</form>
