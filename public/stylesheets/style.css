@@ -20,4 +20,18 @@ a {
 .movie-poster {
   max-width: 150px; }
 
+nav {
+  margin-bottom: 10px; }
+
+.screeningDatePick {
+  margin: 5px;
+  padding: 5px;
+  background-color: #0f5e0f;
+  color: white;
+  border-radius: 5px;
+  display: inline-block; }
+
+.screeningDatePick a {
+  color: white; }
+
 /*# sourceMappingURL=style.css.map */

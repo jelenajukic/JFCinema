@@ -15,6 +15,8 @@ const flash = require("connect-flash");
 
 // ensure login
 const ensureLogin = require('connect-ensure-login');
+// moment (dates / times)
+const moment = require('moment');
 
 mongoose
   .connect('mongodb://localhost/fjcinema', {
@@ -65,6 +67,12 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   }
 });
 
+// format dates in handlebars (Apr 14)
+hbs.registerHelper('formatDate', function(dateString) {
+  return new hbs.SafeString(
+      moment(dateString).format("ddd MMM D")//.toUpperCase()
+  );
+});
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -96,6 +104,10 @@ app.use('/movie', movieRoute);
 // cinema (user)
 const cinemaRoute = require('./routes/cinema');
 app.use('/cinema', cinemaRoute);
+
+// screening (user)
+const screeningRoute = require('./routes/screening');
+app.use('/screening', screeningRoute);
 
 // user profile route (logged in user)
 const profileRoute = require('./routes/profile');

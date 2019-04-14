@@ -26,21 +26,21 @@ router.get('/edit/username', (req, res, next) => {
 router.post('/edit/username', (req, res, next) => {
   // check if it is free
   console.log(req.body);
-  User.findOne({ username: req.body.username }, "username", (err, user) => {
-    if (user !== null) {
+  User.findOne({ username: req.body.username })
+    .then(user => {
+      if (user !== null) { throw new Error('username already exists') };
+      return User.findOneAndUpdate({ username: req.user.username }, { username: req.body.username }, { new: true })
+    })
+    // if free: update the username 
+    .then(result => {
+      // option {new: true} to return new updated user. Sending result as input for page to show new username
+      res.render('profile/edit', { messagePos: `Correctly changed username to ${result.username}`, user: result });
+    })
+    .catch(err => {
       res.render("profile/edit-username", { message: "The username already exists", user: req.user });
-      return;
-    }
-    // if free: update the username
-    User.findOneAndUpdate({ username: req.user.username }, { username: req.body.username }, { new: true })
-      .then(result => {
-        // option {new: true} to return new updated user. Sending result as input for page to show new username
-        res.render('profile/edit', { messagePos: `Correctly changed username to ${result.username}`, user: result });
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  })
+      // log if error != username already exists
+      if (err.message !== 'username already exists') { console.log(err) };
+    })
 });
 
 // ==== EDIT PASSWORD ==== //
@@ -84,7 +84,7 @@ router.get('/edit/email', (req, res, next) => {
 router.post('/edit/email', (req, res, next) => {
   // check if it is free  
   User.findOne({ email: req.body.email })
-    .then(result => { 
+    .then(result => {
       if (result !== null) { throw new Error('email already exists') }
       return User.findOneAndUpdate({ username: req.user.username }, { email: req.body.email }, { new: true });
     })
