@@ -11,6 +11,12 @@ a {
   border-radius: 10px;
   margin: 20px 0; }
 
+.message-pos {
+  background-color: #7ee97a;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0; }
+
 .movie-poster {
   max-width: 150px; }
 
