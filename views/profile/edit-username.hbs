@@ -1,8 +1,8 @@
 <p>Your current username is: <b>"{{user.username}}"</b></p>
 
 <form action="/profile/edit/username" method="POST" id="form-container"> 
-<label for="username">Username</label>
-<input id="username" type="text" name="username" value={{user.username}}>
+<label for="username">New username</label>
+<input id="username" type="text" name="username" value={{user.username}} required>
 
 {{#if message }}
 <div class="error-message">{{ message }}</div>

@@ -1,0 +1,22 @@
+{{!-- <div class="datePickerContainer">
+  {{#each datePicker}}
+  <span class="screeningDatePick">
+    <a href=".?date={{formatDate this}}">{{formatDate this}}</a>
+  </span>
+  {{/each}}
+</div> --}}
+
+<div id="datePickerContainer"></div>
+<div id="screeningContainer"></div>
+ 
+
+{{!-- {{#each screenings}}
+<p>Starts at: {{timeStart}}</p>
+Date formatted
+<p>Date: {{formatDate date}}</p>
+<p>Movie: {{movieID.title}}</p>
+{{/each}} --}}
+
+<script src="../javascripts/moment.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../javascripts/screening-overview.js"></script>

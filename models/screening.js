@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const screeningSchema = new Schema({
+  cinemaID: {
+    type: Schema.ObjectId,
+    ref: 'Cinema'
+  },
   roomID: {
     type: Schema.ObjectId,
     ref: 'Room'
