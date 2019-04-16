@@ -17,6 +17,7 @@ router.get('/:id/:date', (req, res, next) => {
   // that's why i did GTE and LTE 
   const nextDay = moment(req.params.date).add(1, 'days').format();
   Screening.find({cinemaID: req.params.id, date: {'$gte': req.params.date, '$lte' : nextDay}})
+    .populate('movieID') // add the movie details through the movieID
     .then(screenings => { 
       res.send(screenings);
     })
@@ -32,11 +33,10 @@ router.get('/:id', (req, res, next) => {
   // console.log(startdate, enddate);
   // Screening.find({cinemaID: req.params.id, date: {'$gte' : startdate, '$lt' : enddate}})
   Screening.find({cinemaID: req.params.id, date: startdate })
-    .populate('movieID') // add the movie details through the movieID
+    // .populate('movieID') // add the movie details through the movieID
     .then(screenings => {
       // console.log(screenings);
-      res.render('screenings/overview', 
-      {screenings: screenings});
+      res.render('screenings/overview');
     })
     .catch(err => {
       console.log(err);
