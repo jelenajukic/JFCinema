@@ -33,5 +33,11 @@ nav {
 
 .screeningDatePick a {
   color: white; }
+  
+.row {
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  border: 2px, solid, white; }
 
 /*# sourceMappingURL=style.css.map */

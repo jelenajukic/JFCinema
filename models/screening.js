@@ -15,6 +15,12 @@ const screeningSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'Movie'
   },
+
+  cinemaID:{
+    type:Schema.ObjectId,
+    ref: 'Cinema'
+  },
+
   seatPlan: [{
     row: {
       type: Number,

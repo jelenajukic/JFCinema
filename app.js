@@ -118,4 +118,7 @@ app.use('/profile',
 const adminRoute = require('./routes/admin');
 app.use('/admin', ensureLogin.ensureLoggedIn('/auth/admin-login'), adminRoute);
 
+const ticketsRoute = require('./routes/tickets');
+app.use('/tickets', ticketsRoute);
+
 module.exports = app;
