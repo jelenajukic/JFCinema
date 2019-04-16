@@ -48,11 +48,15 @@ let cinema = [{
     owner: "Fedde",
 
     rooms: [{
+      rows:7,
+      cols:10,
       capacity: 70,
       name: 'Room1_UTR',
       screenType: "2D"
 
     }, {
+      rows:8,
+      cols:10,
       capacity: 80,
       name: 'Room2_UTR',
       screenType: "3D"
@@ -85,6 +89,8 @@ let cinema = [{
     owner: "Jelena",
 
     rooms: [{
+      rows:6,
+      cols:10,
       capacity: 60,
       name: 'Room1_AMS',
       screenType: "2D"

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Cinema = require('../models/cinema')
-const Movie = require('../models/Movie')
+const Movie = require('../models/movie')
 const Screening = require('../models/screening')
 // -> /profile
 router.get('/admin-home', (req, res, next) => {
@@ -32,24 +32,24 @@ router.post('/edit-cinema/:id', (req, res, next) => {
   console.log(req.body);
   let arrayRooms = []
 
-  if(Array.isArray(req.body.roomName)){
+  if (Array.isArray(req.body.roomName)) {
     for (let i = 0; i < req.body.roomName.length; i++) {
       obj = {
         name: req.body.roomName[i],
         capacity: req.body.capacity[i],
         screenType: req.body.screenType[i]
       }
-  
+
       arrayRooms.push(obj);
     }
-  }else {
-    arrayRooms=[{
+  } else {
+    arrayRooms = [{
       name: req.body.roomName,
       capacity: req.body.capacity,
       screenType: req.body.screenType
     }]
   }
-  
+
 
   let updatedCinema = {
     name: req.body.name,
@@ -60,7 +60,7 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       city: req.body.city
     },
     owner: req.body.owner,
-   
+
 
     workingSchema: [{
         startTime: req.body.timeWeekdaysStart,
@@ -102,42 +102,90 @@ router.post('/add-cinema/', (req, res, next) => {
 });
 
 router.get('/add-screening/:id', (req, res, next) => {
- 
+
   Cinema.findOne({
-    _id: req.params.id
-  })
-  .then(cinema => {return cinema})
-  .then(cinema=> Movie.find().then(movie=> res.render('admin/screening-to-add',{movie:movie, cinema:cinema} ))
-  .catch(error=>console.log(error)))
-  .catch(error => console.log(error));
+      _id: req.params.id
+    })
+    .then(cinema => {
+      return cinema
+    })
+    .then(cinema => Movie.find().then(movie => res.render('admin/screening-to-add', {
+        movie: movie,
+        cinema: cinema
+      }))
+      .catch(error => console.log(error)))
+    .catch(error => console.log(error));
 });
 
 router.post('/add-screening/:id', (req, res, next) => {
 
-  let obj= req.body;
+  let obj = req.body;
+
+  obj.cinemaID = req.params.id;
 
   // let roomId= req.body.roomID
   // console.log(roomId)
-  console.log(obj)
-
+  //console.log(obj)
+  Cinema.findOne({
+      'rooms._id': req.body.roomID
+    }).then(cinema => {
+      return cinema.rooms.find(room => room._id == req.body.roomID)
+    })
+    .then(room => {
+      return {
+        capacity: room.capacity,
+        rows: room.rows,
+        cols: room.cols
+      }
+    })
   
-  Screening.create(obj)
-  .then(()=>res.redirect('/admin/admin-home'))
-  .catch(error=>console.log(error));
- 
- }) ;
+    .then(seatPlan => {
+      return createSeatPlan(seatPlan)
+    })
+    .then(seatPlanObj => {
+      obj.seatPlan = seatPlanObj;
+      return obj
+    })
+    .then(obj => Screening.create(obj))
+    .then(()=>res.redirect('/admin/admin-home'))
+    .catch(error=>console.log(error))
+
+  // Screening.create(obj)
+  // .then(()=>res.redirect('/admin/admin-home'))
+  // .catch(error=>console.log(error));
+
+
+  function createSeatPlan(obj) {
+    let seatPlan = [];
+    for (let i = 0; i < obj.rows; i++) {
+      for (let j = 0; j < obj.cols; j++) {
+        seatPlan.push({
+          row: i + 1,
+          seatNo: j + 1,
+          available:true
+      
+        })
+      }
+    }
+    return seatPlan;
+  }
+
+});
 
 
 
 router.get('/movie', (req, res, next) => {
   Movie.find({})
-  .then(movies=>res.send(movies))
-  .catch(error=>console.log("error"))
+    .then(movies => res.send(movies))
+    .catch(error => console.log("error"))
 });
 
 router.get('/room/:id/:date', (req, res, next) => {
-  Screening.find({'roomID':req.params.id, 'date':req.params.date})
-  .then(screenings => res.send(screenings))
+  Screening.find({
+      'roomID': req.params.id,
+      'date': req.params.date
+    })
+    .then(screenings => res.send(screenings))
 });
 
 module.exports = router;

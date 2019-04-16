@@ -30,11 +30,9 @@ const cinemaSchema = new Schema({
   owner: String,
   
   rooms: [{
-    capacity: {
-      type: Number,
-      min: 40,
-      max: 500,
-    },
+    rows: Number,
+    cols: Number,
+    capacity:Number,
     name: {
       type: String,
       required: true
