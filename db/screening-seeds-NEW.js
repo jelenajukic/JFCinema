@@ -1,0 +1,117 @@
+const mongoose = require("mongoose");
+const Screening = require("../models/screening");
+const Cinema = require('../models/cinema');
+const Movie = require('../models/movie');
+const moment = require('moment');
+
+// INSTRUCTIONS //
+// Create cinema seeds first
+// Nr. of Rooms for a cinema has to be > number of movies in total
+// Cinema needs at least 2 rooms! (array)
+
+mongoose
+  .connect('mongodb://localhost/fjcinema', {
+    useNewUrlParser: true
+  })
+  .then(x => {
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
+
+
+var movieArr;
+var movieArrCopy;
+var cinemaArr;
+var rooms;
+var screenings = [];
+var startdate = moment().startOf('day').format();
+var dateArr = createDates(startdate);
+var timeArr = ['10:00', '13:00', '16:00', '19:00', '22:00'];
+
+// retreive movie ID
+var findMovies = Movie.find({})
+  .then(movies => {
+    movieArr = movies;
+  })
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })
+
+var findCinemas = Cinema.find({})
+  .then(cinemas => {
+    cinemaArr = cinemas;
+  })
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })
+
+var deleteCurScreen = Screening.deleteMany({})
+  .then((x) => {
+    console.log(`deleted current screenings`);
+  })
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })
+
+// after creating arrays and deleting current screenings
+Promise.all([findMovies, findCinemas, deleteCurScreen])
+  .then(() => {
+    // console.log(cinemaArr);
+    // console.log(movieArr);
+    cinemaArr.forEach(cinema => {
+      rooms = cinema.rooms;
+      dateArr.forEach(date => {
+        timeArr.forEach(time => {
+          movieArrCopy = movieArr.slice(); // slice needed. otherwise it is referenced
+          rooms.forEach(room => {
+            let randomMovie = movieArrCopy[Math.floor(Math.random() * movieArrCopy.length)];
+            // empty spaces
+            if (Math.random() < 0.2) {
+              return
+            } else {
+              // console.log(`${date}, ${time}, ${movieArrCopy.length}`);
+              let randomMovieId = randomMovie._id;
+              console.log(cinema._id, date, time, room._id, randomMovieId);
+              screenings.push({
+                cinemaID: cinema._id,
+                roomID: room._id,
+                timeStart: time,
+                movieID: randomMovieId,
+                seatPlan: [],
+                date: date
+              })
+              movieArrCopy.splice(movieArrCopy.indexOf(randomMovie), 1);
+            }
+          })
+        })
+      })
+    })
+    return Screening.create(screenings);
+  })
+  .then(screeningsCreated => {
+    console.log(`${screeningsCreated.length} screenings created`);
+    // console.log(screeningsCreated.map(screenings => screenings._id));
+  })
+  .then(() => {
+    // Close properly the connection to Mongoose
+    mongoose.disconnect()
+  })
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })
+
+function createDates(startdate) {
+  var i;
+  var datesArray = [];
+  for (i = 0; i <= 13; i++) { // 0-13 (14 records) 
+    datesArray.push(moment(startdate).add(i, 'days').format())
+  }
+  // console.log(datesArray);
+  return datesArray;
+};

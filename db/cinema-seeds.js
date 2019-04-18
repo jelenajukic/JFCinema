@@ -40,13 +40,13 @@ let cinema = [{
     rows: 7,
     cols: 10,
     capacity: 70,
-    name: 'Room1_UTR',
+    name: 'Room 1',
     screenType: "2D"
   }, {
     rows: 8,
     cols: 10,
     capacity: 80,
-    name: 'Room2_UTR',
+    name: 'Room 2',
     screenType: "3D"
   }]
 },
@@ -56,7 +56,7 @@ let cinema = [{
     name: "Amsterdaamsraat",
     streetNumber: 82,
     postcode: "7678AR",
-    city: "Amsterdam"
+    city: "Woerden"
   },
   workingSchema: [{
     startTime: "10:00",
@@ -76,7 +76,13 @@ let cinema = [{
     rows: 6,
     cols: 10,
     capacity: 60,
-    name: 'Room1_AMS',
+    name: 'Room 1',
+    screenType: "2D"
+  }, {
+    rows: 12,
+    cols: 10,
+    capacity: 120,
+    name: 'Room 2',
     screenType: "2D"
   }]
 }

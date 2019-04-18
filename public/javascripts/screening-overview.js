@@ -85,14 +85,14 @@ function updateContent(dateInput) {
           // add this time
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
-          timeNode.innerHTML += `Time: ${screening.timeStart}`;
+          timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
           timeNode.href = `/ticket/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         } else {
           // just add time node
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
-          timeNode.innerHTML += `Time: ${screening.timeStart}`
+          timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
           timeNode.href = `/ticket/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         }

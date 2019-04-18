@@ -23,14 +23,14 @@ router.get('/:id', (req, res, next) => {
 
 // -> /screen/cinemaID/date
 router.get('/:id/:date', (req, res, next) => {
-  // console.log('date params', req.params.date);
-  // timezone fucks this up.. that's why i did GTE and LTE 
-  const nextDay = moment(req.params.date).add(1, 'days').format();
-  Screening.find({cinemaID: req.params.id, date: {'$gte': req.params.date, '$lte' : nextDay}})
-    .sort('movieID')
+  // const nextDay = moment(req.params.date).add(1, 'days').format();
+  Screening.find({cinemaID: req.params.id, date: req.params.date})
+  // Screening.find({cinemaID: req.params.id, date: {'$gte': req.params.date, '$lte' : nextDay}})
+    .sort({movieID: 1, timeStart: 1})
     .populate('movieID') // add the movie details through the movieID
     // .populate('roomID')
     .then(screenings => { 
+      console.log(screenings)
       res.send(screenings);
     })
     .catch(err => {
