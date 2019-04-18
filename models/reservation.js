@@ -8,15 +8,13 @@ const reservationSchema = new Schema({
     seatNo: Number,
     typeOfSeat: String
   }],
-  users: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
-  screenings: {
-    type: Schema.ObjectId,
-    ref: 'Screening'
+  users: {type: Schema.ObjectId, ref: 'User'},
+  screenings: {type: Schema.ObjectId, ref: 'Screening'}
+}, {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   }
-
 });
 
 const Reservation = mongoose.model("Reservation", reservationSchema);
