@@ -10,14 +10,26 @@ router.get('/', (req, res, next) => {
   res.redirect('/cinema')
 });
 
+// -> /screening/cinemaID (more information on cinema)
+router.get('/:id', (req, res, next) => {    
+  Cinema.findOne({_id: req.params.id}) 
+    .then(cinema => {  
+      res.render('screenings/overview', {cinema: cinema});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+});
+
 // -> /screen/cinemaID/date
 router.get('/:id/:date', (req, res, next) => {
-  console.log('date params', req.params.date);
-  // timezone fucks this up.. 
-  // that's why i did GTE and LTE 
+  // console.log('date params', req.params.date);
+  // timezone fucks this up.. that's why i did GTE and LTE 
   const nextDay = moment(req.params.date).add(1, 'days').format();
   Screening.find({cinemaID: req.params.id, date: {'$gte': req.params.date, '$lte' : nextDay}})
+    .sort('movieID')
     .populate('movieID') // add the movie details through the movieID
+    // .populate('roomID')
     .then(screenings => { 
       res.send(screenings);
     })
@@ -26,22 +38,24 @@ router.get('/:id/:date', (req, res, next) => {
     })
 })
 
+
+
 // -> /screening/cinemaID (more information on cinema)
-router.get('/:id', (req, res, next) => { 
-  const startdate = moment().format(); //moment().startOf('day');
-  // const enddate = moment().add(14, 'days').format(); 
-  // console.log(startdate, enddate);
-  // Screening.find({cinemaID: req.params.id, date: {'$gte' : startdate, '$lt' : enddate}})
-  Screening.find({cinemaID: req.params.id, date: startdate })
-    // .populate('movieID') // add the movie details through the movieID
-    .then(screenings => {
-      // console.log(screenings);
-      res.render('screenings/overview');
-    })
-    .catch(err => {
-      console.log(err);
-    })
-});
+// router.get('/:id', (req, res, next) => { 
+//   res.render('screenings/overview');
+  // const startdate = moment().format(); //moment().startOf('day');
+  // // const enddate = moment().add(14, 'days').format();  
+  // // Screening.find({cinemaID: req.params.id, date: {'$gte' : startdate, '$lt' : enddate}})
+  // Screening.find({cinemaID: req.params.id, date: startdate })
+  //   // .populate('movieID') // add the movie details through the movieID
+  //   .then(screenings => {
+  //     // console.log(screenings);
+  //     res.render('screenings/overview');
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+// });
 
 
 
