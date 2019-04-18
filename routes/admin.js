@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
+
 const Cinema = require('../models/cinema')
 const Movie = require('../models/movie')
 const Screening = require('../models/screening')
@@ -120,6 +122,8 @@ router.get('/add-screening/:id', (req, res, next) => {
 router.post('/add-screening/:id', (req, res, next) => {
 
   let obj = req.body;
+  // correct date format
+  obj.date = moment().startOf('day').format();
 
   obj.cinemaID = req.params.id;
 

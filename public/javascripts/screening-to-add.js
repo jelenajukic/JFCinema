@@ -12,7 +12,8 @@ for (let i = 1; i < rad.length; i++) {
 
 document.getElementById("screening-date").addEventListener('change', function () {
   divWithTimeSlots.innerHTML = '';
-  let date = document.getElementById("screening-date").value;
+  let dateVal = document.getElementById("screening-date").value;
+  let date = moment(dateVal).startOf('day').format();
   axios.get(`/admin/room/${radVal}/${date}`)
     // .then(cinema => cinema.data.rooms.filter(room => room._id == radVal))
     .then(screenings => {

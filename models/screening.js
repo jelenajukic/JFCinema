@@ -10,6 +10,9 @@ const screeningSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'Cinema' // not sure if this works or should be Cinema.Room
   },
+  // roomName: {
+  //   type: 'String'
+  // },
   timeStart: String,
   movieID: {
     type: Schema.ObjectId,
