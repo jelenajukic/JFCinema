@@ -1,12 +1,9 @@
-// Seeds file that remove all cinemas and create 2 new cinemas
-
-// To execute this seed, run from the root of the project
-// $ node bin/seeds.js
-
 const mongoose = require("mongoose");
 const Screening = require("../models/screening");
+const Cinema = require('../models/cinema');
+const Movie = require('../models/movie');
 
-
+// !! Create cinema seeds first!! //
 
 mongoose
   .connect('mongodb://localhost/fjcinema', {
@@ -18,25 +15,50 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
- 
-let screening = [{
-  cinemaID: '5cb17cf6d47dbb379cb0cb7d',
-  roomID: '5cb1b2fa99e7d338c1641275',
-  timeStart: '10:00',
-  movieID: '5cb0517f4ceb5225e8462110',
-  seatPlan: [],
-  date: '2019-04-17'
-},
-{
-  cinemaID: '5cb17cf6d47dbb379cb0cb7d',
-  roomID: '5cb1b2fa99e7d338c1641275',
-  timeStart: '13:00',
-  movieID: '5cb0517f4ceb5225e8462110',
-  seatPlan: [],
-  date: '2019-04-17'
-}]
 
-Screening.deleteMany()
+var screening; // global var
+var movieID;
+var movieID2;
+
+// retreive movie ID
+Movie.find({})
+  .then(movies => {
+    movieID = movies[1]._id;
+    movieID2 = movies[2]._id;
+    // retreive a real cinema id and room id for testing :)
+    return Cinema.find({})
+  })
+  .then(cinemas => {
+    let cinemaID = cinemas[0]._id;
+    let roomID = cinemas[0].rooms[0]._id;
+    console.log(cinemaID, roomID)
+    screening = [{
+      cinemaID: cinemaID,
+      roomID: roomID,
+      timeStart: '10:00',
+      movieID: movieID,
+      seatPlan: [],
+      date: '2019-04-22'
+    },
+    {
+      cinemaID: cinemaID,
+      roomID: roomID,
+      timeStart: '13:00',
+      movieID: movieID,
+      seatPlan: [],
+      date: '2019-04-22'
+    },
+    {
+      cinemaID: cinemaID,
+      roomID: roomID,
+      timeStart: '18:00',
+      movieID: movieID2,
+      seatPlan: [],
+      date: '2019-04-22'
+    }]
+
+    return Screening.deleteMany()
+  })
   .then(() => {
     return Screening.create(screening)
   })

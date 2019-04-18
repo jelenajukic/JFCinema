@@ -4,9 +4,7 @@
 // $ node bin/seeds.js
 
 const mongoose = require("mongoose");
-const Screening = require("../models/screening");
-
-
+const Screening = require("../models/screening"); 
 
 mongoose
   .connect('mongodb://localhost/fjcinema', {
@@ -18,10 +16,7 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
-
-
-
-
+ 
 let screening = [{
   roomID: '5cb1b2fa99e7d338c1641275',
   timeStart: '10:00',

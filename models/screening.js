@@ -8,7 +8,7 @@ const screeningSchema = new Schema({
   },
   roomID: {
     type: Schema.ObjectId,
-    ref: 'Room'
+    ref: 'Cinema' // not sure if this works or should be Cinema.Room
   },
   timeStart: String,
   movieID: {
