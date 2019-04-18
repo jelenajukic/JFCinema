@@ -46,7 +46,7 @@ function createDates(startdate) {
   for (i = 0; i <= 13; i++) { // 0-13 (14 records) 
     datesArray.push(moment(startdate).add(i, 'days').format())
   }
-  console.log(datesArray);
+  // console.log(datesArray);
   return datesArray;
 };
 
@@ -86,14 +86,14 @@ function updateContent(dateInput) {
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
           timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
-          timeNode.href = `/ticket/${screening._id}`
+          timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         } else {
           // just add time node
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
           timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
-          timeNode.href = `/ticket/${screening._id}`
+          timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         }
         
