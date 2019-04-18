@@ -60,9 +60,7 @@ var deleteCurScreen = Screening.deleteMany({})
 
 // after creating arrays and deleting current screenings
 Promise.all([findMovies, findCinemas, deleteCurScreen])
-  .then(() => {
-    // console.log(cinemaArr);
-    // console.log(movieArr);
+  .then(() => { 
     cinemaArr.forEach(cinema => {
       rooms = cinema.rooms;
       dateArr.forEach(date => {
@@ -70,19 +68,19 @@ Promise.all([findMovies, findCinemas, deleteCurScreen])
           movieArrCopy = movieArr.slice(); // slice needed. otherwise it is referenced
           rooms.forEach(room => {
             let randomMovie = movieArrCopy[Math.floor(Math.random() * movieArrCopy.length)];
-            // empty spaces
+            // 20% chance that we display no movie at this time
             if (Math.random() < 0.2) {
               return
             } else {
               // console.log(`${date}, ${time}, ${movieArrCopy.length}`);
               let randomMovieId = randomMovie._id;
-              console.log(cinema._id, date, time, room._id, randomMovieId);
+              // console.log(cinema._id, date, time, room._id, randomMovieId);
               screenings.push({
                 cinemaID: cinema._id,
                 roomID: room._id,
                 timeStart: time,
                 movieID: randomMovieId,
-                seatPlan: [],
+                seatPlan: createSeatPlan(room),
                 date: date
               })
               movieArrCopy.splice(movieArrCopy.indexOf(randomMovie), 1);
@@ -106,6 +104,7 @@ Promise.all([findMovies, findCinemas, deleteCurScreen])
     throw err
   })
 
+// Create dates. Today + 13 days (2 weeks)
 function createDates(startdate) {
   var i;
   var datesArray = [];
@@ -115,3 +114,24 @@ function createDates(startdate) {
   // console.log(datesArray);
   return datesArray;
 };
+
+// create seatplan for the room (same code as in admin.js)
+function createSeatPlan(obj) {
+  let seatPlan = [];
+  for (let i = 0; i < obj.rows; i++) {
+    for (let j = 0; j < obj.cols; j++) {
+      // 20% chance it is taken already
+      if(Math.random() < 0.2) {
+        var availOrNot = false;
+      } else {
+        var availOrNot = true;
+      }
+      seatPlan.push({
+        row: i + 1,
+        seatNo: j + 1,
+        available: availOrNot
+      })
+    }
+  }
+  return seatPlan;
+}

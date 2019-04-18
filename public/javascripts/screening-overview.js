@@ -1,4 +1,4 @@
-var URL = window.location.href;;
+var URL = window.location.href;
 var screeningContent;
 
 // -- START document ready -- //
@@ -95,8 +95,7 @@ function updateContent(dateInput) {
           timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
           timeNode.href = `/ticket/${screening._id}`
           timeNodeCont.appendChild(timeNode);
-        }
-        
+        };        
         prevMovie = screening.movieID._id;
       })
     })
