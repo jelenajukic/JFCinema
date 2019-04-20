@@ -1,18 +1,27 @@
 <h1>Hello {{user.username}}</h1><br><br>
 
+{{!-- Status messages for creating cinema, screening, movie --}}
+{{#if messagePos}}
+<div class="message-pos">{{messagePos}}</div>
+{{/if}}
+{{#if message}}
+<div class="error-message">{{message}}</div>
+{{/if}}
+
 {{#each cinemas}}
 <div>
   <div style="font-size:20px;">{{name}}</div>
   <button class="edit-cinema"><a href="/admin/edit-cinema/{{id}}">EDIT</a></button>
   <a href="/admin/add-screening/{{id}}/">create screening</a>
-  </form>
+  {{!-- </form> --}}
 
 </div><br>
 {{/each}}
 
 <hr>
 <div>
-  <button><a href="/admin/add-cinema">CREATE NEW CINEMA</a></button>
+  <button><a href="/admin/add-cinema">Add a new cinema</a></button>
+  <button><a href="/admin/add-movie">Add a new movie</a></button>
 </div>
 
 

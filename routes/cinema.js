@@ -7,7 +7,7 @@ const Cinema = require('../models/cinema');
 router.get('/', (req, res, next) => {
   Cinema.find({})
     .then(cinemas => {
-      console.log(cinemas);
+      // console.log(cinemas);
       res.render('cinema/overview.hbs', {cinemas: cinemas});
     })
 });

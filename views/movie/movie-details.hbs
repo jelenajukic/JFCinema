@@ -1,0 +1,12 @@
+<img class="movie-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
+<h3>{{title}}</h3>
+<p>{{plot}}</p>
+<p>Release date: {{formatDate releaseDate}}</p>
+<p>Rating: {{rating}}</p>
+
+{{#if videoUrl}}
+<h3>Movie trailer</h3>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+  src="https://www.youtube.com/embed/{{videoUrl}}?autoplay=0&rel=0" frameborder="0">
+</iframe>
+{{/if}}

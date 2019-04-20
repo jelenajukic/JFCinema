@@ -15,40 +15,58 @@ mongoose
 
 let movies = [
   {
-    title: 'The Lion King',
-    plot: 'Will Simba become the new king?',
-    releaseDate: '2000-01-01',
-    genre: ['animation', 'adventure', 'disney'],
-    rating: 9.0,
-    imageUrl: 'https://www.barakashop.co.za/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/i/lion_king_poster.jpg',
-    status: 'inactive'
-  }, {
-    title: 'Captain Marvel',
-    plot: 'Can she defeat evil?',
-    releaseDate: '2019-04-01',
-    genre: ['superheroes', 'adventure', 'marvel'],
-    rating: 8.0,
-    imageUrl: 'https://m.media-amazon.com/images/M/MV5BMTE0YWFmOTMtYTU2ZS00ZTIxLWE3OTEtYTNiYzBkZjViZThiXkEyXkFqcGdeQXVyODMzMzQ4OTI@._V1_.jpg',
+    title: 'The Green Book: Guide to Freedom',
+    plot: 'In the 1930s, a black postal carrier from Harlem named Victor Green published a book that was part travel guide and part survival guide. It was called The Negro Motorist Green Book, and it helped African-Americans navigate safe passage across America well into the 1960s. Explore some of the segregated nation\'s safe havens and notorious "sundown towns" and witness stories of struggle and indignity as well as opportunity and triumph.',
+    releaseDate: '2019-02-24T22:00:00.000+00:00',
+    // genre: ['drama', 'adventure', 'arthouse', 'true story'],
+    rating: 7.5,
+    imageUrl: 'http://image.tmdb.org/t/p/w185//9JQmPWE8ZCGx6D3Z2ZIy1MU6ZSU.jpg',
     status: 'active'
   }, {
-    title: 'The green book',
-    plot: 'What will the crowd favor? The talent of this musician? Or will they be trapped in their own racism',
-    releaseDate: '2018-04-22',
-    genre: ['drama', 'adventure', 'arthouse', 'true story'],
-    rating: 8.2,
-    imageUrl: 'https://m.media-amazon.com/images/M/MV5BYzIzYmJlYTYtNGNiYy00N2EwLTk4ZjItMGYyZTJiOTVkM2RlXkEyXkFqcGdeQXVyODY1NDk1NjE@._V1_.jpg',
+    title: 'Aquaman',
+    plot: "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
+    releaseDate: '2018-12-06T22:00:00.000+00:00',
+    // genre: 
+    rating: 6.8,
+    imageUrl: 'http://image.tmdb.org/t/p/w185//5Kg76ldv7VxeX9YlcQXiowHgdX6.jpg',
     status: 'active'
-  }, {
-    title: 'Bohemian Rhapsody',
-    plot: 'What was Freddy like? Did he enjoy performing or had no choice?',
-    releaseDate: '2018-09-22',
-    genre: ['drama', 'true story', 'music'],
-    rating: 7.8,
-    imageUrl: 'https://www.voto10.it/cinema/uploads/foto/bohemian-rapsody-poster.jpg',
-    status: 'active'
-  }
+}, {
+  title: 'Bohemian Rhapsody',
+  plot: `Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.`,
+  releaseDate: '2018-10-23T22:00:00.000+00:00',
+  // genre: 
+  rating: 8.1,
+  imageUrl: 'http://image.tmdb.org/t/p/w185//lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg',
+  status: 'active'
+}, {
+  title: 'Avatar',
+  plot: `In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization.`,
+  releaseDate: '2009-12-09T22:00:00.000+00:00',
+  // genre: 
+  rating: 7.4,
+  imageUrl: 'http://image.tmdb.org/t/p/w185//kmcqlZGaSh20zpTbuoF0Cdn07dT.jpg',
+  status: 'active'
+}, {
+  title: 'A Star Is Born',
+  plot: `Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.`,
+  releaseDate: '2018-10-02T22:00:00.000+00:00',
+  // genre: 
+  rating: 7.5,
+  imageUrl: 'http://image.tmdb.org/t/p/w185//wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg',
+  status: 'active'
+}, 
 ]
  
+// {
+//   title:
+//   plot:
+//   releaseDate:
+//   // genre: 
+//   rating:
+//   imageUrl:
+//   status: 
+// }, 
+
 // Seeds movie
 //  Movie.create(movies)
   // -> If you want to delete the current movies, use this instead of Movie.create(movies)
