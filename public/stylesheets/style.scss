@@ -1,10 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: white;
 }
 
-a {
-  color: #00B7FF;
+a, p, h1, h2, h3, h4, h5, h6, li, button {
+  color: white;
+}
+
+button {
+  background-color: black;
+}
+
+nav {
+  margin-bottom: 40px;
+}
+
+nav a { 
+  margin-right: 5px; 
+  font-size: 120%;
+  text-decoration: none;
+  border: 1px solid white;
+  padding: 10px;
 }
 
 .error-message { 
@@ -21,13 +39,36 @@ a {
   margin: 20px 0;
 }
 
+// ----------------------------
+// Movie overview page - start
+.movie-overview-container {
+  display: flex;
+}
+.movie-overview {
+  display: flex;
+  margin: 20px;
+}
+.movie-overview-poster {
+  max-width: 150px;
+}
+.movie-overview-text {
+  width: 200px;
+  margin: 0 10px;
+}
+.movie-overview-text-plot {
+  max-height: 120px;
+  // white-space: nowrap;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+// movie overview page - end
+// ----------------------------
+
 .movie-poster {
   max-width: 150px;
 }
 
-nav {
-  margin-bottom: 10px;
-}
+
 
 #datePickerContainer {
   margin-bottom: 20px;
@@ -65,8 +106,8 @@ nav {
 
 .movieTimesContainer {
   display: flex;
-  background-color: rgb(185, 255, 163);
-  border: 3px solid rgb(56, 139, 31);
+  background-color: rgb(0, 0, 0);
+  border: 3px solid rgb(139, 31, 31);
   // border-radius: 10px;
   padding: 10px;
   margin: 0px 10px 10px 0;
@@ -76,17 +117,18 @@ nav {
   margin: 0  20px;
   display: flex;
   flex-direction: column;
+  max-width: 150px;
 }
 
 a.buttonTime {
   float: left;
   background-color: white; 
   color: black;
-  padding: 15px;
+  padding: 5px 15px;
   margin: 5px;
   text-decoration: none;
 }
 
 a.buttonTime:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19);
 }

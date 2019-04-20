@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
     updateContent(e.target.value);
   })
 
+ 
+
 }, false);
 // -- END document ready -- //
 
@@ -61,7 +63,7 @@ function updateContent(dateInput) {
   // get screenings on this date in this cinema
   axios.get(`${URL}/${dateInput}`)
     .then(screenings => {
-      // console.log(screenings.data);
+      console.log(screenings.data);
       screenings.data.forEach(screening => {
         curMovie = screening.movieID._id;
         if (curMovie !== prevMovie) {

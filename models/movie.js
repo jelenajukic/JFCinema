@@ -8,6 +8,7 @@ const movieSchema = new Schema({
   genre: {type: Array},
   rating: {type: Number},
   imageUrl: {type: String},
+  videoUrl: {type: String},
   status: {type: String, enum: ['active', 'inactive']}
 }, {
   timestamps: {
