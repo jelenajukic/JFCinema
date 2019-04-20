@@ -9,6 +9,19 @@ router.get('/', (req, res, next) => {
     .then(movies => {
       res.render('movie/overview.hbs', {movies: movies});
     })
+    .catch(err => {
+      console.log(err);
+    })
 });
 
+// -> /movie/:id
+router.get('/:id', (req, res, next) => {
+  Movie.findById(req.params.id)
+    .then(movie => {
+      res.render('movie/movie-details.hbs', movie);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
 module.exports = router;

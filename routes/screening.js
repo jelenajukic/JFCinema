@@ -30,7 +30,7 @@ router.get('/:id/:date', (req, res, next) => {
     .populate('movieID') // add the movie details through the movieID
     // .populate('roomID')
     .then(screenings => { 
-      // console.log(screenings)
+      console.log(screenings)
       res.send(screenings);
     })
     .catch(err => {

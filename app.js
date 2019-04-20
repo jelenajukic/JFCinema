@@ -68,10 +68,23 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 });
 
 // format dates in handlebars (Apr 14)
-hbs.registerHelper('formatDate', function(dateString) {
+hbs.registerHelper('formatDate', function (dateString) {
   return new hbs.SafeString(
-      moment(dateString).format("ddd MMM D")//.toUpperCase()
+    moment(dateString).format("ddd MMM D")//.toUpperCase()
   );
+});
+
+// truncate text
+hbs.registerHelper ('truncate', function (str, len) {
+  if (str.length > len && str.length > 0) {
+      var new_str = str + " ";
+      new_str = str.substr (0, len);
+      new_str = str.substr (0, new_str.lastIndexOf(" "));
+      new_str = (new_str.length > 0) ? new_str : str.substr (0, len);
+
+      return new hbs.SafeString ( new_str +'...' ); 
+  }
+  return str;
 });
 
 // default value for title local
@@ -111,12 +124,14 @@ app.use('/screening', screeningRoute);
 
 // user profile route (logged in user)
 const profileRoute = require('./routes/profile');
-app.use('/profile', 
+app.use('/profile',
   ensureLogin.ensureLoggedIn('/auth/login'), // not logged in? go to login page.
   profileRoute); // else go to profile route
 
 const adminRoute = require('./routes/admin');
-app.use('/admin', ensureLogin.ensureLoggedIn('/auth/admin-login'), adminRoute);
+app.use('/admin',
+  ensureLogin.ensureLoggedIn('/auth/admin-login'),
+  adminRoute);
 
 const ticketsRoute = require('./routes/tickets');
 app.use('/tickets', ticketsRoute);
