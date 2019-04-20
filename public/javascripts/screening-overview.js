@@ -48,7 +48,7 @@ function createDates(startdate) {
   for (i = 0; i <= 13; i++) { // 0-13 (14 records) 
     datesArray.push(moment(startdate).add(i, 'days').format())
   }
-  console.log(datesArray);
+  // console.log(datesArray);
   return datesArray;
 };
 

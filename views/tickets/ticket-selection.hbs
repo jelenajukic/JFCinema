@@ -1,11 +1,19 @@
-<div>{{screening.movieID.title}}</div>
+<div>{{movieID.title}}</div>
 
+<div>{{cinemaID.name}}</div>
 
+Number of tickets: <form action="/tickets/{{id}}" method="POST">
+  <select name="tickets">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select>
+  <input type='submit' name='submit'/>
+</form>
 
-
-
-
-<div>{{roomName}}</div>
-{{#each screening.seatPlan}}
-<div class="row" id="row-{{row}}"></div>
-{{/each}}
+{{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/ticket-reservation.js"></script> --}}

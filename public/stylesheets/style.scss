@@ -25,14 +25,14 @@ nav a {
   padding: 10px;
 }
 
-.error-message { 
+.error-message {
   background-color: rgb(233, 122, 122);
   padding: 10px;
   border-radius: 10px;
   margin: 20px 0;
 }
 
-.message-pos { 
+.message-pos {
   background-color: rgb(126, 233, 122);
   padding: 10px;
   border-radius: 10px;
@@ -92,10 +92,10 @@ nav a {
 }
 
 .row {
-  width:20px;
-  height:20px;
+  width: 20px;
+  height: 20px;
   background-color: green;
-  border:2px, solid, white
+  border: 2px, solid, white
 }
 
 // Screening view of user
@@ -127,6 +127,53 @@ a.buttonTime {
   padding: 5px 15px;
   margin: 5px;
   text-decoration: none;
+}
+
+#tickets-container {
+  display: flex;
+  width: 70vw;
+  height: 70vh;
+  justify-content: space-around;
+}
+
+#movie-img {
+  width: 300px;
+  height: auto;
+}
+
+.col {
+  width: 60px;
+  height: 60px;
+  border: 5px solid white;
+}
+
+.true {
+  background-color: green;
+}
+
+.false{
+  background-color: red;
+}
+
+.row {
+  width: 700px;
+  height: 70px;
+  display: flex;
+}
+
+#chairs {
+  width: 700px;
+  height: 700px;
+
+}
+
+.selected {
+  background-color: blue;
+}
+
+.booked {
+  background-color: red;
+  
 }
 
 a.buttonTime:hover {
