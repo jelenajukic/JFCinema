@@ -63,4 +63,40 @@ a.buttonTime {
   padding: 5px;
   margin: 5px; }
 
+#tickets-container {
+  display: flex;
+  width: 70vw;
+  height: 70vh;
+  justify-content: space-around; }
+
+#movie-img {
+  width: 300px;
+  height: auto; }
+
+.col {
+  width: 60px;
+  height: 60px;
+  border: 5px solid white; }
+
+.true {
+  background-color: green; }
+
+.false {
+  background-color: red; }
+
+.row {
+  width: 700px;
+  height: 70px;
+  display: flex; }
+
+#chairs {
+  width: 700px;
+  height: 700px; }
+
+.selected {
+  background-color: blue; }
+
+.booked {
+  background-color: red; }
+
 /*# sourceMappingURL=style.css.map */
