@@ -1,6 +1,13 @@
-{{#each movies}}
-<img class = "movie-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
-<h3>{{title}}</h3>
-<p>{{plot}}</p>
-<p>Release date: {{formatDate releaseDate}}</p>
-{{/each}}
+<div class="movie-overview-container">
+  {{#each movies}}
+  <div class="movie-overview">
+    <img class="movie-overview-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
+    <div class="movie-overview-text">
+      <h3>{{title}}</h3>
+      <p class="movie-overview-text-plot">{{plot}}</p> 
+      <button><a href="/movie/{{_id}}">More information</a></button>
+    </div>
+    <br>
+  </div>
+  {{/each}}
+</div>

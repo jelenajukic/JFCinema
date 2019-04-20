@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
     updateContent(e.target.value);
   })
 
+ 
+
 }, false);
 // -- END document ready -- //
 
@@ -61,7 +63,7 @@ function updateContent(dateInput) {
   // get screenings on this date in this cinema
   axios.get(`${URL}/${dateInput}`)
     .then(screenings => {
-      // console.log(screenings.data);
+      console.log(screenings.data);
       screenings.data.forEach(screening => {
         curMovie = screening.movieID._id;
         if (curMovie !== prevMovie) {
@@ -73,7 +75,7 @@ function updateContent(dateInput) {
           var picNode = document.createElement("div");
           picNode.setAttribute('class', 'movieTimesPicture');
           node.appendChild(picNode);
-          picNode.innerHTML += `<img src="${screening.movieID.imageUrl}" class="movie-poster">`
+          picNode.innerHTML += `<img src="${screening.movieID.imageUrl}" class="screening-poster">`
           // timeslots container
           timeNodeCont = document.createElement('div');
           timeNodeCont.setAttribute('class', 'movieTimesTimes');
@@ -85,15 +87,15 @@ function updateContent(dateInput) {
           // add this time
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
-          timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
-          timeNode.href = `/tickets/${screening._id}`
+          timeNode.innerHTML += `Time: ${screening.timeStart}`; // + @ ${screening.roomID}
+          timeNode.href = `/ticket/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         } else {
           // just add time node
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
-          timeNode.innerHTML += `Time: ${screening.timeStart} + @ ${screening.roomID}`;
-          timeNode.href = `/tickets/${screening._id}`
+          timeNode.innerHTML += `Time: ${screening.timeStart}`; // + @ ${screening.roomID}
+          timeNode.href = `/ticket/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         };        
         prevMovie = screening.movieID._id;
