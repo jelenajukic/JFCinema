@@ -79,7 +79,7 @@ function updateContent(dateInput) {
           // timeslots container
           timeNodeCont = document.createElement('div');
           timeNodeCont.setAttribute('class', 'movieTimesTimes');
-          node.appendChild(timeNodeC
+          node.appendChild(timeNodeCont);
           // title of movie
           var movieTitleNode = document.createElement('h3');
           movieTitleNode.innerHTML = screening.movieID.title;
