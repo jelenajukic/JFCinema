@@ -63,7 +63,7 @@ function updateContent(dateInput) {
   // get screenings on this date in this cinema
   axios.get(`${URL}/${dateInput}`)
     .then(screenings => {
-      console.log(screenings.data);
+      // console.log(screenings.data);
       screenings.data.forEach(screening => {
         curMovie = screening.movieID._id;
         if (curMovie !== prevMovie) {
@@ -88,14 +88,14 @@ function updateContent(dateInput) {
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
           timeNode.innerHTML += `Time: ${screening.timeStart}`; // + @ ${screening.roomID}
-          timeNode.href = `/ticket/${screening._id}`
+          timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         } else {
           // just add time node
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
           timeNode.innerHTML += `Time: ${screening.timeStart}`; // + @ ${screening.roomID}
-          timeNode.href = `/ticket/${screening._id}`
+          timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         };        
         prevMovie = screening.movieID._id;

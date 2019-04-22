@@ -67,10 +67,17 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   }
 });
 
-// format dates in handlebars (Apr 14)
+// format dates in handlebars
 hbs.registerHelper('formatDate', function (dateString) {
   return new hbs.SafeString(
     moment(dateString).format("ddd MMM D")//.toUpperCase()
+  );
+});
+
+// format dates in handlebars (with years)
+hbs.registerHelper('formatDateYear', function (dateString) {
+  return new hbs.SafeString(
+    moment(dateString).format("ddd MMM D, YYYY")//.toUpperCase()
   );
 });
 
@@ -88,7 +95,7 @@ hbs.registerHelper ('truncate', function (str, len) {
 });
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'JFCinema - Only the best movies';
 
 
 // Enable authentication using session + passport

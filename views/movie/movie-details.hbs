@@ -1,9 +1,12 @@
-<img class="movie-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
-<h3>{{title}}</h3>
-<p>{{plot}}</p>
-<p>Release date: {{formatDate releaseDate}}</p>
-<p>Rating: {{rating}}</p>
-
+<div class="movie-details-container">
+  <div class="movie-details-text">
+    <h3>{{title}}</h3>
+    <p>{{plot}}</p>
+    <p>Release date: {{formatDateYear releaseDate}}</p>
+    <p>Rating: {{rating}}</p>
+  </div>
+  <img class="movie-details-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
+</div>
 {{#if videoUrl}}
 <h3>Movie trailer</h3>
 <iframe id="ytplayer" type="text/html" width="640" height="360"
