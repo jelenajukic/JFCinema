@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Screening = require("../models/screening");
 const Cinema = require('../models/cinema');
 const Movie = require('../models/movie');
+const User = require('../models/user');
 const moment = require('moment');
 
 // INSTRUCTIONS //
@@ -60,7 +61,7 @@ var deleteCurScreen = Screening.deleteMany({})
 
 // after creating arrays and deleting current screenings
 Promise.all([findMovies, findCinemas, deleteCurScreen])
-  .then(() => { 
+  .then(() => {
     cinemaArr.forEach(cinema => {
       rooms = cinema.rooms;
       dateArr.forEach(date => {
@@ -121,7 +122,7 @@ function createSeatPlan(obj) {
   for (let i = 0; i < obj.rows; i++) {
     for (let j = 0; j < obj.cols; j++) {
       // 20% chance it is taken already
-      if(Math.random() < 0.2) {
+      if (Math.random() < 0.2) {
         var availOrNot = false;
       } else {
         var availOrNot = true;

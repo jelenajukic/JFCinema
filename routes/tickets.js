@@ -3,25 +3,6 @@ const router = express.Router();
 const Cinema = require('../models/cinema')
 const Screening = require('../models/screening');
 
-// -> /screening (overview)
-// router.get('/', (req, res, next) => {
-
-
-//   Screening.find().populate('movieID')
-//     .then(screening => {
-//       res.render('tickets/all-screenings', {screening: screening});
-//     })
-// });
-
-// router.get('/:id/:roomId', (req, res, next) => {
-
-//   Screening.findOne({_id:req.params.id}).populate('movieID').populate('cinemaID')
-//   .then(screening=>Cinema.findOne({_id:screening.cinemaID}))
-//   .then(cinema=>{ return cinema.rooms.filter(room=>room._id==req.params.roomId)})
-//   .then(room =>res.render('tickets/ticket-selection',screening))
-//   .catch(error=>console.log(error));
-
-// });
 
 router.get('/:id', (req, res, next) => {
   Screening.findOne({
@@ -37,14 +18,9 @@ router.get('/:id', (req, res, next) => {
           return room.name
         }
       })
-      // var x = screening.cinemaID.rooms.find(room => {
-      //   console.log(room._id);
-      //   console.log(screeningRoom)
-      //   room._id===screeningRoom})
       screening.roomName = x
       console.log(x);
       console.log(screening.roomName);
-      // res.send(screening)
       res.render('tickets/ticket-selection_sp', screening)
 
     })
@@ -66,10 +42,6 @@ router.get('/:id/data', (req, res, next) => {
           return room.name
         }
       })
-      // var x = screening.cinemaID.rooms.find(room => {
-      //   console.log(room._id);
-      //   console.log(screeningRoom)
-      //   room._id===screeningRoom})
       screening.roomName = x
       console.log(x);
       console.log(screening.roomName);
@@ -82,6 +54,7 @@ router.get('/:id/data', (req, res, next) => {
 
 router.post("/:id", (req, res, next) => {
   console.log(req.params.id);
+  console.log(req.user)
   Screening.findOne({
       _id: req.params.id,
 
@@ -95,17 +68,10 @@ router.post("/:id", (req, res, next) => {
       'seatPlan._id': seatRef
     }, {
       $set: {
-        'seatPlan.$.available': false
+        'seatPlan.$.available': false,
+        'seatPlan.$.userID': req.user
       }
     }))
 })
 
 module.exports = router;
-
-
-//  Screening.findOne({_id:req.params.id})
-//   .then(screening => console.log(screening))
-//   .then(screening=>{ 
-//     return screening.seatPlan.filter(seat=>seat.available==true).slice(0,noOfTickets);
-//    })
-//   .then(reservedSeats=> reservedSeats.forEach(seat => var updatePromise = Model.update({_id: req.params._id, 'seatPlan._id':seat._id}, {"$set": {"value": item.value }});

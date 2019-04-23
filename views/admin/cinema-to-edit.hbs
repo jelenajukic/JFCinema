@@ -48,22 +48,24 @@ Hello {{name}}, I will edit you
     <h3>{{name}}</h3>
     <label for="roomName">Room name:</label>
     <input type="text" name="roomName" class="room-name" value="{{name}}"><br><br>
-    <label for="capacity">Room capacity:</label>
-    <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br>
+    {{!-- <label for="capacity">Room capacity:</label>
+    <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br> --}}
     <label for="screenType">Screen Type:</label>
     {{!-- <input type="text" name="screenType" class="screenType" value={{screenType}}><br><br> --}}
     <select name="screenType" id="">
       <option value="2D">2D</option>
       <option value="3D">3D</option>
-    </select>
+    </select> <br><br>
+    <label for="rows"># of rows</label>
+    <input type="number" name="rows" id="rows"  value="{{rows}}">
+    <br><br>
+    <label for="cols"># of columns</label>
+    <input type="number" name="cols" id="cols"  value="{{cols}}">
     {{/each}}
   </div>
 
   <br>
 
-
-  <input type="submit" value="UPDATE CINEMA INFO">
+   <input type="submit" value="UPDATE CINEMA INFO">
 
 </form>
-{{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/javascripts/cinema.js"></script> --}}

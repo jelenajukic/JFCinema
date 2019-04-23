@@ -27,8 +27,8 @@
     from: <input type="time" name="timeWeekdaysStart" class="start-time"><span> -
     </span> <input type="time" name="timeWeekdaysEnd" class="end-time"><br><br>
     <label><b>Saturdays and Sundays:</b></label><br><br>
-    from: <input type="time" name="timeWeekendStart" class="start-time"}><span> -
-    </span><input type="time" name="timeWeekendEnd" class="end-time"}><br><br>
+    from: <input type="time" name="timeWeekendStart" class="start-time" }><span> -
+    </span><input type="time" name="timeWeekendEnd" class="end-time" }><br><br>
   </div>
 
   <div>
@@ -39,39 +39,15 @@
     <textarea name="publicTransport" rows="10" cols="30">{{transport.publicTransport}}</textarea><br>
   </div>
 
-  <div>
-    <h2>Rooms</h2>
-    <label for="roomName">Roomname:</label>
-    <input type="text" name="roomName" id="roomName">
-    <br><br>
-    <label for="screenType">Screen Type:</label>
-    <select name="screenType" id="">
-      <option value="2D">2D</option>
-      <option value="3D">3D</option>
-    </select>
-    <br><br>
-    <label for="rows"># of rows</label>
-    <input type="number" name="rows" id="rows">
-    <br><br>
-    <label for="cols"># of columns</label>
-    <input type="number" name="cols" id="cols">
+  <div id="add-room">ADD ROOM</div>
+  <div id="rooms">
+    <div>
+      <h2>Rooms</h2>
+    </div>
+
   </div>
-  {{!-- <div>
-    <h2><b>Rooms:</b></h2>
-    {{#each rooms}}
-    <h3>{{name}}</h3>
-    <label for="roomName">Room name:</label>
-    <input type="text" name="roomName" class="room-name" value={{name}}><br><br>
-    <label for="capacity">Room capacity:</label>
-    <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br>
-    <label for="screenType">Screen Type:</label>
-    {{!-- <input type="text" name="screenType" class="screenType" value={{screenType}}><br><br> --}}
-    {{!-- <select name="screenType" id="">
-      <option value="2D">2D</option>
-      <option value="3D">3D</option>
-    </select>
-    {{/each}} --}}
-  {{!-- </div> --}}
+
+
 
   <br>
 
@@ -79,5 +55,5 @@
   <input type="submit" value="ADD CINEMA">
 
 </form>
-{{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/javascripts/cinema.js"></script> --}}
+
+<script src="/javascripts/cinema-to-add.js"></script>

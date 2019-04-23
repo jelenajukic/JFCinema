@@ -36,8 +36,8 @@ router.get('/admin-home', (req, res, next) => {
 router.get('/edit-cinema/:id', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Cinema.findOne({
-      _id: req.params.id
-    })
+        _id: req.params.id
+      })
       .then(cinema => {
         res.render('admin/cinema-to-edit', cinema)
       })
@@ -58,7 +58,9 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       for (let i = 0; i < req.body.roomName.length; i++) {
         obj = {
           name: req.body.roomName[i],
-          capacity: req.body.capacity[i],
+          capacity : Number(req.body.cols[i]) * Number(req.body.rows[i]),
+          cols: req.body.cols[i],
+          rows: req.body.rows[i],
           screenType: req.body.screenType[i]
         }
         arrayRooms.push(obj);
@@ -67,7 +69,9 @@ router.post('/edit-cinema/:id', (req, res, next) => {
     } else {
       arrayRooms = [{
         name: req.body.roomName,
-        capacity: req.body.capacity,
+        capacity: Number(req.body.cols) * Number(req.body.rows),
+        cols: req.body.cols,
+        rows: req.body.rows,
         screenType: req.body.screenType
       }]
     }
@@ -82,15 +86,16 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       },
       owner: req.body.owner,
       workingSchema: [{
-        startTime: req.body.timeWeekdaysStart,
-        endTime: req.body.timeWeekdaysEnd,
-        day: "workingday"
-      },
-      {
-        startTime: req.body.timeWeekendStart,
-        endTime: req.body.timeWeekendEnd,
-        day: "weekend"
-      }],
+          startTime: req.body.timeWeekdaysStart,
+          endTime: req.body.timeWeekdaysEnd,
+          day: "workingday"
+        },
+        {
+          startTime: req.body.timeWeekendStart,
+          endTime: req.body.timeWeekendEnd,
+          day: "weekend"
+        }
+      ],
       transport: {
         auto: req.body.auto,
         publicTransport: req.body.publicTransport,
@@ -98,9 +103,13 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       rooms: arrayRooms
     }
     // update the cinema
-    Cinema.findByIdAndUpdate({ _id: req.params.id },
-      { $set: updatedCinema },
-      { new: true })
+    Cinema.findByIdAndUpdate({
+        _id: req.params.id
+      }, {
+        $set: updatedCinema
+      }, {
+        new: true
+      })
       .then(cinema => {
         res.redirect('/admin/admin-home')
       })
@@ -117,7 +126,66 @@ router.get('/add-cinema/', (req, res, next) => {
 });
 
 router.post('/add-cinema/', (req, res, next) => {
-  res.render('admin/cinema-to-add')
+
+  console.log(req.body);
+  let arrayRooms = []
+  // multiple rooms
+  if (Array.isArray(req.body.roomName)) {
+    for (let i = 0; i < req.body.roomName.length; i++) {
+      obj = {
+        name: req.body.roomName[i],
+        capacity : Number(req.body.cols[i]) * Number(req.body.rows[i]),
+        cols: req.body.cols[i],
+        rows: req.body.rows[i],
+        screenType: req.body.screenType[i]
+      }
+      arrayRooms.push(obj);
+    }
+    // one room
+  } else {
+    arrayRooms = [{
+      name: req.body.roomName,
+      capacity: Number(req.body.cols) * Number(req.body.rows),
+      cols: req.body.cols,
+      rows: req.body.rows,
+      screenType: req.body.screenType
+    }]
+  }
+
+  let cinemaToCreate = {
+    name: req.body.name,
+    address: {
+      name: req.body.streetName,
+      streetNumber: req.body.streetNumber,
+      postcode: req.body.postcode,
+      city: req.body.city
+    },
+    owner: req.body.owner,
+    workingSchema: [{
+        startTime: req.body.timeWeekdaysStart,
+        endTime: req.body.timeWeekdaysEnd,
+        day: "workingday"
+      },
+      {
+        startTime: req.body.timeWeekendStart,
+        endTime: req.body.timeWeekendEnd,
+        day: "weekend"
+      }
+    ],
+    transport: {
+      auto: req.body.auto,
+      publicTransport: req.body.publicTransport,
+    },
+    rooms: arrayRooms
+  }
+  Cinema.create(cinemaToCreate)
+    .then(cinema => {
+      res.redirect('/admin/admin-home')
+    })
+    .catch(error => {
+      console.log(error)
+    });
+
 });
 
 // -----------------------
@@ -128,15 +196,15 @@ router.post('/add-cinema/', (req, res, next) => {
 router.get('/add-screening/:id', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Cinema.findOne({
-      _id: req.params.id
-    })
+        _id: req.params.id
+      })
       .then(cinema => {
         return cinema
       })
       .then(cinema => Movie.find().then(movie => res.render('admin/screening-to-add', {
-        movie: movie,
-        cinema: cinema
-      }))
+          movie: movie,
+          cinema: cinema
+        }))
         .catch(error => console.log(error)))
       .catch(error => console.log(error));
   } else {
@@ -155,10 +223,10 @@ router.post('/add-screening/:id', (req, res, next) => {
   // console.log(roomId)
   //console.log(obj)
   Cinema.findOne({
-    'rooms._id': req.body.roomID
-  }).then(cinema => {
-    return cinema.rooms.find(room => room._id == req.body.roomID)
-  })
+      'rooms._id': req.body.roomID
+    }).then(cinema => {
+      return cinema.rooms.find(room => room._id == req.body.roomID)
+    })
     .then(room => {
       return {
         capacity: room.capacity,
@@ -242,12 +310,12 @@ router.get('/add-movie/check', (req, res, next) => {
   var titleEnc = encodeURI(req.query.title);
   var movieObject;
   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.KEY_MOVIE_DB}&language=en-US&query=${titleEnc}&page=1&include_adult=false`)
-    .then(movie => { 
-      movieObject = movie.data.results[0]; 
+    .then(movie => {
+      movieObject = movie.data.results[0];
       // find a video with the movie ID
       return axios.get(`https://api.themoviedb.org/3/movie/${movieObject.id}/videos?api_key=${process.env.KEY_MOVIE_DB}&language=en-US`)
     })
-    .then(movieVid => { 
+    .then(movieVid => {
       var findUrl = movieVid.data.results.find(movie => movie.site.toLowerCase() == "youtube" && movie.type.toLowerCase() == "trailer")
       movieObject.videoUrl = findUrl.key; //`https://www.youtube.com/watch?v=
       res.send(movieObject);
@@ -263,9 +331,9 @@ router.get('/add-movie/check', (req, res, next) => {
 // Is this still used? /FT
 router.get('/room/:id/:date', (req, res, next) => {
   Screening.find({
-    'roomID': req.params.id,
-    'date': req.params.date
-  })
+      'roomID': req.params.id,
+      'date': req.params.date
+    })
     .then(screenings => res.send(screenings))
 });
 
