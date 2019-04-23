@@ -1,5 +1,9 @@
 let myScreening; //object which will conatin roomName
 var URL = window.location.href;
+let alreadyPrintedRow = [];
+let alreadyPrintedSeat = [];
+
+let alreadySelected;
 document.addEventListener('DOMContentLoaded', () => {
   //var URL = window.location.href;
 
@@ -20,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return myScreening
     })
     .then(myScreening => loadSeatPlan(myScreening))
+    .then(() => document.getElementById("room").innerHTML = myScreening.roomName)
     // .then(()=>setEventListeners())
     .catch(error => console.log(error))
 })
@@ -62,6 +67,7 @@ function infoAboutMovie(screening) {
 function loadSeatPlan(screening) {
   let counter = 0
   let parentNode = document.getElementById("chairs");
+  parentNode.innerHTML = "<div id='screen'>SCREEN<div><br>"
   for (var i = 1; i <= screening.roomRows; i++) {
     for (var j = 1; j <= screening.roomCols; j++) {
       if (j == 1) {
@@ -74,6 +80,9 @@ function loadSeatPlan(screening) {
       counter++
     }
   }
+  parentNode.innerHTML +=
+    "<div id='legend'><div><div class='legend-cube' id='red'></div><span>Busy</span></div><div><div class='legend-cube' id='green'></div><span>Free</span></div><div><div class='legend-cube' id='blue'></div><span>Your reservation</span></div><br>"
+
   let htmlCollection = document.getElementsByClassName("col");
   var arrCol = Array.from(htmlCollection);
 
@@ -81,21 +90,20 @@ function loadSeatPlan(screening) {
     if (col.classList.contains("true")) {
       //col.classList.add("not-selected");
       col.addEventListener("click", function () {
-        col.textContent = "";
+        //col.textContent = "";
         col.classList.toggle("selected");
+        reservationInfoOnScreen()
+        //addInInfo(m);
       })
     } else {
-      col.classList.add("booked");
+      col.classList.add("booked"); //these seats are already booked by some other user. Add no listener on them
     }
   })
-  // console.log(arrCol);
-  // console.log(htmlCollection)
-
 }
 
 document.getElementById('book-movie').addEventListener("click", () => {
+
   let reservation = [];
-  let allPromises = [];
   arrSelectedSeats = Array.from(document.getElementsByClassName("selected"));
 
   for (var i = 0; i < arrSelectedSeats.length; i++) {
@@ -109,6 +117,39 @@ document.getElementById('book-movie').addEventListener("click", () => {
   for (var i = 0; i < reservation.length; i++) {
     axios.post(`${URL}`, reservation[i])
   }
-  //  console.log(allPromises.length)
-  //   Promise.all(allPromises).then(()=>console.log("done"))
 })
+
+
+function reservationInfoOnScreen() {
+
+  arrSelectedSeats = Array.from(document.getElementsByClassName("selected"));
+  console.log(arrSelectedSeats);
+
+  document.getElementById("number-of-tickets").innerHTML = arrSelectedSeats.length
+  document.getElementById("selected-seats").innerHTML = "";
+
+  for (var i = 0; i < arrSelectedSeats.length; i++) {
+
+
+  document.getElementById("selected-seats").innerHTML +=
+  `<div><span>Row:${arrSelectedSeats[i].getAttribute("row")}</span><span>Seat:${arrSelectedSeats[i].getAttribute("seatno")}</span></div>`
+
+  }
+}
+
+
+
+// function checkIfExists(text) {
+//   var spanTags = document.getElementsByTagName("span");
+//   var searchText = text;
+//   var found;
+
+//   for (var i = 0; i < spanTags.length; i++) {
+//     if (spanTags[i].textContent == searchText) {
+//       found = spanTags[i];
+//       return found;
+//     }else{
+//       return false;
+//     }
+//   }
+// }
