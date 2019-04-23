@@ -148,7 +148,7 @@ router.post('/add-screening/:id', (req, res, next) => {
 
   let obj = req.body;
   // correct date format
-  obj.date = moment().startOf('day').format();
+  obj.date = moment(obj.date).startOf('day').format();
   obj.cinemaID = req.params.id;
 
   // let roomId= req.body.roomID
