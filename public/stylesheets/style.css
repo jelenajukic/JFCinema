@@ -42,23 +42,23 @@ nav a {
   margin: 20px 0; }
 
 .movie-overview-container {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
 
 .movie-overview {
   display: flex;
-  margin: 20px; }
-
-.movie-overview-poster {
-  max-width: 150px; }
+  margin: 20px 0; }
 
 .movie-overview-text {
   width: 200px;
-  margin: 0 10px; }
+  margin: 0 30px; }
 
-.movie-overview-text-plot {
-  max-height: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+.movie-details-container {
+  display: flex; }
+
+.movie-details-text {
+  max-width: 450px;
+  margin-right: 20px; }
 
 .movie-poster {
   max-width: 150px; }
@@ -151,6 +151,7 @@ a.buttonTime {
 a.buttonTime:hover {
   box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19); }
 
+
 #info {
   display: flex;
   flex-direction: column;
@@ -187,5 +188,6 @@ a.buttonTime:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+
 
 /*# sourceMappingURL=style.css.map */

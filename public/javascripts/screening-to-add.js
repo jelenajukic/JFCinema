@@ -13,7 +13,9 @@ for (let i = 1; i < rad.length; i++) {
 document.getElementById("screening-date").addEventListener('change', function () {
   divWithTimeSlots.innerHTML = '';
   let dateVal = document.getElementById("screening-date").value;
+  // console.log(dateVal);
   let date = moment(dateVal).startOf('day').format();
+  // console.log(date);
   axios.get(`/admin/room/${radVal}/${date}`)
     // .then(cinema => cinema.data.rooms.filter(room => room._id == radVal))
     .then(screenings => {
@@ -25,7 +27,7 @@ document.getElementById("screening-date").addEventListener('change', function ()
       let screeningTimes = ['10:00', '13:00', '16:00', '19:00', '22:00'].filter(element => {
         return timesTaken.indexOf(element) === -1;
       })
-      console.log(screeningTimes);
+      // console.log(screeningTimes);
 
       screeningTimes.forEach(element=> {
         divWithTimeSlots.innerHTML+=`<input type="radio" name="timeStart" required value=${element}>${element}<br>`
