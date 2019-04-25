@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Cinema = require('../models/cinema')
 const Screening = require('../models/screening');
+const nodemailer = require("nodemailer");
 
+router.get('/confirmation', (req, res, next) => {
+  console.log("open it")
+  res.render('tickets/confirmation')
+ });
 
 router.get('/:id', (req, res, next) => {
   Screening.findOne({
@@ -72,6 +77,57 @@ router.post("/:id", (req, res, next) => {
         'seatPlan.$.userID': req.user
       }
     }))
+    .then(result => console.log(result))
+    .catch(error => console.log(error))
 })
+
+
+
+/**
+ * Send e-mail route
+ */
+router.post('/:id/send-email', (req, res, next) => {
+let messageSeats ="";
+  for(var i=0; i<req.body.reservation.length; i++){
+    messageSeats+=`Seat:${req.body.reservation[i].seatNo} in Row: ${req.body.reservation[i].row} //`
+  }
+
+  
+  let subject = `Reservation for ${req.user.username} in JFCinema - ${req.body.screening.movieID.title}`
+
+  console.log(subject)
+  let message = `Dear ${req.user.username} thanks for your reservation.
+  
+  Your reservetion :
+  
+  ${messageSeats}`;
+
+  console.log(message);
+ let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'JFCinema2019',
+      pass: 'JFCinema123'
+    }
+  });
+  transporter.sendMail({
+    from: '"JF Cinema - movie reservation 👻" <JFCinema2019@gmail.com>',
+    to: req.user.email, 
+    subject: subject, 
+    text: message,
+    html: `<b>${message}</b>`
+  })
+  .then(info=> { 
+    res.redirect('tickets/confirmation')
+    //res.render('cinema/details')
+    console.log("Works!")
+    // console.log(info)
+
+})
+  .catch(error => console.log(error));
+});
+
+
+
 
 module.exports = router;

@@ -47,10 +47,20 @@ nav a {
 
 .movie-overview {
   display: flex;
+  margin: 20px; }
+
+.movie-overview-poster {
+  max-width: 150px;
   margin: 20px 0; }
 
 .movie-overview-text {
   width: 200px;
+  margin: 0 10px; }
+
+.movie-overview-text-plot {
+  max-height: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0 30px; }
 
 .movie-details-container {
@@ -151,7 +161,6 @@ a.buttonTime {
 a.buttonTime:hover {
   box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19); }
 
-
 #info {
   display: flex;
   flex-direction: column;
@@ -189,5 +198,8 @@ a.buttonTime:hover {
   flex-direction: column;
   justify-content: space-between; }
 
+#map {
+  width: 50%;
+  height: 500px; }
 
 /*# sourceMappingURL=style.css.map */
