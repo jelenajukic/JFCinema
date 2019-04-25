@@ -51,6 +51,12 @@ nav a {
 
 .movie-overview-text {
   width: 200px;
+  margin: 0 10px; }
+
+.movie-overview-text-plot {
+  max-height: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0 30px; }
 
 .movie-details-container {
@@ -187,5 +193,9 @@ a.buttonTime:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+
+#map {
+  width: 50%;
+  height: 500px; }
 
 /*# sourceMappingURL=style.css.map */
