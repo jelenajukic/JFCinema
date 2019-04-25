@@ -58,7 +58,7 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       for (let i = 0; i < req.body.roomName.length; i++) {
         obj = {
           name: req.body.roomName[i],
-          capacity : Number(req.body.cols[i]) * Number(req.body.rows[i]),
+          capacity: Number(req.body.cols[i]) * Number(req.body.rows[i]),
           cols: req.body.cols[i],
           rows: req.body.rows[i],
           screenType: req.body.screenType[i]
@@ -128,16 +128,21 @@ router.get('/add-cinema/', (req, res, next) => {
 router.post('/add-cinema/', (req, res, next) => {
 
   console.log(req.body);
-  let arrayRooms = []
+  let arrayRooms = [];
+  let location = {
+    type: 'Point',
+    coordinates: [req.body.longitude, req.body.latitude]
+  };
   // multiple rooms
   if (Array.isArray(req.body.roomName)) {
     for (let i = 0; i < req.body.roomName.length; i++) {
       obj = {
         name: req.body.roomName[i],
-        capacity : Number(req.body.cols[i]) * Number(req.body.rows[i]),
+        capacity: Number(req.body.cols[i]) * Number(req.body.rows[i]),
         cols: req.body.cols[i],
         rows: req.body.rows[i],
-        screenType: req.body.screenType[i]
+        screenType: req.body.screenType[i],
+        
       }
       arrayRooms.push(obj);
     }
@@ -148,7 +153,8 @@ router.post('/add-cinema/', (req, res, next) => {
       capacity: Number(req.body.cols) * Number(req.body.rows),
       cols: req.body.cols,
       rows: req.body.rows,
-      screenType: req.body.screenType
+      screenType: req.body.screenType,
+     
     }]
   }
 
@@ -160,6 +166,7 @@ router.post('/add-cinema/', (req, res, next) => {
       postcode: req.body.postcode,
       city: req.body.city
     },
+    location: location,
     owner: req.body.owner,
     workingSchema: [{
         startTime: req.body.timeWeekdaysStart,

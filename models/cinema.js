@@ -9,6 +9,7 @@ const cinemaSchema = new Schema({
     postcode: String,
     city: {type: String, required: true}
   },
+  location: { type: { type: String }, coordinates: [Number] }, //geolocation, GeoJSON field
   workingSchema: [{
     startTime: String,
     endTime: String,
@@ -34,5 +35,6 @@ const cinemaSchema = new Schema({
   }
 });
 
+cinemaSchema.index({ location: '2dsphere' });
 const Cinema = mongoose.model("Cinema", cinemaSchema);
 module.exports = Cinema;

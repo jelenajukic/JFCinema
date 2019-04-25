@@ -1,7 +1,10 @@
+
+
 let myScreening; //object which will conatin roomName
 var URL = window.location.href;
 let alreadyPrintedRow = [];
 let alreadyPrintedSeat = [];
+let reservationPromises = [];
 
 let alreadySelected;
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,10 +116,20 @@ document.getElementById('book-movie').addEventListener("click", () => {
     })
   }
 
-  console.log(URL)
+  // console.log(URL)
+  // for (var i = 0; i < reservation.length; i++) {
+  //   axios.post(`${URL}`, reservation[i])
+  // }
+
+  
   for (var i = 0; i < reservation.length; i++) {
     axios.post(`${URL}`, reservation[i])
   }
+  
+  
+  axios.post(`${URL}/send-email`, {reservation:reservation, screening:myScreening})
+  .then((result)=> console.log("hello"))
+  
 })
 
 
