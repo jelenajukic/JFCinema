@@ -117,8 +117,9 @@ let messageSeats ="";
     text: message,
     html: `<b>${message}</b>`
   })
-  .then(info=> { 
-    res.redirect('tickets/confirmation')
+  .then(info => { 
+    debugger
+    res.redirect('/tickets/confirmation')
     //res.render('cinema/details')
     console.log("Works!")
     // console.log(info)
