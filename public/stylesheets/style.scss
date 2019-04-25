@@ -54,35 +54,14 @@ nav a {
   display: flex;
   flex-wrap: wrap;
 }
-
 .movie-overview {
   display: flex;
-
-  margin: 20px;
-}
-
-.movie-overview-poster {
-  max-width: 150px;
   margin: 20px 0;
-
 }
-
 .movie-overview-text {
   width: 200px;
-
-  margin: 0 10px;
-}
-
-.movie-overview-text-plot {
-  max-height: 120px;
-  // white-space: nowrap;  
-  // overflow: hidden;
-  // text-overflow: ellipsis;
-
   margin: 0 30px;
-
 }
-
 // movie overview page - end
 // ----------------------------
 

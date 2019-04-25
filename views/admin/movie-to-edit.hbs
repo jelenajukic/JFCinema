@@ -1,0 +1,47 @@
+<h2>Edit the movie</h2>
+{{!-- <form action="/admin/add-movie/checkprefill" method="POST"> --}}
+
+<label for="title">Pick a movie to edit</label>
+<select name="inputEditMovie" id="inputEditMovie">
+  {{#each movies}} 
+  <option value="{{id}}">{{title}}</option>
+  {{/each}}
+</select> 
+<button id="buttonEditMovie">Get details</button>
+{{!-- </form> --}}
+
+<h2>Edit movie</h2>
+<form action="/admin/edit-movie/" method="POST">
+<input type="hidden" name="movieId" id="movieId"> 
+<label for="title">Title:</label>
+<input type="text" name="title" id="title" required>
+<br><br>
+<label for="plot">Plot (summary):</label>
+ <textarea name="plot" id="plot" cols="100" rows="10">
+</textarea>
+<br><br>
+<label for="releaseDate">Release date:</label>
+<input type="date" name="releaseDate" id="releaseDate" required>
+<br><br>
+<label for="rating">Rating: </label>
+<input type="float" name="rating" id="rating" required>
+<br><br>
+<label for="imageUrl">Image URL (poster): </label>
+<input type="url" name="imageUrl" id="imageUrl" required>
+<br><br>
+<label for="videoUrl">Youtube code (youtube.com/v=[this value]): </label>
+<input type="text" name="videoUrl" id="videoUrl">
+{{!-- genres --}}
+<br><br>
+<label for="status">Status: </label>
+<select name="status" id="status" required>
+  <option value="active">active</option>
+  <option value="inactive">inactive</option>
+</select> 
+<br><br>
+<button type="submit">Update</button>
+</form>
+
+<script src="/javascripts/moment.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/movie-to-edit.js"></script>

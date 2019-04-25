@@ -3,5 +3,9 @@
 <p></p><a href="/profile/edit">Edit profile</a></p>
 <p></p><a href="/profile/tickets">Ticket overview</a></p>
 
+<form action="/profile/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="profile-image"><br><br>
+  <button type="submit" name="submit-profile-image">Upload picture</button>
+</form>
 <p>The last movie you saw was [[MOVIE]], we hope you liked it!</p>
 [[MOVIE IMG]]

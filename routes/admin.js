@@ -36,8 +36,8 @@ router.get('/admin-home', (req, res, next) => {
 router.get('/edit-cinema/:id', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Cinema.findOne({
-        _id: req.params.id
-      })
+      _id: req.params.id
+    })
       .then(cinema => {
         res.render('admin/cinema-to-edit', cinema)
       })
@@ -58,7 +58,7 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       for (let i = 0; i < req.body.roomName.length; i++) {
         obj = {
           name: req.body.roomName[i],
-          capacity : Number(req.body.cols[i]) * Number(req.body.rows[i]),
+          capacity: Number(req.body.cols[i]) * Number(req.body.rows[i]),
           cols: req.body.cols[i],
           rows: req.body.rows[i],
           screenType: req.body.screenType[i]
@@ -86,15 +86,15 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       },
       owner: req.body.owner,
       workingSchema: [{
-          startTime: req.body.timeWeekdaysStart,
-          endTime: req.body.timeWeekdaysEnd,
-          day: "workingday"
-        },
-        {
-          startTime: req.body.timeWeekendStart,
-          endTime: req.body.timeWeekendEnd,
-          day: "weekend"
-        }
+        startTime: req.body.timeWeekdaysStart,
+        endTime: req.body.timeWeekdaysEnd,
+        day: "workingday"
+      },
+      {
+        startTime: req.body.timeWeekendStart,
+        endTime: req.body.timeWeekendEnd,
+        day: "weekend"
+      }
       ],
       transport: {
         auto: req.body.auto,
@@ -104,8 +104,8 @@ router.post('/edit-cinema/:id', (req, res, next) => {
     }
     // update the cinema
     Cinema.findByIdAndUpdate({
-        _id: req.params.id
-      }, {
+      _id: req.params.id
+    }, {
         $set: updatedCinema
       }, {
         new: true
@@ -134,7 +134,7 @@ router.post('/add-cinema/', (req, res, next) => {
     for (let i = 0; i < req.body.roomName.length; i++) {
       obj = {
         name: req.body.roomName[i],
-        capacity : Number(req.body.cols[i]) * Number(req.body.rows[i]),
+        capacity: Number(req.body.cols[i]) * Number(req.body.rows[i]),
         cols: req.body.cols[i],
         rows: req.body.rows[i],
         screenType: req.body.screenType[i]
@@ -162,15 +162,15 @@ router.post('/add-cinema/', (req, res, next) => {
     },
     owner: req.body.owner,
     workingSchema: [{
-        startTime: req.body.timeWeekdaysStart,
-        endTime: req.body.timeWeekdaysEnd,
-        day: "workingday"
-      },
-      {
-        startTime: req.body.timeWeekendStart,
-        endTime: req.body.timeWeekendEnd,
-        day: "weekend"
-      }
+      startTime: req.body.timeWeekdaysStart,
+      endTime: req.body.timeWeekdaysEnd,
+      day: "workingday"
+    },
+    {
+      startTime: req.body.timeWeekendStart,
+      endTime: req.body.timeWeekendEnd,
+      day: "weekend"
+    }
     ],
     transport: {
       auto: req.body.auto,
@@ -196,15 +196,15 @@ router.post('/add-cinema/', (req, res, next) => {
 router.get('/add-screening/:id', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Cinema.findOne({
-        _id: req.params.id
-      })
+      _id: req.params.id
+    })
       .then(cinema => {
         return cinema
       })
-      .then(cinema => Movie.find().then(movie => res.render('admin/screening-to-add', {
-          movie: movie,
-          cinema: cinema
-        }))
+      .then(cinema => Movie.find({status: 'active'}).then(movie => res.render('admin/screening-to-add', {
+        movie: movie,
+        cinema: cinema
+      }))
         .catch(error => console.log(error)))
       .catch(error => console.log(error));
   } else {
@@ -223,10 +223,10 @@ router.post('/add-screening/:id', (req, res, next) => {
   // console.log(roomId)
   //console.log(obj)
   Cinema.findOne({
-      'rooms._id': req.body.roomID
-    }).then(cinema => {
-      return cinema.rooms.find(room => room._id == req.body.roomID)
-    })
+    'rooms._id': req.body.roomID
+  }).then(cinema => {
+    return cinema.rooms.find(room => room._id == req.body.roomID)
+  })
     .then(room => {
       return {
         capacity: room.capacity,
@@ -326,14 +326,60 @@ router.get('/add-movie/check', (req, res, next) => {
     })
 })
 
-// /checkprefill
+// -> /admin/edit-movie
+router.get('/edit-movie', (req, res, next) => {
+  if (req.user.role === "ADMIN") {
+    Movie.find({})
+      .then(movies => {
+        console.log(movies);
+        res.render('admin/movie-to-edit', { movies: movies })
+      })
+      .catch(error => {
+        console.log("error")
+      })
+  } else {
+    res.render('auth/login');
+  }
+});
+
+// -> (POST) /admin/add-movie
+router.post('/edit-movie', (req, res, next) => {
+  if (req.user.role === "ADMIN") {
+    req.body.releaseDate = moment(req.body.releaseDate).startOf('day').format();
+    Movie.findByIdAndUpdate({_id: req.body.movieId},{$set: req.body})
+      .then(movieUpdated => {
+        console.log('movie updated: ', movieUpdated.title);
+        res.redirect('/admin/admin-home');
+        // res.render('admin/admin-home.hbs', {messagePos: `Created movie: ${movieCreated.title} `})
+      })
+      .catch(err => {
+        console.log(err);
+        res.redirect('/admin/admin-home');
+        // res.render('admin/admin-home.hbs', {message: `An error occured`})
+      })
+  } else {
+    res.render('auth/login');
+  }
+})
+
+// -> axios call to prefill EDIT movie with current details
+router.get('/edit-movie/check', (req, res, next) => {
+  Movie.findById(req.query.id)
+    .then(movie => {  
+      res.send(movie);
+    })
+    .catch(err => {
+      console.log(err);
+      res.send("")
+    })
+})
 
 // Is this still used? /FT
 router.get('/room/:id/:date', (req, res, next) => {
   Screening.find({
-      'roomID': req.params.id,
-      'date': req.params.date
-    })
+    'roomID': req.params.id,
+    'date': req.params.date
+  })
     .then(screenings => res.send(screenings))
 });
 
