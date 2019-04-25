@@ -107,7 +107,7 @@ let messageSeats ="";
     service: 'Gmail',
     auth: {
       user: 'JFCinema2019',
-      pass: 'JFCinema123'
+      pass: process.env.GMAIL_PASS
     }
   });
   transporter.sendMail({
