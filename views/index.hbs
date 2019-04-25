@@ -1,2 +1,24 @@
 <h1>{{title}}</h1>
 <p>Welcome to our cinema!</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum ut, asperiores reiciendis alias repudiandae dolorem enim, ipsam quo porro aut, ad aliquid voluptate? Eveniet odio cupiditate sapiente soluta facilis dignissimos accusantium ut at voluptatem recusandae, porro quam nemo non autem ab, rerum quo sit nobis, est libero fugit sed laudantium. Saepe libero laboriosam, odio amet sit placeat quisquam, itaque doloremque ab maxime dolorum, modi suscipit dolore mollitia expedita autem sed quod tempora! Esse accusamus at quisquam ducimus dolor asperiores amet, deleniti tempore quaerat possimus velit facere odio quidem quasi molestiae aperiam dignissimos recusandae illo a hic assumenda culpa iste laudantium?</p>
+
+{{!-- GlideJS. Class has to be .glide --}}
+<h2>Current movies</h2>
+<div class="glide">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides"> 
+      {{#each movies}}
+      <li class="glide__slide"><a href="/movie/{{_id}}"><img src="{{imageUrl}}" alt="{{title}}"></a></li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="glide__arrows" data-glide-el="controls">
+    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+  </div>
+</div>
+
+{{!-- For the library glide --}}
+<link rel="stylesheet" href="/stylesheets/glide.core.css">
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script src="/javascripts/homepage.js"></script>

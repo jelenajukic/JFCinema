@@ -47,10 +47,6 @@ nav a {
 
 .movie-overview {
   display: flex;
-  margin: 20px; }
-
-.movie-overview-poster {
-  max-width: 150px;
   margin: 20px 0; }
 
 .movie-overview-text {

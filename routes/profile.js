@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const multer  = require('multer');
+const path = require('path');
+const upload = multer({ dest: 'public/profile-pictures' })
 
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -97,6 +100,13 @@ router.post('/edit/email', (req, res, next) => {
       // log if error != email already exists
       if (err.message !== 'email already exists') { console.log(err) };
     })
+});
+
+// ==== UPLOAD PROFILE PICTURE ==== //
+router.post('/upload', upload.single('profile-image'), (req, res, next) => {
+  console.log('loaded picture?');
+  console.log(req.file);
+  res.render('profile/overview', {user: req.user});
 });
 
 module.exports = router;
