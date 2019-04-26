@@ -54,7 +54,7 @@ function infoAboutMovie(screening) {
 
   //movie picture on the page
 
-  document.getElementById("movie-img").src = screening.movieID.imageUrl;
+  // document.getElementById("movie-img").src = screening.movieID.imageUrl;
 
 
   //place-time info on the page

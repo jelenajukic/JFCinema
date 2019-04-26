@@ -5,7 +5,9 @@ body {
   padding: 50px;
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #272727;
-  color: white; }
+  color: white;
+  max-width: 1000px;
+  margin: 0 auto; }
 
 a,
 p,
@@ -57,21 +59,24 @@ button {
 
 .movie-overview-container {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: space-around; }
 
 .movie-overview {
   display: flex;
-  margin: 20px 0; }
+  margin: 20px 0;
+  background-color: black; }
 
 .movie-overview-text {
   width: 200px;
-  margin: 0 30px; }
+  margin: 0 20px; }
 
 .movie-overview-button-mobile {
   display: none; }
 
 .movie-details-container {
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
 
 .movie-details-text {
   max-width: 450px;
@@ -102,18 +107,23 @@ button {
 
 #tickets-container {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  background-color: black; }
 
 #movie-img {
   width: 300px;
   height: auto; }
 
 #chairs {
-  width: 700px;
-  height: 700px; }
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px; }
 
 .row {
-  display: flex; }
+  display: flex;
+  margin: 0 auto; }
 
 .col {
   width: 30px;
@@ -139,9 +149,9 @@ button {
 
 #screen {
   height: 20px;
-  width: 100%;
+  width: 200px;
   background-color: #B5E5BF;
-  margin: 20px 0;
+  margin: 20px auto;
   color: black;
   font-weight: bold;
   text-align: center; }
@@ -165,9 +175,9 @@ button {
   background-color: #FE4A28; }
 
 #reservation {
+  margin-top: 40px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between; }
+  flex-direction: column; }
 
 #book-movie {
   margin-top: 20px; }
@@ -233,11 +243,12 @@ footer span {
 
 header {
   display: flex;
-  flex-direction: column; }
+  flex-direction: row-reverse;
+  justify-content: space-between; }
 
 .header-authentication {
-  align-self: flex-end;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  color: #FE4A28; }
 
 .header-authentication a {
   text-decoration: none; }
@@ -245,6 +256,10 @@ header {
 .header-menu {
   display: flex;
   margin-bottom: 20px; }
+
+.header-menu a {
+  background-color: #CCD4E1;
+  color: black; }
 
 .header-menu-mobile {
   display: none; }
@@ -257,11 +272,15 @@ header {
 
 .formContainer {
   display: flex;
+  flex-wrap: nowrap;
   margin-bottom: 20px; }
 
 label, input {
-  display: inline-block;
+  display: block;
   margin: 5px 0; }
+
+.admin-input {
+  display: inline; }
 
 label {
   margin-right: 10px; }
@@ -269,11 +288,57 @@ label {
 ::placeholder {
   color: #afaeae; }
 
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden; }
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+@media screen and (min-width: 701px) {
+  header {
+    align-items: center; } }
+
+@media screen and (min-width: 601px) and (max-width: 700px) {
+  header {
+    display: flex;
+    flex-direction: column; }
+  .header-authentication {
+    align-self: flex-end; } }
+
+@media screen and (min-width: 601px) and (max-width: 870px) {
+  .screening-poster {
+    max-width: 100px; } }
+
+@media screen and (min-width: 800px) {
+  .col {
+    width: 40px;
+    height: 40px; }
+  #tickets-container {
+    justify-content: space-around; } }
+
+@media screen and (min-width: 1000px) {
+  .header-authentication a {
+    font-size: 130%; }
+  .video-container iframe {
+    width: 70%;
+    height: 70%; } }
+
 @media screen and (max-width: 600px) {
+  header {
+    flex-direction: column; }
   body {
     padding: 20px; }
   .header-menu {
     display: none; }
+  .header-authentication {
+    align-self: flex-end; }
   .header-menu-mobile {
     display: flex;
     justify-content: space-between;
@@ -286,7 +351,8 @@ label {
   .movie-overview {
     width: 100%;
     flex-direction: column;
-    justify-content: center; }
+    justify-content: center;
+    padding: 20px 0; }
   .movie-overview-poster {
     margin: auto; }
   .movie-overview-text {
@@ -295,6 +361,8 @@ label {
     display: inline-block;
     width: 150px;
     margin: auto; }
+  .movie-details-poster {
+    display: none; }
   #map {
     height: 200px; }
   #datePickerContainer {
@@ -312,8 +380,6 @@ label {
     width: 100%; }
   #tickets-container {
     flex-direction: column; }
-  .tickets-movie-image {
-    display: none; }
   #chairs {
     width: 100%;
     height: auto; }

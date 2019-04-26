@@ -98,7 +98,7 @@ router.post('/:id/send-email', (req, res, next) => {
   console.log(subject)
   let message = `Dear ${req.user.username} thanks for your reservation.
   
-  Your reservetion :
+  Your reservation :
   
   ${messageSeats}`;
 

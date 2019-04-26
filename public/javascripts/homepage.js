@@ -25,6 +25,9 @@ window.addEventListener('load', function () {
       },
       800: {
         perView: 3
+      },
+      1000: {
+        perView: 4
       }
     }
   }).mount() // .mount - load it
