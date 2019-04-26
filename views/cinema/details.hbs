@@ -13,6 +13,20 @@
   </table>
 </div>
 
+<h3>Directions</h3>
+<table>
+  <tr>
+    <td>By car: {{cinema.transport.auto}}</td>
+  </tr>
+  <tr>
+    <td>By public transport: {{cinema.transport.publicTransport}}</td>
+  </tr>
+</table> 
+
+
+
+<div id="map"></div>
+
 <div>
   <h3>Rooms</h3>
   <table>
@@ -20,14 +34,13 @@
     <tr>
       <td>{{name}}</td>
       <td>Capacity: {{capacity}}</td>
-      <td>Screentype: {{screenType}}</td>
+      {{!-- <td>Screentype: {{screenType}}</td> --}}
     </tr>
     {{/each}}
   </table>
 </div>
 
-<div id="map"></div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU5rvcQXc7XVrzrdK5CqbA7tKFNiLtt0Q"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/javascripts/cinema-details.js"></script>

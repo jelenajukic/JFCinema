@@ -1,9 +1,9 @@
 <div id="tickets-container">
   <div id="info">
     <div id="movie-name"></div>
-    <div id="place-time-info"><span id="cinema-name"> </span><span id="room-name"> |</span><span id="time"> |</span>
+    <div id="place-time-info"><span id="cinema-name"> </span><span id="room-name"> | </span><span id="time"> | </span>
     </div>
-    <div><img src="" alt="" id="movie-img"></div>
+    <div class="tickets-movie-image"><img src="" alt="" id="movie-img"></div>
     <div id="cinema-name"></div>
     <div id="movie-time"></div>
   </div>
@@ -26,11 +26,8 @@
   </div>
 
   <div id="reservation">
-    <h2>Your order</h2>
-    <div>
-      <span id="room"></span>
-      <div><span>Number of tickets:</span><span id="number-of-tickets">0</span></div>
-    </div>
+    <h2>Your order - <span id="number-of-tickets">0</span> ticket(s)</h2>
+ 
     <div id="selected-seats"></div>
     <div><button id="book-movie" type="submit">MAKE RESERVATION</button></div>
   </div>

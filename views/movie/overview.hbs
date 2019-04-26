@@ -4,10 +4,11 @@
     <img class="movie-overview-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
     <div class="movie-overview-text">
       <h3>{{title}}</h3>
-      <p class="movie-overview-text-plot">{{truncate plot 220}}</p> 
-      <button><a href="/movie/{{_id}}">More information</a></button>
+      <p class="movie-overview-text-plot">{{truncate plot 220}}</p>
+      <button><a href="/movie/{{_id}}">more information</a></button>
     </div>
     <br>
+  <button class="movie-overview-button-mobile"><a  href="/movie/{{_id}}">more information</a></button>
   </div>
   {{/each}}
 </div>

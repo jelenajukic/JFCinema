@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       return myScreening
     })
-    .then(myScreening => loadSeatPlan(myScreening))
-    .then(() => document.getElementById("room").innerHTML = myScreening.roomName)
+    .then(myScreening => loadSeatPlan(myScreening)) 
     // .then(()=>setEventListeners())
     .catch(error => console.log(error))
 })
@@ -70,7 +69,7 @@ function infoAboutMovie(screening) {
 function loadSeatPlan(screening) {
   let counter = 0
   let parentNode = document.getElementById("chairs");
-  parentNode.innerHTML = "<div id='screen'>SCREEN<div><br>"
+  parentNode.innerHTML = "<div id='screen'>screen<div><br>"
   for (var i = 1; i <= screening.roomRows; i++) {
     for (var j = 1; j <= screening.roomCols; j++) {
       if (j == 1) {
@@ -84,7 +83,7 @@ function loadSeatPlan(screening) {
     }
   }
   parentNode.innerHTML +=
-    "<div id='legend'><div><div class='legend-cube' id='red'></div><span>Busy</span></div><div><div class='legend-cube' id='green'></div><span>Free</span></div><div><div class='legend-cube' id='blue'></div><span>Your reservation</span></div><br>"
+    "<div id='legend'><div><div class='legend-cube' id='red'></div><span>busy</span></div><div><div class='legend-cube' id='green'></div><span>free</span></div><div><div class='legend-cube' id='blue'></div><span>selected</span></div><br>"
 
   let htmlCollection = document.getElementsByClassName("col");
   var arrCol = Array.from(htmlCollection);
@@ -145,7 +144,7 @@ function reservationInfoOnScreen() {
 
 
   document.getElementById("selected-seats").innerHTML +=
-  `<div><span>Row:${arrSelectedSeats[i].getAttribute("row")}</span><span>Seat:${arrSelectedSeats[i].getAttribute("seatno")}</span></div>`
+  `<div><span>Row: ${arrSelectedSeats[i].getAttribute("row")}</span> | <span>Seat: ${arrSelectedSeats[i].getAttribute("seatno")}</span></div>`
 
   }
 }
