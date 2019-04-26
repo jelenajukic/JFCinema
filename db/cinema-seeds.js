@@ -25,6 +25,10 @@ let cinema = [{
     postcode: "3446AP",
     city: "Utrecht"
   },
+  location: {
+    coordinates: [5.088090, 52.087210],
+    type: 'Point'
+  },
   workingSchema: [{
     startTime: "09:00",
     endTime: "23:00",
@@ -56,10 +60,14 @@ let cinema = [{
 {
   name: "JF Cinema Woerden",
   address: {
-    name: "Amsterdaamsraat",
+    name: "Woerdense straat",
     streetNumber: 82,
     postcode: "7678AR",
     city: "Woerden"
+  },
+  location: {
+    coordinates: [4.884459, 52.086216],
+    type: 'Point'
   },
   workingSchema: [{
     startTime: "10:00",

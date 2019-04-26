@@ -8,15 +8,27 @@ window.addEventListener('load', function () {
     peek : {
       before: 0,
       after: 50
+    },
+    breakpoints: {
+      // 1024: {
+      //   perView: 2
+      // },
+      400: {
+        perView: 1,
+        peek : {
+          before: 0,
+          after: 100
+        },
+      },
+      480: {
+        perView: 2
+      },
+      800: {
+        perView: 3
+      },
+      1000: {
+        perView: 4
+      }
     }
-
-    // breakpoints: {
-    //   1024: {
-    //     perView: 2
-    //   },
-    //   600: {
-    //     perView: 1
-    //   }
-    // }
   }).mount() // .mount - load it
 })

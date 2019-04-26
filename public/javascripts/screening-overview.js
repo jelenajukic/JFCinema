@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // load date slots (today + 14 days)
   let datePickerDiv = document.getElementById('datePickerContainer');
+  let datePickerDivMobile = document.getElementById('datePickerContainer-mobile');
   datePicker.forEach(date => {
     dispDate = moment(date).format('dd D MMM');
     // first date checked by default
@@ -25,6 +26,16 @@ document.addEventListener('DOMContentLoaded', function () {
       ${dispDate}
       </input>`
     }
+    // mobile
+    if (date == startdate) {
+      datePickerDivMobile.innerHTML += `<option name="datepick" class="screeningDatePick" value="${date}" checked="checked">
+      ${dispDate} (today)
+      </option>`
+    } else {
+      datePickerDivMobile.innerHTML += `<option name="datepick" class="screeningDatePick" value="${date}">
+      ${dispDate}
+      </option>`
+    }
   })
 
   // update content once on-load (with checked date (today))
@@ -33,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // add event listener to update content when picking another date
   datePickerDiv.addEventListener('change', e => {
+    updateContent(e.target.value);
+  })
+  datePickerDivMobile.addEventListener('change', e => {
     updateContent(e.target.value);
   })
 
@@ -87,14 +101,14 @@ function updateContent(dateInput) {
           // add this time
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
-          timeNode.innerHTML += `Time: ${screening.timeStart}`; // + @ ${screening.roomID}
+          timeNode.innerHTML += `${screening.timeStart} tickets`; // + @ ${screening.roomID}
           timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         } else {
           // just add time node
           var timeNode = document.createElement('a');
           timeNode.setAttribute('class', 'buttonTime');
-          timeNode.innerHTML += `Time: ${screening.timeStart}`; // + @ ${screening.roomID}
+          timeNode.innerHTML += `${screening.timeStart} tickets`; // + @ ${screening.roomID}
           timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
         };        

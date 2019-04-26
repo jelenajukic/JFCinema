@@ -5,7 +5,7 @@
 
   <fieldset id="roomID">
     {{#each cinema.rooms}}
-    {{name}}:<input type="radio" value={{_id}} name="roomID" required><br>
+    <input class='admin-input' type="radio" value={{_id}} name="roomID" required> {{name}}</input>
     {{/each}}
   </fieldset>
 
@@ -15,7 +15,7 @@
   <h3>Select the movie for screening</h3>
   <fieldset id="movieID">
     {{#each movie}}
-    {{title}}:<input type="radio" value={{_id}} name="movieID" required><br>
+    <input class='admin-input' type="radio" value={{_id}} name="movieID" required> {{title}}</input><br>
     {{/each}}
   </fieldset>
   <fieldset id="timeStart">

@@ -1,8 +1,8 @@
 {{#each cinemas}}
   <div class="cinema-overview-container">
     <h2>{{name}}</h2>
-    {{!-- <p>@ {{address.city}}</p>  --}}
-    <p><a href="/cinema/{{_id}}">More information</a></p>
-    <button><a href="/screening/{{id}}">Book tickets!</a></button>
+    <p class="cinema-overview-address">{{address.name}} {{address.streetNumber}} | {{address.city}}</p>
+    <button><a href="/cinema/{{_id}}">about cinema</a></button>
+    <button><a href="/screening/{{id}}">book tickets!</a></button>
   </div>
 {{/each}}

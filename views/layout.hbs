@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
+  <header>
+    <div class="header-authentication">
+      <a href="/auth/signup">Signup</a>
+      <span> | </span>
+      <a href="/auth/login">Login</a>
+      <span> | </span>
+      <a href="/auth/logout">Logout</a>
+    </div>
+    <nav class="header-menu">
+      <a href="/">Home</a>
+      <a href="/movie">Movies</a>
+      <a href="/cinema">Cinemas & Tickets</a>
+      <a href="/profile">Profile</a>
+    </nav>
+    <nav class="header-menu-mobile">
+      <a href="/"><img src="/images/003-home.png" alt="Home"></a>
+      <a href="/movie"><img src="/images/001-movie.png" alt="Movies"></a>
+      <a class="header-tickets" href="/cinema"><img src="/images/004-ticket.png" alt="Tickets"></a>
+      <a href="/profile"><img src="/images/002-user.png" alt="Profile"></a>
+    </nav>
+  </header>
 
-  <nav>
-    <a href="/">Home</a>
-    <a href="/movie">Movies</a>
-    <a href="/cinema">Cinemas & Tickets</a>
-    <a href="/auth/login">Login</a>
-    <a href="/profile">Profile</a>
-    <a href="/auth/signup">Signup</a>
-    <a href="/auth/logout">Logout</a> 
-  </nav>
+  {{{body}}} 
 
-  {{{body}}}
+  <footer>
+    <a href="/about">About</a>
+    <span> | </span>
+    <a href="/contact">Contact</a>
+    <span> | </span>
+    <a href="#">Social</a>
+  </footer>
+ 
 
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

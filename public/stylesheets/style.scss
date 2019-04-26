@@ -1,26 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: black;
-  color: white;
+  font-family: 'Roboto Condensed', sans-serif; 
+  background-color: #272727;
+  color: white; 
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 a,
-p,
-h1,
-h2,
-h3,
+p,  
 h4,
 h5,
 h6,
-li,
-button {
+li {
   color: white;
 }
 
-button {
-  background-color: black;
+h1, h3 {
+  color: #FE4A28;
+  margin-bottom: 10px;
 }
+
+h2 {
+  color: #B5E5BF;
+  margin-top: 10px;
+}
+ 
 
 nav {
   margin-bottom: 40px;
@@ -34,6 +43,18 @@ nav a {
   padding: 10px;
 }
 
+button a {
+  text-decoration: none;
+}
+
+
+button {
+  padding: 10px;
+  background-color: #FE4A28;
+  border: 1px solid black; 
+  color: white;
+}
+ 
 .error-message {
   background-color: rgb(233, 122, 122);
   padding: 10px;
@@ -42,10 +63,11 @@ nav a {
 }
 
 .message-pos {
-  background-color: rgb(126, 233, 122);
+  background-color: #B5E5BF;
   padding: 10px;
   border-radius: 10px;
   margin: 20px 0;
+  color: black;
 }
 
 // ----------------------------
@@ -53,14 +75,19 @@ nav a {
 .movie-overview-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 .movie-overview {
   display: flex;
   margin: 20px 0;
+  background-color: black;
 }
 .movie-overview-text {
   width: 200px;
-  margin: 0 30px;
+  margin: 0 20px;
+}
+.movie-overview-button-mobile {
+  display: none;
 }
 // movie overview page - end
 // ----------------------------
@@ -70,6 +97,7 @@ nav a {
 // movie details page - start
 .movie-details-container {
   display: flex;
+  justify-content: space-between;
 }
 
 .movie-details-text {
@@ -89,6 +117,9 @@ nav a {
 #datePickerContainer {
   margin-bottom: 20px;
 }
+#datePickerContainer-mobile-div {
+  display: none;
+}
 
 .screeningDatePick {
   margin: 5px;
@@ -99,6 +130,8 @@ nav a {
   display: inline-block;
 }
 
+
+
 .screeningDatePick a {
   color: white;
 }
@@ -107,50 +140,16 @@ nav a {
   max-height: 250px;
 }
 
-.row {
-  width: 20px;
-  height: 20px;
-  background-color: green;
-  border: 2px, solid, white
-}
-
-// Screening view of user
-#screeningContainer {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.movieTimesContainer {
-  display: flex;
-  background-color: rgb(0, 0, 0);
-  border: 3px solid rgb(139, 31, 31);
-  // border-radius: 10px;
-  padding: 10px;
-  margin: 0px 10px 10px 0;
-}
-
-.movieTimesTimes {
-  margin: 0 20px;
-  display: flex;
-  flex-direction: column;
-  max-width: 150px;
-}
-
-a.buttonTime {
-  float: left;
-  background-color: white;
-  color: black;
-  padding: 5px 15px;
-  margin: 5px;
-  text-decoration: none;
-}
-
+// --- start Tickets / seatplan -----
 #tickets-container {
   display: flex;
-  width: 80vw;
-  height: 70vh;
+  // width: 80vw;
+  // height: 70vh;
   justify-content: space-between;
-  margin-top: 10vh
+  margin-top: 10px;
+  padding-bottom: 20px;
+  background-color: black;
+  // margin-top: 10vh
 }
 
 #movie-img {
@@ -158,44 +157,46 @@ a.buttonTime {
   height: auto;
 }
 
-.col {
-  width: 60px;
-  height: 60px;
-  border: 5px solid white;
-}
 
-.true {
-  background-color: green;
-}
-
-.false {
-  background-color: red;
+#chairs {
+  display: flex;
+  // justify-content: center;
+  flex-direction: column;
+  // width: 700px; 
+  margin-right: 20px;
 }
 
 .row {
-  width: 700px;
-  height: 70px;
+  // width: 700px;
+  // height: 70px;
   display: flex;
+  margin: 0 auto;
+  // width: 20px;
+  // height: 20px;
+  // border: 2px solid white; 
 }
 
-#chairs {
-  width: 700px;
-  height: 700px;
+.col {
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+}
 
+.true {
+  background-color: #CCD4E1;
+}
+
+.false {
+  background-color: #FE4A28;
 }
 
 .selected {
-  background-color: blue;
+  background-color: rgb(51, 223, 85);
 }
 
 .booked {
-  background-color: red;
-
-}
-
-a.buttonTime:hover {
-  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19);
-}
+  background-color: #FE4A28;
+} 
 
 #info {
   display: flex;
@@ -206,13 +207,14 @@ a.buttonTime:hover {
 }
 
 #screen {
-  height: 20px;
-  width: 100%;
-  background-color: yellow;
-  margin-bottom: 30px;
+  height: 20px; 
+  width: 200px; 
+  background-color: #B5E5BF;
+  margin: 20px auto;
   color: black;
   font-weight: bold;
   text-align: center;
+  
 }
 
 #legend {
@@ -227,24 +229,314 @@ a.buttonTime:hover {
 }
 
 #green {
-  background-color: green;
+  background-color: #CCD4E1
 }
 
 #blue {
-  background-color: blue;
+  background-color: rgb(51, 223, 85);
 }
 
 #red {
-  background-color: red;
+  background-color: #FE4A28
 }
 
 #reservation {
+  margin-top: 40px;
   display:flex;
+  flex-direction: column; 
+}
+ 
+#book-movie {
+  margin-top: 20px;
+}
+// --- end Tickets / seatplan -----
+
+// Screening view of user
+#screeningContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movieTimesContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(0, 0, 0);
+  // border: 3px solid rgb(139, 31, 31);
+  // border-radius: 10px;
+  padding: 10px;
+  margin: 0px 10px 10px 0;
+}
+
+.movieTimesTimes {
+  margin: 0 20px;
+  display: flex;
   flex-direction: column;
+  max-width: 150px;
+}
+
+a.buttonTime {
+  float: left;
+  background-color: #FE4A28; 
+  padding: 5px 15px;
+  margin: 5px;
+  text-decoration: none;
+}
+
+
+
+a.buttonTime:hover {
+  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19);
+}
+
+
+
+#map {
+  width: 100%;
+  height: 500px;
+  margin: 20px 0;
+}
+
+footer span, .header-authentication span {
+  margin: 0px 5px;
+}
+
+
+
+// footer
+footer { 
+  display: flex;
+  justify-content: center; 
+  background-color: #FE4A28; 
+  padding: 10px;
+  margin-top: 20px;
+  // position: sticky;
+  bottom: 20px;   
+}
+
+// -- start Cinema overview ---------------
+.cinema-overview-container {
+  margin: 30px 0;
+}
+.cinema-overview-address {
+  margin-top: 0; 
+}
+.cinema-overview-container h2 {
+  margin-bottom: 0px;
+}
+// -- end Cinema overview --------------
+
+footer a {
+  color: black;
+  text-decoration: none;
+} 
+
+footer span {
+  color: black;
+}
+// Header
+header {
+  display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
-#map {
-  width: 50%;
-  height: 500px;
+.header-authentication {  
+  margin-bottom: 10px;
+  color: #FE4A28;
 }
+
+.header-authentication a {
+  text-decoration: none;
+} 
+
+
+.header-menu {
+  display: flex;
+  margin-bottom: 20px; 
+}
+.header-menu a {
+  background-color: #CCD4E1;
+  color: black;
+}
+
+.header-menu-mobile {
+  display: none;
+}
+
+.header-menu-mobile a {
+  margin: 0;
+}
+
+.header-menu-mobile a:hover {
+  background-color: #FE4A28;
+} 
+
+// --- start Forms ---
+.formContainer {
+  display : flex;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+label, input {
+  display: block;
+  margin: 5px 0;
+}
+
+.admin-input {
+  display: inline;
+}
+
+label {
+  margin-right: 10px;
+}
+::placeholder {
+  color: rgb(175, 174, 174);
+}
+// -- end Forms -----
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  }
+  .video-container iframe  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  }
+
+@media screen and (min-width: 701px) {
+  header {
+    align-items: center;
+  } 
+}
+
+@media screen and (min-width: 601px) and (max-width: 700px) {
+  header {
+    display: flex;
+    flex-direction: column; 
+  }
+  .header-authentication { 
+    align-self: flex-end;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 870px) {
+  .screening-poster {
+    max-width: 100px;
+  }
+}
+
+// seat plan bigger boxes
+@media screen and (min-width: 800px) {
+  .col {
+    width: 40px;
+    height: 40px; 
+  }
+  #tickets-container {
+    justify-content: space-around;
+  }
+}
+
+// bigger login logout
+@media screen and (min-width: 1000px) {
+  .header-authentication a {
+    font-size: 130%;
+  }
+  .video-container iframe  { 
+    width: 70%; 
+    height: 70%;
+    }
+}
+
+// Media queries Movie < 480px
+@media screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+  }
+  body { 
+    padding: 20px;
+  }
+  // hide menu and the nav border for buttons
+  .header-menu {
+    display: none;
+  }
+  .header-authentication { 
+    align-self: flex-end;
+  }
+  .header-menu-mobile {
+    display: flex;
+    justify-content: space-between;
+    background-color: #CCD4E1;
+    margin-bottom: 10px;
+  }
+  nav a {
+    border: none;
+  } 
+  .glide__arrows {
+    display: none;
+  }
+  // movies
+  .movie-overview {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  .movie-overview-poster { 
+    margin: auto;
+  }
+  .movie-overview-text {
+    display: none; 
+  }  
+  .movie-overview-button-mobile {
+    display: inline-block; 
+    width: 150px;
+    margin: auto;
+  }
+  .movie-details-poster {
+    display: none;
+  }
+  // cinema
+  #map { 
+    height: 200px;
+  }
+  // screening
+  #datePickerContainer {
+    display: none;
+  }
+  #datePickerContainer-mobile-div {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .screening-poster {
+    max-width: 100px;
+  }
+  .movieTimesTimes h3 {
+    display: none; 
+  }
+  .movieTimesTimes {
+    margin: auto 0;
+  }
+  .movieTimesContainer {
+    width: 100%;
+  }
+  // seat plan
+  #tickets-container {
+    flex-direction: column;
+  }
+  #chairs {
+    width: 100%;
+    height: auto;
+  }
+  #reservation h2 {
+    margin: 20px 0 10px 0;
+  }
+  .row {
+    justify-content: center;
+  }
+}
+ 

@@ -1,9 +1,31 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const multer  = require('multer');
+const multer = require('multer');
 const path = require('path');
-const upload = multer({ dest: 'public/profile-pictures' })
+
+var storage = multer.diskStorage({
+  // set destination for the images
+  destination: function (req, file, cb) {
+    cb(null, 'public/profile-pictures')
+  },
+  // add the extension to the file name (default is without extension)
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({storage: storage, fileFilter: function (req, file, callback) {
+    // check file extension = image
+    var ext = path.extname(file.originalname);
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+      return callback(new Error('Only images are allowed'))
+    }
+    callback(null, true)
+  } 
+})
+
+
 
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -106,7 +128,7 @@ router.post('/edit/email', (req, res, next) => {
 router.post('/upload', upload.single('profile-image'), (req, res, next) => {
   console.log('loaded picture?');
   console.log(req.file);
-  res.render('profile/overview', {user: req.user});
+  res.render('profile/overview', { user: req.user });
 });
 
 module.exports = router;

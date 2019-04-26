@@ -4,15 +4,22 @@ const Cinema = require('../models/cinema')
 const Screening = require('../models/screening');
 const nodemailer = require("nodemailer");
 
+<<<<<<< HEAD
 // router.get('/confirmation', (req, res, next) => {
 //   console.log("open it")
 //   res.render('tickets/confirmation')
 //  });
+=======
+router.get('/confirmation', (req, res, next) => {
+  console.log("open it")
+  res.render('tickets/confirmation')
+});
+>>>>>>> a5354249aa976d2674ec317fbb558a73f22d0e06
 
 router.get('/:id', (req, res, next) => {
   Screening.findOne({
-      _id: req.params.id
-    })
+    _id: req.params.id
+  })
     .populate('movieID')
     .populate('cinemaID')
     .then(screening => {
@@ -35,8 +42,8 @@ router.get('/:id', (req, res, next) => {
 //added to get only data for javacripts/ticket-reservation.js
 router.get('/:id/data', (req, res, next) => {
   Screening.findOne({
-      _id: req.params.id
-    })
+    _id: req.params.id
+  })
     .populate('movieID')
     .populate('cinemaID')
     .then(screening => {
@@ -61,9 +68,9 @@ router.post("/:id", (req, res, next) => {
   // console.log(req.params.id);
   // console.log(req.user)
   Screening.findOne({
-      _id: req.params.id,
+    _id: req.params.id,
 
-    })
+  })
     .then(screening => screening.seatPlan.find(seat => seat.row == req.body.row && seat.seatNo == req.body.seatNo))
     .then(seat => {
       return seat._id
@@ -72,12 +79,21 @@ router.post("/:id", (req, res, next) => {
       _id: req.params.id,
       'seatPlan._id': seatRef
     }, {
+<<<<<<< HEAD
       $set: {
         'seatPlan.$.available': false,
         'seatPlan.$.userID': req.user
       }
     }))
     //.then(result => console.log(result))
+=======
+        $set: {
+          'seatPlan.$.available': false,
+          'seatPlan.$.userID': req.user
+        }
+      }))
+    .then(result => console.log(result))
+>>>>>>> a5354249aa976d2674ec317fbb558a73f22d0e06
     .catch(error => console.log(error))
 })
 
@@ -87,7 +103,10 @@ router.post("/:id", (req, res, next) => {
  * Send e-mail route
  */
 router.post('/:id/send-email', (req, res, next) => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> a5354249aa976d2674ec317fbb558a73f22d0e06
   let messageSeats = "";
   for (var i = 0; i < req.body.reservation.length; i++) {
     messageSeats += `Seat:${req.body.reservation[i].seatNo} in Row: ${req.body.reservation[i].row} //`
@@ -99,7 +118,7 @@ router.post('/:id/send-email', (req, res, next) => {
   console.log(subject)
   let message = `Dear ${req.user.username} thanks for your reservation.
   
-  Your reservetion :
+  Your reservation :
   
   ${messageSeats}`;
 
@@ -112,12 +131,21 @@ router.post('/:id/send-email', (req, res, next) => {
     }
   });
   transporter.sendMail({
+<<<<<<< HEAD
       from: '"JF Cinema - movie reservation 👻" <JFCinema2019@gmail.com>',
       to: req.user.email,
       subject: subject,
       text: message,
       html: `<b>${message}</b>`
     })
+=======
+    from: '"JF Cinema - movie reservation 👻" <JFCinema2019@gmail.com>',
+    to: req.user.email,
+    subject: subject,
+    text: message,
+    html: `<b>${message}</b>`
+  })
+>>>>>>> a5354249aa976d2674ec317fbb558a73f22d0e06
     .then(info => {
       debugger
       res.redirect('/tickets/confirmation')
