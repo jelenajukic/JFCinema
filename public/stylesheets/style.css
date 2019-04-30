@@ -30,7 +30,8 @@ h6,
 li {
   color: white; }
 
-h1, h3 {
+h1,
+h3 {
   color: #FE4A28;
   margin-bottom: 10px; }
 
@@ -55,7 +56,8 @@ button {
   padding: 10px;
   background-color: #FE4A28;
   border: 1px solid black;
-  color: white; }
+  color: white;
+  cursor: pointer; }
 
 header {
   display: flex;
@@ -298,7 +300,8 @@ a.buttonTime:hover {
   flex-wrap: nowrap;
   margin-bottom: 20px; }
 
-label, input {
+label,
+input {
   display: block;
   margin: 5px 0; }
 
