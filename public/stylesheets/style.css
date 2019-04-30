@@ -314,6 +314,83 @@ label {
 ::placeholder {
   color: #afaeae; }
 
+label {
+  margin-right: 10px; }
+
+::placeholder {
+  color: #afaeae; }
+
+progress {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Get rid of default border in Firefox. */
+  border: none;
+  /* Dimensions */
+  width: 180px;
+  height: 10px; }
+
+.progress-20 {
+  color: red; }
+
+.progress-20::-webkit-progress-value {
+  background-color: red; }
+
+.progress-20::-moz-progress-bar {
+  background-color: red; }
+
+.progress-40 {
+  color: coral; }
+
+.progress-40::-webkit-progress-value {
+  background-color: coral; }
+
+.progress-40::-moz-progress-bar {
+  background-color: coral; }
+
+.progress-60 {
+  color: orange; }
+
+.progress-60::-webkit-progress-value {
+  background-color: orange; }
+
+.progress-60::-moz-progress-bar {
+  background-color: orange; }
+
+.progress-80 {
+  color: yellow; }
+
+.progress-80::-webkit-progress-value {
+  background-color: yellow; }
+
+.progress-80::-moz-progress-bar {
+  background-color: yellow; }
+
+.progress-90 {
+  color: greenyellow; }
+
+.progress-90::-webkit-progress-value {
+  background-color: greenyellow; }
+
+.progress-90::-moz-progress-bar {
+  background-color: greenyellow; }
+
+.progress-100 {
+  color: green; }
+
+.progress-100::-webkit-progress-value {
+  background-color: green; }
+
+.progress-100::-moz-progress-bar {
+  background-color: green; }
+
+#signup:disabled {
+  background-color: grey; }
+
+#changePassword:disabled {
+  background-color: grey; }
+
 @media screen and (min-width: 701px) {
   header {
     align-items: center; } }
