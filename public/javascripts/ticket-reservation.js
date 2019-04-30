@@ -1,5 +1,3 @@
-
-
 let myScreening; //object which will conatin roomName
 var URL = window.location.href;
 let alreadyPrintedRow = [];
@@ -8,10 +6,6 @@ let reservationPromises = [];
 
 let alreadySelected;
 document.addEventListener('DOMContentLoaded', () => {
-  //var URL = window.location.href;
-
-  //console.log(URL)
-
 
   axios.get(`${URL}/data`)
     .then(screening => {
@@ -26,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       return myScreening
     })
-    .then(myScreening => loadSeatPlan(myScreening)) 
-    // .then(()=>setEventListeners())
+    .then(myScreening => loadSeatPlan(myScreening))
     .catch(error => console.log(error))
 })
 
@@ -51,10 +44,6 @@ function infoAboutMovie(screening) {
   var movieTitle = document.createTextNode(screening.movieID.title);
   movieTitleHolder.appendChild(movieTitle);
   document.getElementById("movie-name").appendChild(movieTitleHolder);
-
-  //movie picture on the page
-
-  // document.getElementById("movie-img").src = screening.movieID.imageUrl;
 
 
   //place-time info on the page
@@ -90,12 +79,9 @@ function loadSeatPlan(screening) {
 
   arrCol.forEach(col => {
     if (col.classList.contains("true")) {
-      //col.classList.add("not-selected");
       col.addEventListener("click", function () {
-        //col.textContent = "";
         col.classList.toggle("selected");
         reservationInfoOnScreen()
-        //addInInfo(m);
       })
     } else {
       col.classList.add("booked"); //these seats are already booked by some other user. Add no listener on them
@@ -104,7 +90,6 @@ function loadSeatPlan(screening) {
 }
 
 document.getElementById('book-movie').addEventListener("click", () => {
-
   let reservation = [];
   arrSelectedSeats = Array.from(document.getElementsByClassName("selected"));
 
@@ -115,53 +100,26 @@ document.getElementById('book-movie').addEventListener("click", () => {
     })
   }
 
-  // console.log(URL)
-  // for (var i = 0; i < reservation.length; i++) {
-  //   axios.post(`${URL}`, reservation[i])
-  // }
+  axios.post(`${URL}/data`, {
+    reservation: reservation,
+    screening: myScreening
+  }).then(() => console.log("done"))
 
-  
-  for (var i = 0; i < reservation.length; i++) {
-    axios.post(`${URL}`, reservation[i])
-  }
-  
-  
-  axios.post(`${URL}/send-email`, {reservation:reservation, screening:myScreening})
-  .then((result)=> console.log("hello"))
-  
+
 })
+
+//-----------------
 
 
 function reservationInfoOnScreen() {
 
   arrSelectedSeats = Array.from(document.getElementsByClassName("selected"));
-  console.log(arrSelectedSeats);
-
   document.getElementById("number-of-tickets").innerHTML = arrSelectedSeats.length
   document.getElementById("selected-seats").innerHTML = "";
 
   for (var i = 0; i < arrSelectedSeats.length; i++) {
-
-
-  document.getElementById("selected-seats").innerHTML +=
-  `<div><span>Row: ${arrSelectedSeats[i].getAttribute("row")}</span> | <span>Seat: ${arrSelectedSeats[i].getAttribute("seatno")}</span></div>`
+    document.getElementById("selected-seats").innerHTML +=
+      `<div><span>Row: ${arrSelectedSeats[i].getAttribute("row")}</span> | <span>Seat: ${arrSelectedSeats[i].getAttribute("seatno")}</span></div>`
 
   }
 }
-
-
-
-// function checkIfExists(text) {
-//   var spanTags = document.getElementsByTagName("span");
-//   var searchText = text;
-//   var found;
-
-//   for (var i = 0; i < spanTags.length; i++) {
-//     if (spanTags[i].textContent == searchText) {
-//       found = spanTags[i];
-//       return found;
-//     }else{
-//       return false;
-//     }
-//   }
-// }

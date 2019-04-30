@@ -27,7 +27,7 @@ router.get('/:id/api', (req, res, next) => {
   Cinema.findById({_id: req.params.id})
     .then(cinema => {
       console.log(cinema);
-      res.send({cinema:cinema, );
+      res.send(cinema);
     })
 });
 
