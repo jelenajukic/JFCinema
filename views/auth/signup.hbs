@@ -12,6 +12,7 @@
       <input id="username" type="text" name="username" placeholder="your username" required>
       <input id="password" type="password" name="password" placeholder="your password" required>
       <input id="email" type="email" name="email" placeholder="your e-mail" required>
+      <progress id="strength" max="100" value="0"></progress>
     </div>
   </div>
 
@@ -19,7 +20,7 @@
   <div class="error-message">{{ message }}</div>
   {{/if}}
 
-  <button>create account</button>
+  <button id="signup" disabled>create account</button>
 
   <p class="account-message">
     Do you already have an account?
@@ -27,5 +28,5 @@
   </p>
 </form>
 
-{{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/javascripts/auth.js"></script> --}}
+{{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>--}}
+<script src="/javascripts/auth.js"></script>

@@ -6,7 +6,7 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #272727;
   color: white;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto; }
 
 a,
@@ -17,7 +17,8 @@ h6,
 li {
   color: white; }
 
-h1, h3 {
+h1,
+h3 {
   color: #FE4A28;
   margin-bottom: 10px; }
 
@@ -42,7 +43,8 @@ button {
   padding: 10px;
   background-color: #FE4A28;
   border: 1px solid black;
-  color: white; }
+  color: white;
+  cursor: pointer; }
 
 .error-message {
   background-color: #e97a7a;
@@ -214,7 +216,8 @@ a.buttonTime:hover {
   height: 500px;
   margin: 20px 0; }
 
-footer span, .header-authentication span {
+footer span,
+.header-authentication span {
   margin: 0px 5px; }
 
 footer {
@@ -275,7 +278,8 @@ header {
   flex-wrap: nowrap;
   margin-bottom: 20px; }
 
-label, input {
+label,
+input {
   display: block;
   margin: 5px 0; }
 
@@ -300,6 +304,77 @@ label {
   left: 0;
   width: 100%;
   height: 100%; }
+
+progress {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Get rid of default border in Firefox. */
+  border: none;
+  /* Dimensions */
+  width: 180px;
+  height: 10px; }
+
+.progress-20 {
+  color: red; }
+
+.progress-20::-webkit-progress-value {
+  background-color: red; }
+
+.progress-20::-moz-progress-bar {
+  background-color: red; }
+
+.progress-40 {
+  color: coral; }
+
+.progress-40::-webkit-progress-value {
+  background-color: coral; }
+
+.progress-40::-moz-progress-bar {
+  background-color: coral; }
+
+.progress-60 {
+  color: orange; }
+
+.progress-60::-webkit-progress-value {
+  background-color: orange; }
+
+.progress-60::-moz-progress-bar {
+  background-color: orange; }
+
+.progress-80 {
+  color: yellow; }
+
+.progress-80::-webkit-progress-value {
+  background-color: yellow; }
+
+.progress-80::-moz-progress-bar {
+  background-color: yellow; }
+
+.progress-90 {
+  color: greenyellow; }
+
+.progress-90::-webkit-progress-value {
+  background-color: greenyellow; }
+
+.progress-90::-moz-progress-bar {
+  background-color: greenyellow; }
+
+.progress-100 {
+  color: green; }
+
+.progress-100::-webkit-progress-value {
+  background-color: green; }
+
+.progress-100::-moz-progress-bar {
+  background-color: green; }
+
+#signup:disabled {
+  background-color: grey; }
+
+#changePassword:disabled {
+  background-color: grey; }
 
 @media screen and (min-width: 701px) {
   header {
