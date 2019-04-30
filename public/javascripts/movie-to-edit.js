@@ -3,7 +3,7 @@ var URL = window.location.href;
 // -- START document ready -- //
 document.addEventListener('DOMContentLoaded', function () {
   var inputEditMovie = document.getElementById('inputEditMovie')
-   
+
   var buttonEditMovie = document.getElementById('buttonEditMovie')
   buttonEditMovie.addEventListener('click', e => {
     var editThisMovieId = inputEditMovie.value;
@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
           resetContent();
         } else {
           // movie found -> update prefilling
-          console.log(movie);
           updateFields(movie);
         }
       })
@@ -35,15 +34,15 @@ function updateFields(movie) {
   document.getElementById('releaseDate').value = moment(movie.releaseDate).format('YYYY-MM-DD');
   document.getElementById('rating').value = movie.data.rating;
   // img sizes:  "w92", "w154", "w185", "w342", "w500", "w780"
-  document.getElementById('imageUrl').value = movie.data.imageUrl; 
+  document.getElementById('imageUrl').value = movie.data.imageUrl;
   document.getElementById('videoUrl').value = movie.data.videoUrl || '';
 }
 
 function resetContent() {
   document.getElementById('title').value = 'Movie not found';
-          document.getElementById('plot').value = '';
-          document.getElementById('releaseDate').value = '';
-          document.getElementById('rating').value = '';
-          document.getElementById('imageUrl').value = '';
-          document.getElementById('movieImg').src = '';
+  document.getElementById('plot').value = '';
+  document.getElementById('releaseDate').value = '';
+  document.getElementById('rating').value = '';
+  document.getElementById('imageUrl').value = '';
+  document.getElementById('movieImg').src = '';
 }

@@ -21,6 +21,7 @@ let movies = [
     // genre: ['drama', 'adventure', 'arthouse', 'true story'],
     rating: 7.5,
     imageUrl: 'http://image.tmdb.org/t/p/w185//9JQmPWE8ZCGx6D3Z2ZIy1MU6ZSU.jpg',
+    videoUrl: 'QkZxoko_HC0',
     status: 'active'
   }, {
     title: 'Aquaman',
@@ -29,6 +30,7 @@ let movies = [
     // genre: 
     rating: 6.8,
     imageUrl: 'http://image.tmdb.org/t/p/w185//5Kg76ldv7VxeX9YlcQXiowHgdX6.jpg',
+    videoUrl: 'WDkg3h8PCVU',
     status: 'active'
 }, {
   title: 'Bohemian Rhapsody',
@@ -37,6 +39,7 @@ let movies = [
   // genre: 
   rating: 8.1,
   imageUrl: 'http://image.tmdb.org/t/p/w185//lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg',
+  videoUrl:  'mP0VHJYFOAU',
   status: 'active'
 }, {
   title: 'Avatar',
@@ -45,6 +48,7 @@ let movies = [
   // genre: 
   rating: 7.4,
   imageUrl: 'http://image.tmdb.org/t/p/w185//kmcqlZGaSh20zpTbuoF0Cdn07dT.jpg',
+  videoUrl: '6ziBFh3V1aM',
   status: 'active'
 }, {
   title: 'A Star Is Born',
@@ -53,6 +57,7 @@ let movies = [
   // genre: 
   rating: 7.5,
   imageUrl: 'http://image.tmdb.org/t/p/w185//wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg',
+  videoUrl: 'nSbzyEJ8X9E',
   status: 'active'
 }, 
 ]
