@@ -1,5 +1,11 @@
+// ------------------------------------
+// General changes - start
 * {
   box-sizing: border-box;
+} 
+*:before,
+*:after {
+ box-sizing: border-box;
 }
 
 body {
@@ -7,8 +13,19 @@ body {
   font-family: 'Roboto Condensed', sans-serif; 
   background-color: #272727;
   color: white; 
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+.body-content {
+  min-height: calc(95vh - 100px);
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 30px;
+  // margin: 0 auto; 
 }
 
 a,
@@ -30,9 +47,8 @@ h2 {
   margin-top: 10px;
 }
  
-
 nav {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 nav a {
@@ -47,14 +63,90 @@ button a {
   text-decoration: none;
 }
 
-
 button {
   padding: 10px;
   background-color: #FE4A28;
   border: 1px solid black; 
   color: white;
 }
+// General changes - end
+// ------------------------------------
+
+
+// ------------------------------------
+// Header - start
+header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.header-authentication {  
+  margin-bottom: 10px;
+  color: #FE4A28;
+}
+
+.header-authentication a {
+  text-decoration: none;
+} 
+
+.header-menu {
+  display: flex;
+  margin-bottom: 20px; 
+}
+.header-menu a { 
+  background-color: white;
+  color: black;
+}
+
+.header-menu-mobile {
+  display: none;
+}
+
+.header-menu-mobile a {
+  margin: 0;
+}
+
+.header-menu-mobile a:hover {
+  background-color: #FE4A28;
+}
+// Header - end
+// ------------------------------------
+
+
+// ------------------------------------
+// Footer - start
+footer { 
+  // background-color: #FE4A28;
+  display: flex;
+  justify-content: center;  
+  align-items: center;  
+  color: #FE4A28; 
+  position: absolute; 
+  bottom: 0;
+  width: 100%;   
+  // padding: 10px;
+  margin: 0;
+}
+
+footer span, .header-authentication span {
+  margin: 0px 5px;
+}
  
+footer a {
+  text-decoration: none;
+} 
+
+footer a img {
+  width: 16px;
+}
+
+// Footer - end
+// ------------------------------------
+ 
+
+// ------------------------------------
+// (User) status messages - start
 .error-message {
   background-color: rgb(233, 122, 122);
   padding: 10px;
@@ -69,32 +161,36 @@ button {
   margin: 20px 0;
   color: black;
 }
+// (User) status messages - end
+// ------------------------------------
 
-// ----------------------------
+// ------------------------------------
 // Movie overview page - start
 .movie-overview-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
+
 .movie-overview {
   display: flex;
-  margin: 20px 0;
+  margin: 10px 10px 0;
   background-color: black;
 }
+
 .movie-overview-text {
   width: 200px;
   margin: 0 20px;
 }
+
 .movie-overview-button-mobile {
   display: none;
 }
-// movie overview page - end
-// ----------------------------
+// Movie overview page - end
+// ------------------------------------
 
 
-// ----------------------------
-// movie details page - start
+// ------------------------------------
+// Movie details page - start
 .movie-details-container {
   display: flex;
   justify-content: space-between;
@@ -104,19 +200,31 @@ button {
   max-width: 450px;
   margin-right: 20px;
 }
-
-// movie details page - end
-// ----------------------------
-
-.movie-poster {
-  max-width: 150px;
+ 
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
 }
 
+.video-container iframe  {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%; 
+height: 100%;
+}
+// Movie details page - end
+// ------------------------------------
 
 
+// ------------------------------------
+// Screening overview page - start
 #datePickerContainer {
   margin-bottom: 20px;
 }
+
 #datePickerContainer-mobile-div {
   display: none;
 }
@@ -128,28 +236,56 @@ button {
   color: white;
   border-radius: 5px;
   display: inline-block;
-}
-
-
-
-.screeningDatePick a {
-  color: white;
-}
+} 
 
 .screening-poster {
   max-height: 250px;
+  max-width: 150px;
 }
 
-// --- start Tickets / seatplan -----
-#tickets-container {
+#screeningContainer {
   display: flex;
-  // width: 80vw;
-  // height: 70vh;
+  flex-wrap: wrap;
+}
+
+.movieTimesContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(0, 0, 0); 
+  padding: 10px;
+  margin: 0px 5px 10px ;
+}
+
+.movieTimesTimes {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
+
+a.buttonTime {
+  float: left;
+  background-color: #FE4A28; 
+  padding: 5px 15px;
+  margin: 5px;
+  text-decoration: none;
+}
+
+a.buttonTime:hover {
+  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19);
+}
+// Screening overview page - end
+// ------------------------------------
+
+
+// ------------------------------------
+// Ticket selection (seatplan) - start
+#tickets-container {
+  display: flex; 
   justify-content: space-between;
   margin-top: 10px;
   padding-bottom: 20px;
-  background-color: black;
-  // margin-top: 10vh
+  background-color: black; 
 }
 
 #movie-img {
@@ -157,26 +293,18 @@ button {
   height: auto;
 }
 
-
 #chairs {
-  display: flex;
-  // justify-content: center;
-  flex-direction: column;
-  // width: 700px; 
+  display: flex; 
+  flex-direction: column; 
   margin-right: 20px;
 }
 
-.row {
-  // width: 700px;
-  // height: 70px;
+.row { 
   display: flex;
-  margin: 0 auto;
-  // width: 20px;
-  // height: 20px;
-  // border: 2px solid white; 
+  margin: 0 auto; 
 }
 
-.col {
+.col { // chair sizes
   width: 30px;
   height: 30px;
   border: 2px solid white;
@@ -200,10 +328,8 @@ button {
 
 #info {
   display: flex;
-  flex-direction: column;
-  //justify-content: space-around;
-  align-items: center;
-
+  flex-direction: column; 
+  align-items: center; 
 }
 
 #screen {
@@ -213,11 +339,11 @@ button {
   margin: 20px auto;
   color: black;
   font-weight: bold;
-  text-align: center;
-  
+  text-align: center; 
 }
 
 #legend {
+  margin-left: 10px;
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
@@ -242,6 +368,7 @@ button {
 
 #reservation {
   margin-top: 40px;
+  margin-left: 10px;
   display:flex;
   flex-direction: column; 
 }
@@ -249,171 +376,78 @@ button {
 #book-movie {
   margin-top: 20px;
 }
-// --- end Tickets / seatplan -----
+// Ticket selection (seatplan) - end
+// ------------------------------------
+ 
 
-// Screening view of user
-#screeningContainer {
-  display: flex;
-  flex-wrap: wrap;
+// ------------------------------------
+// Cinema overview - start 
+.cinema-overview-container {
+  margin: 30px 0;
 }
 
-.movieTimesContainer {
-  display: flex;
-  justify-content: space-around;
-  background-color: rgb(0, 0, 0);
-  // border: 3px solid rgb(139, 31, 31);
-  // border-radius: 10px;
-  padding: 10px;
-  margin: 0px 10px 10px 0;
+.cinema-overview-address {
+  margin-top: 0; 
 }
 
-.movieTimesTimes {
-  margin: 0 20px;
-  display: flex;
-  flex-direction: column;
-  max-width: 150px;
+.cinema-overview-container h2 {
+  margin-bottom: 0px;
 }
-
-a.buttonTime {
-  float: left;
-  background-color: #FE4A28; 
-  padding: 5px 15px;
-  margin: 5px;
-  text-decoration: none;
-}
+// Cinema overview - end
+// ------------------------------------
 
 
-
-a.buttonTime:hover {
-  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19);
-}
-
-
-
+// ------------------------------------
+// Cinema details - start
 #map {
   width: 100%;
   height: 500px;
   margin: 20px 0;
 }
-
-footer span, .header-authentication span {
-  margin: 0px 5px;
-}
+// Cinema details - end
+// ------------------------------------
 
 
-
-// footer
-footer { 
-  display: flex;
-  justify-content: center; 
-  background-color: #FE4A28; 
-  padding: 10px;
-  margin-top: 20px;
-  // position: sticky;
-  bottom: 20px;   
-}
-
-// -- start Cinema overview ---------------
-.cinema-overview-container {
-  margin: 30px 0;
-}
-.cinema-overview-address {
-  margin-top: 0; 
-}
-.cinema-overview-container h2 {
-  margin-bottom: 0px;
-}
-// -- end Cinema overview --------------
-
-footer a {
-  color: black;
-  text-decoration: none;
-} 
-
-footer span {
-  color: black;
-}
-// Header
-header {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-
-.header-authentication {  
-  margin-bottom: 10px;
-  color: #FE4A28;
-}
-
-.header-authentication a {
-  text-decoration: none;
-} 
-
-
-.header-menu {
-  display: flex;
-  margin-bottom: 20px; 
-}
-.header-menu a {
-  background-color: #CCD4E1;
-  color: black;
-}
-
-.header-menu-mobile {
-  display: none;
-}
-
-.header-menu-mobile a {
-  margin: 0;
-}
-
-.header-menu-mobile a:hover {
-  background-color: #FE4A28;
-} 
-
-// --- start Forms ---
+// ------------------------------------
+// User forms - start
 .formContainer {
   display : flex;
   flex-wrap: nowrap;
   margin-bottom: 20px;
 }
+
 label, input {
   display: block;
   margin: 5px 0;
+}
+
+label {
+  margin-right: 10px;
 }
 
 .admin-input {
   display: inline;
 }
 
-label {
-  margin-right: 10px;
-}
 ::placeholder {
   color: rgb(175, 174, 174);
 }
-// -- end Forms -----
+// User forms - end
+// ------------------------------------
 
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  }
-  .video-container iframe  {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; 
-  height: 100%;
-  }
 
+
+
+// ----------------------
+// MEDIA QUERIES
+// ----------------------
+
+// > tablet. Display header
 @media screen and (min-width: 701px) {
   header {
     align-items: center;
   } 
 }
-
 @media screen and (min-width: 601px) and (max-width: 700px) {
   header {
     display: flex;
@@ -424,13 +458,14 @@ label {
   }
 }
 
+// > tablet. bigger posters
 @media screen and (min-width: 601px) and (max-width: 870px) {
   .screening-poster {
     max-width: 100px;
   }
 }
 
-// seat plan bigger boxes
+// > laptop - seat plan bigger boxes
 @media screen and (min-width: 800px) {
   .col {
     width: 40px;
@@ -441,9 +476,12 @@ label {
   }
 }
 
-// bigger login logout
+// > laptop - bigger login logout and footer text. Smaller video
 @media screen and (min-width: 1000px) {
   .header-authentication a {
+    font-size: 130%;
+  }
+  footer a {
     font-size: 130%;
   }
   .video-container iframe  { 
@@ -452,7 +490,7 @@ label {
     }
 }
 
-// Media queries Movie < 480px
+// mobile
 @media screen and (max-width: 600px) {
   header {
     flex-direction: column;
@@ -460,12 +498,12 @@ label {
   body { 
     padding: 20px;
   }
-  // hide menu and the nav border for buttons
-  .header-menu {
-    display: none;
-  }
+  // hide regular menu 
   .header-authentication { 
     align-self: flex-end;
+  }
+  .header-menu {
+    display: none;
   }
   .header-menu-mobile {
     display: flex;

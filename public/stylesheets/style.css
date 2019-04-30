@@ -1,13 +1,26 @@
 * {
   box-sizing: border-box; }
 
+*:before,
+*:after {
+  box-sizing: border-box; }
+
 body {
   padding: 50px;
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #272727;
   color: white;
-  max-width: 1000px;
-  margin: 0 auto; }
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative; }
+
+.body-content {
+  min-height: calc(95vh - 100px);
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 30px; }
 
 a,
 p,
@@ -26,7 +39,7 @@ h2 {
   margin-top: 10px; }
 
 nav {
-  margin-bottom: 40px; }
+  margin-bottom: 10px; }
 
 nav a {
   margin-right: 5px;
@@ -44,6 +57,54 @@ button {
   border: 1px solid black;
   color: white; }
 
+header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between; }
+
+.header-authentication {
+  margin-bottom: 10px;
+  color: #FE4A28; }
+
+.header-authentication a {
+  text-decoration: none; }
+
+.header-menu {
+  display: flex;
+  margin-bottom: 20px; }
+
+.header-menu a {
+  background-color: white;
+  color: black; }
+
+.header-menu-mobile {
+  display: none; }
+
+.header-menu-mobile a {
+  margin: 0; }
+
+.header-menu-mobile a:hover {
+  background-color: #FE4A28; }
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FE4A28;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0; }
+
+footer span, .header-authentication span {
+  margin: 0px 5px; }
+
+footer a {
+  text-decoration: none; }
+
+footer a img {
+  width: 16px; }
+
 .error-message {
   background-color: #e97a7a;
   padding: 10px;
@@ -59,12 +120,11 @@ button {
 
 .movie-overview-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; }
+  flex-wrap: wrap; }
 
 .movie-overview {
   display: flex;
-  margin: 20px 0;
+  margin: 10px 10px 0;
   background-color: black; }
 
 .movie-overview-text {
@@ -82,8 +142,18 @@ button {
   max-width: 450px;
   margin-right: 20px; }
 
-.movie-poster {
-  max-width: 150px; }
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden; }
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
 
 #datePickerContainer {
   margin-bottom: 20px; }
@@ -99,11 +169,36 @@ button {
   border-radius: 5px;
   display: inline-block; }
 
-.screeningDatePick a {
-  color: white; }
-
 .screening-poster {
-  max-height: 250px; }
+  max-height: 250px;
+  max-width: 150px; }
+
+#screeningContainer {
+  display: flex;
+  flex-wrap: wrap; }
+
+.movieTimesContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  padding: 10px;
+  margin: 0px 5px 10px; }
+
+.movieTimesTimes {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 150px; }
+
+a.buttonTime {
+  float: left;
+  background-color: #FE4A28;
+  padding: 5px 15px;
+  margin: 5px;
+  text-decoration: none; }
+
+a.buttonTime:hover {
+  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19); }
 
 #tickets-container {
   display: flex;
@@ -157,6 +252,7 @@ button {
   text-align: center; }
 
 #legend {
+  margin-left: 10px;
   margin-top: 30px;
   display: flex;
   justify-content: space-between; }
@@ -176,54 +272,12 @@ button {
 
 #reservation {
   margin-top: 40px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column; }
 
 #book-movie {
   margin-top: 20px; }
-
-#screeningContainer {
-  display: flex;
-  flex-wrap: wrap; }
-
-.movieTimesContainer {
-  display: flex;
-  justify-content: space-around;
-  background-color: black;
-  padding: 10px;
-  margin: 0px 10px 10px 0; }
-
-.movieTimesTimes {
-  margin: 0 20px;
-  display: flex;
-  flex-direction: column;
-  max-width: 150px; }
-
-a.buttonTime {
-  float: left;
-  background-color: #FE4A28;
-  padding: 5px 15px;
-  margin: 5px;
-  text-decoration: none; }
-
-a.buttonTime:hover {
-  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19); }
-
-#map {
-  width: 100%;
-  height: 500px;
-  margin: 20px 0; }
-
-footer span, .header-authentication span {
-  margin: 0px 5px; }
-
-footer {
-  display: flex;
-  justify-content: center;
-  background-color: #FE4A28;
-  padding: 10px;
-  margin-top: 20px;
-  bottom: 20px; }
 
 .cinema-overview-container {
   margin: 30px 0; }
@@ -234,41 +288,10 @@ footer {
 .cinema-overview-container h2 {
   margin-bottom: 0px; }
 
-footer a {
-  color: black;
-  text-decoration: none; }
-
-footer span {
-  color: black; }
-
-header {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between; }
-
-.header-authentication {
-  margin-bottom: 10px;
-  color: #FE4A28; }
-
-.header-authentication a {
-  text-decoration: none; }
-
-.header-menu {
-  display: flex;
-  margin-bottom: 20px; }
-
-.header-menu a {
-  background-color: #CCD4E1;
-  color: black; }
-
-.header-menu-mobile {
-  display: none; }
-
-.header-menu-mobile a {
-  margin: 0; }
-
-.header-menu-mobile a:hover {
-  background-color: #FE4A28; }
+#map {
+  width: 100%;
+  height: 500px;
+  margin: 20px 0; }
 
 .formContainer {
   display: flex;
@@ -279,27 +302,14 @@ label, input {
   display: block;
   margin: 5px 0; }
 
-.admin-input {
-  display: inline; }
-
 label {
   margin-right: 10px; }
 
+.admin-input {
+  display: inline; }
+
 ::placeholder {
   color: #afaeae; }
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden; }
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; }
 
 @media screen and (min-width: 701px) {
   header {
@@ -326,6 +336,8 @@ label {
 @media screen and (min-width: 1000px) {
   .header-authentication a {
     font-size: 130%; }
+  footer a {
+    font-size: 130%; }
   .video-container iframe {
     width: 70%;
     height: 70%; } }
@@ -335,10 +347,10 @@ label {
     flex-direction: column; }
   body {
     padding: 20px; }
-  .header-menu {
-    display: none; }
   .header-authentication {
     align-self: flex-end; }
+  .header-menu {
+    display: none; }
   .header-menu-mobile {
     display: flex;
     justify-content: space-between;
