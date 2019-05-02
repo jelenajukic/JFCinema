@@ -25,6 +25,7 @@ mongoose
 var movieArr;
 var movieArrCopy;
 var cinemaArr;
+var userArr;
 var rooms;
 var screenings = [];
 var startdate = moment().startOf('day').format();
@@ -40,7 +41,7 @@ var findMovies = Movie.find({})
     mongoose.disconnect()
     throw err
   })
-
+// find cinemas
 var findCinemas = Cinema.find({})
   .then(cinemas => {
     cinemaArr = cinemas;
@@ -49,7 +50,16 @@ var findCinemas = Cinema.find({})
     mongoose.disconnect()
     throw err
   })
-
+// find users
+var findUsers = User.find({})
+  .then(users => {
+    userArr = users;
+  })
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })
+// delete current ones
 var deleteCurScreen = Screening.deleteMany({})
   .then((x) => {
     console.log(`deleted current screenings`);
@@ -60,7 +70,7 @@ var deleteCurScreen = Screening.deleteMany({})
   })
 
 // after creating arrays and deleting current screenings
-Promise.all([findMovies, findCinemas, deleteCurScreen])
+Promise.all([findMovies, findCinemas, deleteCurScreen, findUsers])
   .then(() => {
     cinemaArr.forEach(cinema => {
       rooms = cinema.rooms;
@@ -121,18 +131,27 @@ function createSeatPlan(obj) {
   let seatPlan = [];
   for (let i = 0; i < obj.rows; i++) {
     for (let j = 0; j < obj.cols; j++) {
-      // 20% chance it is taken already
-      if (Math.random() < 0.2) {
+      // 30% chance it is taken already
+      if (Math.random() < 0.3) {
         var availOrNot = false;
+        var randomUserId = randomUser()
       } else {
         var availOrNot = true;
+        var randomUserId = null;
       }
       seatPlan.push({
         row: i + 1,
         seatNo: j + 1,
-        available: availOrNot
+        available: availOrNot,
+        userID: randomUserId
       })
     }
   }
   return seatPlan;
+}
+
+// get a random user for the taken seat
+function randomUser() {
+  var userId = userArr[Math.floor(Math.random() * userArr.length)]._id;
+  return userId;
 }

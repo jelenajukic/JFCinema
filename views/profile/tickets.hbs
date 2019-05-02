@@ -1,0 +1,13 @@
+<h2>Your screening overview</h2>
+
+  {{#each tickets}}
+  <div class="profile-ticket-overview">
+    <p>{{formatDateYear date}} @ {{timeStart}} - movie: {{movieDetails.title}} | {{nrTicket}} ticket(s)</p> 
+    <ul>
+      {{#each seatPlan}}
+      <li>Row: {{row}} | seat: {{seatNo}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/each}}
+ 

@@ -67,8 +67,8 @@
     .glide__arrow:hover {
       border-color: white; }
     .glide__arrow--left {
-      left: -3em; }
+      left: 1em; }
     .glide__arrow--right {
-      right: -3em; }
+      right: 1em; }
     .glide__arrow--disabled {
       opacity: 0.33; }
