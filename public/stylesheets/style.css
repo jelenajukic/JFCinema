@@ -77,7 +77,8 @@ header {
 
 .header-menu a {
   background-color: white;
-  color: black; }
+  color: black;
+  border-top: 3px solid #B5E5BF; }
 
 .header-menu-mobile {
   display: none; }
@@ -111,14 +112,16 @@ footer a img {
   background-color: #e97a7a;
   padding: 10px;
   border-radius: 10px;
-  margin: 20px 0; }
+  margin: 20px 0;
+  display: table; }
 
 .message-pos {
   background-color: #B5E5BF;
   padding: 10px;
   border-radius: 10px;
   margin: 20px 0;
-  color: black; }
+  color: black;
+  display: table; }
 
 .movie-overview-container {
   display: flex;
@@ -126,7 +129,7 @@ footer a img {
 
 .movie-overview {
   display: flex;
-  margin: 10px 10px 0;
+  margin: 10px 10px 0 0;
   background-color: black; }
 
 .movie-overview-text {
@@ -314,12 +317,6 @@ label {
 ::placeholder {
   color: #afaeae; }
 
-label {
-  margin-right: 10px; }
-
-::placeholder {
-  color: #afaeae; }
-
 progress {
   /* Reset the default appearance */
   -webkit-appearance: none;
@@ -390,6 +387,10 @@ progress {
 
 #changePassword:disabled {
   background-color: grey; }
+
+.profile-ticket-overview:nth-child(2) {
+  background-color: red;
+  color: white; }
 
 .price {
   display: inline;
@@ -468,7 +469,7 @@ fieldset {
   .header-menu-mobile {
     display: flex;
     justify-content: space-between;
-    background-color: #CCD4E1;
+    background-color: white;
     margin-bottom: 10px; }
   nav a {
     border: none; }

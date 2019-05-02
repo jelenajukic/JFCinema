@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Screening = require('../models/screening')
 const multer = require('multer');
 const path = require('path');
 
@@ -15,14 +16,15 @@ var storage = multer.diskStorage({
   }
 })
 
-const upload = multer({storage: storage, fileFilter: function (req, file, callback) {
+const upload = multer({
+  storage: storage, fileFilter: function (req, file, callback) {
     // check file extension = image
     var ext = path.extname(file.originalname);
     if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
       return callback(new Error('Only images are allowed'))
     }
     callback(null, true)
-  } 
+  }
 })
 
 
@@ -130,5 +132,64 @@ router.post('/upload', upload.single('profile-image'), (req, res, next) => {
   console.log(req.file);
   res.render('profile/overview', { user: req.user });
 });
+
+// === TICKET OVERVIEW IN PROFILE === //
+// router.get('/tickets', (req, res, next) => {
+//   Screening.find({ 'seatPlan.userID': req.user._id })
+//     .sort({ 'date': -1 })
+//     .populate('movieID')
+//     .then(tickets => {
+//       tickets.map(ticket => {
+//         // ticket.seatPlanNew = ticket.seatPlan.filter(element => { return req.user._id == element.userID })
+//         // console.log(`user: ${req.user._id} | element: ${element.userID}`)
+//         // console.log(ticket.seatPlanNew)
+//         return ticket.seatPlan = ticket.seatPlan.filter(seatPlan => seatPlan.userID == req.user._id)
+
+//         // // old syntax
+//         // var check = function(seat){
+//         //     return seat.userID == req.user._id;
+//         // }
+
+//         // return ticket.seatPlan.filter(check);
+
+
+//       })
+//       // var seats = tickets.seatPlan.filter(seatPlan => seatPlan.userID == req.user._id)
+//       // console.log(seats);
+//       console.log(tickets[0]);
+//       console.log(tickets[0].seatPlanNew);
+//       res.render('profile/tickets', { tickets: tickets })
+//     })
+// })
+
+router.get('/tickets', (req, res, next) => {
+  Screening.aggregate(
+    // change seatplan array to seperate rows
+    [{ $unwind: "$seatPlan" },
+    // only take the seatplan objects that belong to this user
+    { $match: { "seatPlan.userID": req.user._id } }
+      // populate the movie details (not possible with .populate due to aggregate)
+      , { $lookup: { from: 'movies', localField: 'movieID', foreignField: '_id', as: 'movieDetails' } }
+      // change the array of movieDetails to an object with unwind
+      , { $unwind: '$movieDetails' }
+      // make it an array again
+      , {
+      $group: {
+        _id: "$_id",
+        seatPlan: { $push: "$seatPlan" },
+        movieDetails: { $first: '$movieDetails' },
+        date: { $first: '$date' },
+        timeStart: { $first: '$timeStart' },
+        nrTicket: { $sum: 1 }
+      }
+    }
+    , { "$sort": { "date": -1 } }
+    ]
+  )
+    .then(tickets => {
+      console.log(req.user._id)
+      res.render('profile/tickets', { tickets: tickets })
+    })
+})
 
 module.exports = router;
