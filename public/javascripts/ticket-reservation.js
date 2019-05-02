@@ -103,8 +103,8 @@ document.getElementById('book-movie').addEventListener("click", () => {
   axios.post(`${URL}/data`, {
     reservation: reservation,
     screening: myScreening
-  }).then(() => console.log("done"))
-
+  }).then((result) => window.location.replace("/tickets/confirmation"))
+  
 
 })
 
@@ -112,10 +112,12 @@ document.getElementById('book-movie').addEventListener("click", () => {
 
 
 function reservationInfoOnScreen() {
+  console.log(myScreening)
 
   arrSelectedSeats = Array.from(document.getElementsByClassName("selected"));
   document.getElementById("number-of-tickets").innerHTML = arrSelectedSeats.length
   document.getElementById("selected-seats").innerHTML = "";
+  document.getElementById("total-price").innerHTML=`${arrSelectedSeats.length*myScreening.seatPlan[0].price}`
 
   for (var i = 0; i < arrSelectedSeats.length; i++) {
     document.getElementById("selected-seats").innerHTML +=

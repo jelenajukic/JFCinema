@@ -39,6 +39,10 @@ const screeningSchema = new Schema({
       ref: 'User',
       default: null
     }, //deafult value for ObjectId type is null
+    price: {
+      type: Number,
+      default: 10
+    }
   }],
   date: {
     type: Date,
