@@ -392,6 +392,40 @@ progress {
   background-color: red;
   color: white; }
 
+.price {
+  display: inline;
+  color: #B5E5BF;
+  font-weight: bold; }
+
+#movie-price {
+  width: 150px; }
+
+.admin-button {
+  background-color: #FFFFFF;
+  color: black; }
+
+.admin-button a {
+  color: black; }
+
+.not-visible {
+  display: none; }
+
+#add-room {
+  background-color: #FE4A28;
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+  border-radius: 4px; }
+
+#add-room-container {
+  display: flex; }
+
+fieldset {
+  border: 0; }
+
 @media screen and (min-width: 701px) {
   header {
     align-items: center; } }

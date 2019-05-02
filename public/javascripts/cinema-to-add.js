@@ -1,7 +1,7 @@
 window.onload = function() {
   document.getElementById("add-room").addEventListener("click",()=>{
     document.getElementById("rooms").innerHTML+=`<div>
-    <label for="roomName">Roomname:</label>
+    <label for="roomName" style="color:#FE4A28">Room name:</label>
         <input type="text" name="roomName" id="roomName">
         <br><br>
         <label for="screenType">Screen Type:</label>

@@ -533,6 +533,7 @@ progress {
 }
 // progress bar - end
 // ------------------------------------ 
+ 
 
 
 // ------------------------------------ 
@@ -549,10 +550,7 @@ progress {
 
 
 // ------------------------------------ 
-// profile - start
-// .profile-ticket-overview {
-//   background-color: red;
-// }
+// profile - start 
 .profile-ticket-overview:nth-child(2) {
   background-color: red;
   color: white;
@@ -560,6 +558,54 @@ progress {
 
 
 // ------------------------------------ 
+//span element for price in ticket-selection_sp.hbs
+
+.price{
+  display: inline;
+  color:#B5E5BF;
+  font-weight: bold;
+}
+
+
+//price input field on screening-to-add page
+#movie-price{
+width:150px;
+}
+
+
+//buttons on admin-home page. buttons related to administrative part
+.admin-button{
+  background-color:#FFFFFF;
+  color:black;
+}
+
+.admin-button a{
+  color:black;
+}
+//class for div element in admin/create-screening. Div contains info about free time slots in room
+.not-visible {
+  display:none
+}
+
+#add-room {
+  background-color: #FE4A28;
+  width:80px;
+  text-align: center;
+  cursor: pointer;
+  height:20px;
+  margin-top:15px;
+  margin-left:10px;
+  border-radius: 4px;
+}
+
+#add-room-container {
+  display: flex;
+}
+
+fieldset{
+  border:0
+}
+// ----------------------
 // MEDIA QUERIES
 // ------------------------------------ 
 

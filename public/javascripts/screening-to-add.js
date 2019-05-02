@@ -3,6 +3,8 @@ let divWithTimeSlots = document.getElementById("time-slot");
 let rad = document.getElementById("add-screening").roomID;
 for (let i = 1; i < rad.length; i++) {
   rad[i].addEventListener('change', function () {
+    document.getElementById("timeStart-h3").classList.add("not-visible")
+  document.getElementById("timeStart").classList.add("not-visible")
     document.getElementById("screening-date").disabled = false;
     document.getElementById("screening-date").value = "";
     radVal = rad[i].value;
@@ -11,6 +13,8 @@ for (let i = 1; i < rad.length; i++) {
 }
 
 document.getElementById("screening-date").addEventListener('change', function () {
+  document.getElementById("timeStart-h3").removeAttribute("class")
+  document.getElementById("timeStart").removeAttribute("class")
   divWithTimeSlots.innerHTML = '';
   let dateVal = document.getElementById("screening-date").value;
   // console.log(dateVal);
@@ -28,10 +32,14 @@ document.getElementById("screening-date").addEventListener('change', function ()
         return timesTaken.indexOf(element) === -1;
       })
       // console.log(screeningTimes);
-
-      screeningTimes.forEach(element=> {
-        divWithTimeSlots.innerHTML+=`<input class='admin-input' type="radio" name="timeStart" required value=${element}>${element}<br>`
-      })
+      if( screeningTimes.length==0){
+        divWithTimeSlots.innerHTML+=`<p>No free time slots in this room</p><br>`
+      }else{
+        screeningTimes.forEach(element=> {
+          divWithTimeSlots.innerHTML+=`<input class='admin-input' type="radio" name="timeStart" required value=${element}>${element}<br>`
+        })
+      }
+      
       
     })
 

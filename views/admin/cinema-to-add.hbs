@@ -3,10 +3,10 @@
     <h1>Add new cinema</h1>
   </div><br>
   <div>
-    <h1>Name</h1>
+    <h2>Name</h2>
     <label for="name">Cinema name</label>
     <input type="text" name="name" id="cinema-name"><br>
-    <h1>Address</h1>
+    <h2>Address</h2>
     <label for="street-name">Street name</label>
     <input type="text" name="streetName" id="street-name"><br>
     <label for="street-number">Street number</label>
@@ -41,16 +41,18 @@
     <textarea name="auto" rows="10" cols="30">{{transport.auto}}</textarea><br>
     <h3>Public transport:</h3>
     <textarea name="publicTransport" rows="10" cols="30">{{transport.publicTransport}}</textarea><br>
-  </div>
+  </div><br>
 
-  <div id="add-room">ADD ROOM</div>
+  <div id="add-room-container"><h2>Rooms</h2><div id="add-room">ADD ROOM</div></div>
+  {{!-- <h2 id="add-room-h2">Rooms</h2><div id="add-room">ADD ROOM</div><br> --}}
   <div id="rooms">
     <div>
-      <h2>Rooms</h2>
+      {{!-- <h2>Rooms</h2> --}}
+      
     </div>
   </div>
   <br>
-  <input type="submit" value="ADD CINEMA">
+  <button type="submit" value="ADD CINEMA">ADD CINEMA</button>
 </form>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw4ZAYG-ue3X4umVCsDlcqENPadb6t3Tk"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

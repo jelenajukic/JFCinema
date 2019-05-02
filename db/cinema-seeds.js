@@ -1,6 +1,6 @@
 // Seeds file that remove all cinemas and create 2 new cinemas
 
-// node db/user-seeds.js && node db/cinema-seeds.js && node db/movie-seeds.js && node db/screening-seeds-NEW.js
+// node db/user-seeds.js && node db/cinema-seeds.js && node db/movie-seeds.js && node db/screening-seeds.js
 
 
 const mongoose = require("mongoose");

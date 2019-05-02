@@ -132,7 +132,7 @@ function createSeatPlan(obj) {
   for (let i = 0; i < obj.rows; i++) {
     for (let j = 0; j < obj.cols; j++) {
       // 30% chance it is taken already
-      if (Math.random() < 0.3) {
+      if (Math.random() < 0.05) {
         var availOrNot = false;
         var randomUserId = randomUser()
       } else {

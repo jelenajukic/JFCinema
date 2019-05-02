@@ -100,10 +100,10 @@ router.post("/:id/data", (req, res, next) => {
         html: templates.templateExample(message, imgUrl)
       }, (error, info) => {
         if (error) {
-          console.log(error)
+          res.send("error")
         } else {
-
-          res.render('tickets/confirmation')
+          res.send("ok")
+          // res.render('tickets/confirmation')
           console.log("e-mail is sent")
         }
       })

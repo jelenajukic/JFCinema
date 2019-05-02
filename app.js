@@ -84,14 +84,14 @@ hbs.registerHelper('formatDateYear', function (dateString) {
 });
 
 // truncate text
-hbs.registerHelper ('truncate', function (str, len) {
+hbs.registerHelper('truncate', function (str, len) {
   if (str.length > len && str.length > 0) {
-      var new_str = str + " ";
-      new_str = str.substr (0, len);
-      new_str = str.substr (0, new_str.lastIndexOf(" "));
-      new_str = (new_str.length > 0) ? new_str : str.substr (0, len);
+    var new_str = str + " ";
+    new_str = str.substr(0, len);
+    new_str = str.substr(0, new_str.lastIndexOf(" "));
+    new_str = (new_str.length > 0) ? new_str : str.substr(0, len);
 
-      return new hbs.SafeString ( new_str +'...' ); 
+    return new hbs.SafeString(new_str + '...');
   }
   return str;
 });
@@ -143,6 +143,8 @@ app.use('/admin',
   adminRoute);
 
 const ticketsRoute = require('./routes/tickets');
-app.use('/tickets', ticketsRoute);
+app.use('/tickets',
+  ensureLogin.ensureLoggedIn('/auth/login'),
+  ticketsRoute);
 
 module.exports = app;
