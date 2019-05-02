@@ -222,6 +222,7 @@ router.get('/add-screening/:id', (req, res, next) => {
 router.post('/add-screening/:id', (req, res, next) => {
 
   let obj = req.body;
+  console.log(obj)
   // correct date format
   obj.date = moment(obj.date).startOf('day').format();
   obj.cinemaID = req.params.id;
@@ -238,12 +239,12 @@ router.post('/add-screening/:id', (req, res, next) => {
       return {
         capacity: room.capacity,
         rows: room.rows,
-        cols: room.cols
+        cols: room.cols,
       }
     })
 
     .then(seatPlan => {
-      return createSeatPlan(seatPlan)
+      return createSeatPlan(seatPlan, req.body.price)
     })
     .then(seatPlanObj => {
       obj.seatPlan = seatPlanObj;
@@ -253,19 +254,17 @@ router.post('/add-screening/:id', (req, res, next) => {
     .then(() => res.redirect('/admin/admin-home'))
     .catch(error => console.log(error))
 
-  // Screening.create(obj)
-  // .then(()=>res.redirect('/admin/admin-home'))
-  // .catch(error=>console.log(error));
 
   // Function create seatplan
-  function createSeatPlan(obj) {
+  function createSeatPlan(obj, price) {
     let seatPlan = [];
     for (let i = 0; i < obj.rows; i++) {
       for (let j = 0; j < obj.cols; j++) {
         seatPlan.push({
           row: i + 1,
           seatNo: j + 1,
-          available: true
+          available: true,
+          price:price
         })
       }
     }

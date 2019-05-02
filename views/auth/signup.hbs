@@ -10,9 +10,9 @@
   
     <div class="formInput">
       <input id="username" type="text" name="username" placeholder="your username" required>
-      <input id="password" type="password" name="password" placeholder="your password" required>
+      <input id="password" type="password" name="password" placeholder="e.g CatIs~999" required>
       <input id="email" type="email" name="email" placeholder="your e-mail" required>
-      <progress id="strength" max="100" value="0"></progress>
+      <progress id="strength" max="100" value="0"></progress><span id="strong-or-weak"></span>
     </div>
   </div>
 
@@ -29,4 +29,6 @@
 </form>
 
 {{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>--}}
+<script src="https://unpkg.com/popper.js@1"></script>
+<script src="https://unpkg.com/tippy.js@4"></script>
 <script src="/javascripts/auth.js"></script>

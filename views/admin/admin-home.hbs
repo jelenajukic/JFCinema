@@ -11,8 +11,8 @@
 {{#each cinemas}}
 <div>
   <div style="font-size:20px;">{{name}}</div>
-  <button class="edit-cinema"><a href="/admin/edit-cinema/{{id}}">EDIT</a></button>
-   <button><a href="/admin/add-screening/{{id}}/">create screening</a></button>
+  <button class="edit-cinema"><a href="/admin/edit-cinema/{{id}}">edit</a></button>
+  <button><a href="/admin/add-screening/{{id}}/">create screening</a></button>
   {{!-- </form> --}}
 
 </div><br>
@@ -20,9 +20,7 @@
 
 <hr>
 <div>
-  <button><a href="/admin/add-cinema">Add a new cinema</a></button>
-  <button><a href="/admin/add-movie">Add a new movie</a></button>
-  <button><a href="/admin/edit-movie">Edit movies</a></button>
+  <button class="admin-button"><a href="/admin/add-cinema">add a new cinema</a></button>
+  <button class="admin-button"><a href="/admin/add-movie">add a new movie</a></button>
+  <button class="admin-button"><a href="/admin/edit-movie">edit movies</a></button>
 </div>
-
-
