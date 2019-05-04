@@ -30,6 +30,10 @@ h6,
 li {
   color: white; }
 
+h4 {
+  margin: 0 0 0 10px;
+  font-size: 20px; }
+
 h1,
 h3 {
   color: #FE4A28;
@@ -99,7 +103,8 @@ footer {
   width: 100%;
   margin: 0; }
 
-footer span, .header-authentication span {
+footer span,
+.header-authentication span {
   margin: 0px 5px; }
 
 footer a {
@@ -446,6 +451,31 @@ fieldset {
 
 .not-found-h1 {
   font-size: 70px; }
+.ticket-div {
+  margin-bottom: 20px; }
+
+.ticket-div-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.ticket-div h2,
+.ticket-div-seats h2 {
+  margin: 0;
+  color: #a3edbf; }
+
+.ticket-div-seats p {
+  margin: 0 0 0 10px; }
+
+.ticket-div-seats {
+  display: flex;
+  flex-direction: column; }
+
+#reservation-confirmation {
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px; }
 
 @media screen and (min-width: 701px) {
   header {

@@ -51,13 +51,18 @@ router.get('/edit-cinema/:id', (req, res, next) => {
 
 // -> (POST) /admin/edit-cinema/:cinemaID
 router.post('/edit-cinema/:id', (req, res, next) => {
+  // console.log(req.body.roomID)
+  // console.log(req.body.roomName)
+  console.log(req.body)
   if (req.user.role === "ADMIN") {
     let arrayRooms = []
     // multiple rooms
     if (Array.isArray(req.body.roomName)) {
       for (let i = 0; i < req.body.roomName.length; i++) {
         obj = {
-          name: req.body.roomName[i],
+          _id:req.body.roomID[i],
+          name:req.body.roomName[i],
+          // name: req.body.roomName[i],
           capacity: Number(req.body.cols[i]) * Number(req.body.rows[i]),
           cols: req.body.cols[i],
           rows: req.body.rows[i],
@@ -68,7 +73,9 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       // one room
     } else {
       arrayRooms = [{
-        name: req.body.roomName,
+        _id:req.body.roomID,
+        name:req.body.roomName,
+        //name: req.body.roomName,
         capacity: Number(req.body.cols) * Number(req.body.rows),
         cols: req.body.cols,
         rows: req.body.rows,

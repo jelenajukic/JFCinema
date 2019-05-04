@@ -1,5 +1,36 @@
+<div>
+  <h1>Your ticket is ready</h1>
+</div>
 
-<div><h1>Hello e-mail is sent!</h1></div>
+<div id="reservation-confirmation">
+  <div class="ticket-div-info">
+    <div class="ticket-div">
+      <h2>Your name:</h2>
+      <p>{{username}}</p>
+      <h2>Cinema:</h2>
+      <p>{{cinema}}</p>
+      <h2>Room:</h2>
+      <p>{{room}}</p>
+    </div>
+    <div class="ticket-div">
+      <h2>Movie you booked:</h2>
+      <p>{{movie}}</p>
+    </div>
+    <div class="ticket-div-seats">
+      <h2>Seat(s):</h2>
+      {{#each reservation}}
+      <p>Seat Number: {{seatNo}} in row:{{row}}</p>
+      {{/each}}
+    </div>
+    
+
+  </div>
+  <img src={{image}} alt="">
+
+</div>
 
 
 
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/confirmation.js"></script>

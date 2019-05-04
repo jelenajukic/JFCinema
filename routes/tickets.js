@@ -6,7 +6,18 @@ const nodemailer = require('nodemailer');
 const templates = require('../templates/template');
 
 router.get('/confirmation', (req, res, next) => {
-  res.render('tickets/confirmation')
+  // console.log(req.query)
+  let reservationData = JSON.parse(req.query.reservation) //JSON.parse is oposite to JSON.stringify
+  // console.log(reservationData)
+  return res.render('tickets/confirmation', {
+    movie: req.query.movie,
+    username: req.user.username,
+    reservation: reservationData,
+    cinema: req.query.cinema,
+    time: req.query.time,
+    image: req.query.movieIMG,
+    room: req.query.roomName
+  })
 });
 
 router.get('/:id', (req, res, next) => {
@@ -64,7 +75,7 @@ router.post("/:id/data", (req, res, next) => {
   })
 
   Promise.all(reqArr)
- // .then(()=>res.render('tickets/confirmation'))
+    // .then(()=>res.render('tickets/confirmation'))
     .then((result) => {
       let messageSeats = "";
       for (var i = 0; i < req.body.reservation.length; i++) {
@@ -77,14 +88,14 @@ router.post("/:id/data", (req, res, next) => {
       //console.log(subject)
       let imgUrl = req.body.screening.movieID.imageUrl;
 
-      let message = 
-      `<h2>Dear ${req.user.username} </h2>
+      let message =
+        `<h2>Dear ${req.user.username} </h2>
       <p>thanks for your reservation</p><br/>
       <p>Here is your reservation :</p>
       <div>
       ${messageSeats}
       </div>`
-      console.log(message);
+      // console.log(message);
       let transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
@@ -108,7 +119,7 @@ router.post("/:id/data", (req, res, next) => {
         }
       })
 
-   })
+    })
 })
 
 
