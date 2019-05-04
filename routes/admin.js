@@ -301,7 +301,7 @@ router.get('/add-movie', (req, res, next) => {
 // -> (POST) /admin/add-movie
 router.post('/add-movie', (req, res, next) => {
   if (req.user.role === "ADMIN") {
-    req.body.releaseDate = moment(req.body.releaseDate).startOf('day').format();
+    req.body.releaseDate = moment.utc(req.body.releaseDate).startOf('day').format();
     Movie.create(req.body)
       .then(movieCreated => {
         console.log('movie added: ', movieCreated.title);
