@@ -50,10 +50,7 @@ router.get('/edit-cinema/:id', (req, res, next) => {
 });
 
 // -> (POST) /admin/edit-cinema/:cinemaID
-router.post('/edit-cinema/:id', (req, res, next) => {
-  // console.log(req.body.roomID)
-  // console.log(req.body.roomName)
-  console.log(req.body)
+router.post('/edit-cinema/:id', (req, res, next) => {  
   if (req.user.role === "ADMIN") {
     let arrayRooms = []
     // multiple rooms
@@ -133,8 +130,6 @@ router.get('/add-cinema/', (req, res, next) => {
 });
 
 router.post('/add-cinema/', (req, res, next) => {
-
-  console.log(req.body);
   let arrayRooms = [];
   let location = {
     type: 'Point',
@@ -228,8 +223,7 @@ router.get('/add-screening/:id', (req, res, next) => {
 
 router.post('/add-screening/:id', (req, res, next) => {
 
-  let obj = req.body;
-  console.log(obj)
+  let obj = req.body; 
   // correct date format
   obj.date = moment.utc(obj.date).startOf('day').format();
   obj.cinemaID = req.params.id; 
@@ -339,8 +333,7 @@ router.get('/add-movie/check', (req, res, next) => {
 router.get('/edit-movie', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Movie.find({})
-      .then(movies => {
-        console.log(movies);
+      .then(movies => { 
         res.render('admin/movie-to-edit', { movies: movies })
       })
       .catch(error => {

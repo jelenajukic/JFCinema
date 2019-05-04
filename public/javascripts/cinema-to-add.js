@@ -21,7 +21,6 @@ window.onload = function() {
 
 
 // will set automatically longitude and langitude in cinema-to-add form (admin part)
-
 const geocoder = new google.maps.Geocoder();
 
 document.getElementById('street-name').addEventListener('blur', function () {
@@ -31,7 +30,6 @@ document.getElementById('street-name').addEventListener('blur', function () {
 document.getElementById('street-number').addEventListener('blur', function () {
   geocodeAddressNumber(geocoder);
 });
-
 
 function geocodeAddress(geocoder) {
   let address = document.getElementById('street-name').value;

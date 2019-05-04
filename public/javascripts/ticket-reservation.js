@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => console.log(error))
 })
 
-
-
 function findRoomName(screening, cinemaRoomsArray) {
   // console.log(screening);
   // console.log(cinemaRoomsArray);
@@ -37,8 +35,6 @@ function findRoomName(screening, cinemaRoomsArray) {
   return screening;
 }
 
-
-
 function infoAboutMovie(screening) {
 
   //movie title on the page
@@ -46,7 +42,6 @@ function infoAboutMovie(screening) {
   var movieTitle = document.createTextNode(screening.movieID.title);
   movieTitleHolder.appendChild(movieTitle);
   document.getElementById("movie-name").appendChild(movieTitleHolder);
-
 
   //place-time info on the page
   var roomName = document.createTextNode(screening.roomName);
@@ -102,7 +97,6 @@ document.getElementById('book-movie').addEventListener("click", () => {
     })
   }
 
-
   axios.post(`${URL}/data`, {
       reservation: reservation,
       screening: myScreening
@@ -119,9 +113,6 @@ document.getElementById('book-movie').addEventListener("click", () => {
     .then((result) => document.body.parentElement.innerHTML = result.data)
 })
 
-//-----------------
-
-
 function reservationInfoOnScreen() {
   console.log(myScreening)
 
@@ -133,6 +124,5 @@ function reservationInfoOnScreen() {
   for (var i = 0; i < arrSelectedSeats.length; i++) {
     document.getElementById("selected-seats").innerHTML +=
       `<div><span>Row: ${arrSelectedSeats[i].getAttribute("row")}</span> | <span>Seat: ${arrSelectedSeats[i].getAttribute("seatno")}</span></div>`
-
   }
 }

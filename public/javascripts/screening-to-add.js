@@ -39,9 +39,5 @@ document.getElementById("screening-date").addEventListener('change', function ()
           divWithTimeSlots.innerHTML+=`<input class='admin-input' type="radio" name="timeStart" required value=${element}>${element}<br>`
         })
       }
-      
-      
     })
-
-
 });

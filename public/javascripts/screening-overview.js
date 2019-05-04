@@ -50,8 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateContent(e.target.value);
   })
 
- 
-
 }, false);
 // -- END document ready -- //
 
@@ -65,8 +63,6 @@ function createDates(startdate) {
   // console.log(datesArray);
   return datesArray;
 };
-
-
 
 function updateContent(dateInput) {
   var prevMovie = '';

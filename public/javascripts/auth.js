@@ -19,11 +19,6 @@ function checkPassword(passoword) {
   var buttonSignUp = document.getElementById("signup")
   var strength = 0;
 
-  // if (passoword.match(/[a-zA-Z0-9][a-zA-Z0-9]+/)) {
-  //   strength += 1
-
-  // }
-
   if (passoword.match(/[a-z]+/)) {
     strength += 1
 
@@ -40,10 +35,7 @@ function checkPassword(passoword) {
     strength += 1
 
   }
-  // if (passoword.match(/[!@$%^&*()]+/)) {
-  //   strength += 1
 
-  // }
   if (passoword.length >= 8) {
     strength += 1
 
