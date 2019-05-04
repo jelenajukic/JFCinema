@@ -4,9 +4,9 @@ const Movie = require('../models/movie')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  Movie.find({status: 'active'})
+  Movie.find({ status: 'active' })
     .then(movies => {
-      res.render('index', {movies: movies});
+      res.render('index', { movies: movies });
     })
     .catch(err => {
       res.render('index');

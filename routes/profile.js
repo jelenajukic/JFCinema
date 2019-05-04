@@ -27,8 +27,6 @@ const upload = multer({
   }
 })
 
-
-
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -39,7 +37,6 @@ router.get('/', (req, res, next) => {
     .limit(1)
     .populate('movieID')
     .then(screening => {
-      // if (req.user.role == "ADMIN") { adminButton = true } else { adminButton = false }
       req.user.role == "ADMIN" ? adminButton = true : adminButton = false;
       res.render('profile/overview', { user: req.user, movie: screening[0].movieID, adminButton: adminButton });
     })
@@ -145,35 +142,6 @@ router.post('/upload', upload.single('profile-image'), (req, res, next) => {
   res.render('profile/overview', { user: req.user });
 });
 
-// === TICKET OVERVIEW IN PROFILE === //
-// router.get('/tickets', (req, res, next) => {
-//   Screening.find({ 'seatPlan.userID': req.user._id })
-//     .sort({ 'date': -1 })
-//     .populate('movieID')
-//     .then(tickets => {
-//       tickets.map(ticket => {
-//         // ticket.seatPlanNew = ticket.seatPlan.filter(element => { return req.user._id == element.userID })
-//         // console.log(`user: ${req.user._id} | element: ${element.userID}`)
-//         // console.log(ticket.seatPlanNew)
-//         return ticket.seatPlan = ticket.seatPlan.filter(seatPlan => seatPlan.userID == req.user._id)
-
-//         // // old syntax
-//         // var check = function(seat){
-//         //     return seat.userID == req.user._id;
-//         // }
-
-//         // return ticket.seatPlan.filter(check);
-
-
-//       })
-//       // var seats = tickets.seatPlan.filter(seatPlan => seatPlan.userID == req.user._id)
-//       // console.log(seats);
-//       console.log(tickets[0]);
-//       console.log(tickets[0].seatPlanNew);
-//       res.render('profile/tickets', { tickets: tickets })
-//     })
-// })
-
 router.get('/tickets', (req, res, next) => {
   Screening.aggregate(
     // change seatplan array to seperate rows
@@ -199,7 +167,6 @@ router.get('/tickets', (req, res, next) => {
     ]
   )
     .then(tickets => {
-      console.log(req.user._id)
       res.render('profile/tickets', { tickets: tickets })
     })
 })

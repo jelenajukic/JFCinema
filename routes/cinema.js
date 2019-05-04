@@ -20,7 +20,6 @@ router.get('/:id', (req, res, next) => {
 });
 
 //-> /cinema/ID/api (will return cinema with specific ID)
-
 router.get('/:id/api', (req, res, next) => {
   Cinema.findById({_id: req.params.id})
     .then(cinema => { 
