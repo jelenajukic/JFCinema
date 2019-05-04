@@ -83,7 +83,7 @@ router.post("/:id/data", (req, res, next) => {
       }
 
 
-      let subject = `Reservation for ${req.user.username} in JFCinema - ${req.body.screening.movieID.title}`
+      let subject = `Reservation for ${req.user.username} - ${req.body.screening.movieID.title}`
 
       //console.log(subject)
       let imgUrl = req.body.screening.movieID.imageUrl;
