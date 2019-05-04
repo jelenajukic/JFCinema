@@ -231,7 +231,7 @@ router.post('/add-screening/:id', (req, res, next) => {
   let obj = req.body;
   console.log(obj)
   // correct date format
-  obj.date = moment(obj.date).startOf('day').format();
+  obj.date = moment.utc(obj.date).startOf('day').format();
   obj.cinemaID = req.params.id;
 
   // let roomId= req.body.roomID
@@ -358,7 +358,7 @@ router.get('/edit-movie', (req, res, next) => {
 // -> (POST) /admin/add-movie
 router.post('/edit-movie', (req, res, next) => {
   if (req.user.role === "ADMIN") {
-    req.body.releaseDate = moment(req.body.releaseDate).startOf('day').format();
+    req.body.releaseDate = moment.utc(req.body.releaseDate).startOf('day').format();
     Movie.findByIdAndUpdate({_id: req.body.movieId},{$set: req.body})
       .then(movieUpdated => {
         console.log('movie updated: ', movieUpdated.title);
