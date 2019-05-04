@@ -1,13 +1,20 @@
-<h1>Profile</h1>
+<h1>Your profile</h1>
 <h2>Hi {{user.username}}!</h2>
 
-<button><a href="/profile/edit">Edit profile</a></button>
-<button><a href="/profile/tickets">Ticket overview</a></button>
+{{#if adminButton}}
+<button class="admin-button"><a href="/admin">admin</a></button>
+{{/if}}
+<button><a href="/profile/edit">edit profile</a></button>
+<button><a href="/profile/tickets">ticket overview</a></button>
 
 {{!-- <form action="/profile/upload" method="post" enctype="multipart/form-data">
   <input type="file" name="profile-image"><br><br>
   <button type="submit" name="submit-profile-image">Upload picture</button>
 </form> --}}
 
-<p>The last movie you saw was [[MOVIE]], we hope you liked it!</p>
-[[MOVIE IMG]]
+<br><br>
+{{#if movie}}
+<p>The last movie you've watched is <span class="profile-tickets-movie-title">{{movie.title}}</span>
+  , we hope you liked it!</p>
+<img src="{{movie.imageUrl}}" alt="img of {{movie.title}}">
+{{/if}}

@@ -1,3 +1,4 @@
+<h2>Set a new username</h2>
 <p>Your current username is: <b>"{{user.username}}"</b></p>
 
 <form action="/profile/edit/username" method="POST" id="form-container">
@@ -15,4 +16,5 @@
   {{/if}}
 
   <button>Confirm change</button>
+  <button><a href="/profile/edit">cancel</a></button>
 </form>

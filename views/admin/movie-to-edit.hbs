@@ -1,14 +1,12 @@
-<h2>Edit the movie</h2>
-{{!-- <form action="/admin/add-movie/checkprefill" method="POST"> --}}
+<h1>Edit a movie</h1>
 
-<label for="title">Pick a movie to edit</label>
+<h2>Select a movie to edit</h2>
 <select name="inputEditMovie" id="inputEditMovie">
   {{#each movies}} 
   <option value="{{id}}">{{title}}</option>
   {{/each}}
 </select> 
 <button id="buttonEditMovie">Get details</button>
-{{!-- </form> --}}
 
 <h2>Edit movie</h2>
 <form action="/admin/edit-movie/" method="POST">
@@ -39,7 +37,7 @@
   <option value="inactive">inactive</option>
 </select> 
 <br><br>
-<button type="submit">Update</button>
+<button type="submit">update movie data</button>
 </form>
 
 <script src="/javascripts/moment.js"></script>

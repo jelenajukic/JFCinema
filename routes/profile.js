@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const Screening = require('../models/screening')
+const Screening = require('../models/screening');
 const multer = require('multer');
 const path = require('path');
 
@@ -34,7 +34,19 @@ const bcryptSalt = 10;
 
 // -> /profile
 router.get('/', (req, res, next) => {
-  res.render('profile/overview', { user: req.user });
+  Screening.find({ 'seatPlan.userID': req.user._id })
+    .sort({ 'date': -1, 'timeStart': -1 })
+    .limit(1)
+    .populate('movieID')
+    .then(screening => {
+      // if (req.user.role == "ADMIN") { adminButton = true } else { adminButton = false }
+      req.user.role == "ADMIN" ? adminButton = true : adminButton = false;
+      res.render('profile/overview', { user: req.user, movie: screening[0].movieID, adminButton: adminButton });
+    })
+    .catch(err => {
+      console.log(err);
+      res.render('profile/overview', { user: req.user });
+    })
 });
 
 // -> /profile/edit
@@ -183,7 +195,7 @@ router.get('/tickets', (req, res, next) => {
         nrTicket: { $sum: 1 }
       }
     }
-    , { "$sort": { "date": -1 } }
+      , { "$sort": { "date": -1, "timeStart": -1 } }
     ]
   )
     .then(tickets => {

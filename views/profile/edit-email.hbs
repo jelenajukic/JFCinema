@@ -1,3 +1,4 @@
+<h2>Set a new e-mail address</h2>
 <p>Your current e-mail is: <b>"{{user.email}}"</b></p>
 
 <form action="/profile/edit/email" method="POST" id="form-container">
@@ -15,4 +16,5 @@
   {{/if}}
 
   <button>Confirm change</button>
+  <button><a href="/profile/edit">cancel</a></button>
 </form>
