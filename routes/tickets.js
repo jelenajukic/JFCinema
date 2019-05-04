@@ -104,7 +104,7 @@ router.post("/:id/data", (req, res, next) => {
         }
       });
       transporter.sendMail({
-        from: '"JF Cinema - movie reservation 👻" <JFCinema2019@gmail.com>',
+        from: '"JF Cinema 🎬" <JFCinema2019@gmail.com>',
         to: req.user.email,
         subject: subject,
         text: message,

@@ -113,7 +113,7 @@ var sendWelcomeEmail = (newUser) => {
     }
   });
   transporter.sendMail({
-    from: '"JF Cinema 👻" <JFCinema2019@gmail.com>',
+    from: '"JF Cinema 🎬" <JFCinema2019@gmail.com>',
     to: newUser.email,
     subject: subject,
     text: message,

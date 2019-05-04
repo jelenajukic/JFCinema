@@ -2,7 +2,7 @@
 
 // node db/user-seeds.js && node db/cinema-seeds.js && node db/movie-seeds.js && node db/screening-seeds.js
 
-
+require('dotenv').config();
 const mongoose = require("mongoose");
 const Cinema = require("../models/cinema");
 
