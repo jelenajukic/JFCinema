@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function findRoomName(screening, cinemaRoomsArray) {
+  // console.log(screening);
+  // console.log(cinemaRoomsArray);
   let room = cinemaRoomsArray.find(room => room._id == screening.roomID)
   screening.roomName = room.name;
   screening.roomCapacity = room.capacity;
@@ -100,12 +102,21 @@ document.getElementById('book-movie').addEventListener("click", () => {
     })
   }
 
-  axios.post(`${URL}/data`, {
-    reservation: reservation,
-    screening: myScreening
-  }).then((result) => window.location.replace("/tickets/confirmation"))
-  
 
+  axios.post(`${URL}/data`, {
+      reservation: reservation,
+      screening: myScreening
+    }).then((result) => axios.get(`/tickets/confirmation`, {
+      params: {
+        reservation: JSON.stringify(reservation),
+        movie: myScreening.movieID.title,
+        movieIMG: myScreening.movieID.imageUrl,
+        cinema: myScreening.cinemaID.name,
+        time: myScreening.timeStart,
+        roomName: myScreening.roomName
+      }
+    }))
+    .then((result) => document.body.parentElement.innerHTML = result.data)
 })
 
 //-----------------
@@ -117,7 +128,7 @@ function reservationInfoOnScreen() {
   arrSelectedSeats = Array.from(document.getElementsByClassName("selected"));
   document.getElementById("number-of-tickets").innerHTML = arrSelectedSeats.length
   document.getElementById("selected-seats").innerHTML = "";
-  document.getElementById("total-price").innerHTML=`${arrSelectedSeats.length*myScreening.seatPlan[0].price}`
+  document.getElementById("total-price").innerHTML = `${arrSelectedSeats.length*myScreening.seatPlan[0].price}`
 
   for (var i = 0; i < arrSelectedSeats.length; i++) {
     document.getElementById("selected-seats").innerHTML +=
