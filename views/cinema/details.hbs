@@ -1,25 +1,31 @@
-<h2>{{cinema.name}}</h2>
+<h1>{{cinema.name}}</h1>
 
 <div>
-  <h3>Opening hours</h3>
+  <h2>Opening hours</h2>
   <table>
     {{#each cinema.workingSchema}}
     <tr>
-      <td>{{this.day}}</td>
+      <td>{{this.day}}: </td>
       <td>{{startTime}}</td>
+      <td> - </td>
       <td>{{endTime}}</td>
     </tr>
     {{/each}}
   </table>
 </div>
+<br>
+<button><a href="/screening/{{cinema.id}}">tickets</a></button>
+<br><br>
 
-<h3>Directions</h3>
+<h2>Directions</h2>
 <table>
   <tr>
-    <td>By car: {{cinema.transport.auto}}</td>
-  </tr>
+    <td>By car: </td>
+    <td>{{cinema.transport.auto}}</td>
+  </tr> 
   <tr>
-    <td>By public transport: {{cinema.transport.publicTransport}}</td>
+    <td>By public transport: </td>
+    <td>{{cinema.transport.publicTransport}}</td>
   </tr>
 </table> 
 
@@ -28,7 +34,7 @@
 <div id="map"></div>
 
 <div>
-  <h3>Rooms</h3>
+  <h2>Rooms</h2>
   <table>
     {{#each cinema.rooms}}
     <tr>

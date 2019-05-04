@@ -239,8 +239,8 @@ height: 100%;
 .screeningDatePick {
   margin: 5px;
   padding: 5px;
-  background-color: rgb(15, 94, 15);
-  color: white;
+  background-color: #272727;
+  color: rgb(233, 232, 232);
   border-radius: 5px;
   display: inline-block;
 } 
@@ -551,10 +551,35 @@ progress {
 
 // ------------------------------------ 
 // profile - start 
-.profile-ticket-overview:nth-child(2) {
-  background-color: red;
-  color: white;
+.profile-ticket-overview {
+  display: flex;
+  background-color: black;
+  margin-bottom: 10px;
 }
+ 
+.profile-ticket-img { 
+  width: 50px;
+  height: 100%;
+  margin: 10px;
+}
+
+.profile-tickets-movie-title {
+  color: #FE4A28;
+}
+
+.profile-tickets-movie-seats {
+  margin: 0 0 0 10px;
+}
+
+.profile-tickets-movie-seats:last-child {
+  margin-bottom: 10px;
+}
+
+.profile-tickets-mobile {
+  display: inline-block;
+}
+// profile - end
+// ------------------------------------ 
 
 
 // ------------------------------------ 
@@ -568,18 +593,18 @@ progress {
 
 
 //price input field on screening-to-add page
-#movie-price{
+#movie-price {
 width:150px;
 }
 
 
 //buttons on admin-home page. buttons related to administrative part
-.admin-button{
+.admin-button {
   background-color:#FFFFFF;
   color:black;
 }
 
-.admin-button a{
+.admin-button a {
   color:black;
 }
 //class for div element in admin/create-screening. Div contains info about free time slots in room
@@ -604,6 +629,12 @@ width:150px;
 
 fieldset{
   border:0
+}
+
+//-------------------------------------
+// random
+.not-found-h1 {
+  font-size: 70px;
 }
 // ----------------------
 // MEDIA QUERIES
@@ -668,6 +699,7 @@ fieldset{
   body {
     padding: 20px;
   }
+
   // hide regular menu 
   .header-authentication { 
     align-self: flex-end;

@@ -1,13 +1,20 @@
-<h2>Your screening overview</h2>
+<h2>Your ticket overview</h2>
 
-  {{#each tickets}}
-  <div class="profile-ticket-overview">
-    <p>{{formatDateYear date}} @ {{timeStart}} - movie: {{movieDetails.title}} | {{nrTicket}} ticket(s)</p> 
-    <ul>
-      {{#each seatPlan}}
-      <li>Row: {{row}} | seat: {{seatNo}}</li>
-      {{/each}}
-    </ul>
+{{#each tickets}}
+<div class="profile-ticket-overview">
+  <img class="profile-ticket-img" src="{{movieDetails.imageUrl}}" alt="img">
+  <div>
+    <p>
+      {{formatDateYear date}} | {{timeStart}} |
+      <span class="profile-tickets-mobile">
+        <span class="profile-tickets-movie-title">{{movieDetails.title}}</span>
+        | {{nrTicket}} ticket(s)
+      </span>
+    </p>
+    {{#each seatPlan}}
+    <p class="profile-tickets-movie-seats">> Row: {{row}} | seat: {{seatNo}}</p>
+    {{/each}}
   </div>
-  {{/each}}
- 
+</div>
+{{/each}}
+<button><a href="/profile">back to profile</a></button>

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-const User = require("../models/User");
+const User = require("../models/user");
 
 mongoose
   .connect('mongodb://localhost/fjcinema', { useNewUrlParser: true })

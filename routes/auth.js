@@ -2,9 +2,8 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/user");
-// var passwordValidator = require('password-validator');
-// var passSchema = new passwordValidator();
-
+const nodemailer = require('nodemailer');
+const templates = require('../templates/welcome-email');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -12,15 +11,19 @@ const bcryptSalt = 10;
 
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", {
-    "message": req.flash("error")
-  });
+  if (req.user) {
+    res.redirect("/profile")
+  } else {
+    res.render("auth/login", {
+      "message": req.flash("error")
+    })
+  };
 });
 
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/profile",
-  failureRedirect: "/auth/login",
+  failureRedirect: "auth/login",
   failureFlash: true,
   passReqToCallback: true
 }));
@@ -29,7 +32,7 @@ router.post("/login", passport.authenticate("local", {
 //ADMIN-LOGIN
 
 router.get("/admin-login", (req, res, next) => {
-  
+
   res.render("auth/admin-login", {
     "message": req.flash("error")
   });
@@ -37,7 +40,7 @@ router.get("/admin-login", (req, res, next) => {
 
 
 router.post("/admin-login", passport.authenticate("local", {
-  
+
   successRedirect: "/admin/admin-home",
   failureRedirect: "/auth/admin-login",
   failureFlash: true,
@@ -58,27 +61,6 @@ router.post("/signup", (req, res, next) => {
     res.render("auth/signup", { message: "Indicate username, password and e-mail" });
     return;
   }
-  // passSchema
-  //   .is().min(8) // Minimum length 8
-  //   .is().max(100) // Maximum length 100
-  //   .has().uppercase() // Must have uppercase letters
-  //   .has().lowercase() // Must have lowercase letters
-  //   .has().digits() // Must have digits
-  //   .has().not().spaces() // Should not have spaces
-  //   .has().symbols()
-  //   .is().not().oneOf(['Passw0rd', 'Password123', username]); // Blacklist these values
-
-  // let listArray = passSchema.validate(password, {
-  //   list: true
-  // })
-
-  // if(listArray.length!=0){
-  //   res.render("auth/signup", {
-  //     message: "Password is not strong enough. Valid passwor exp: MyCat345@"
-  //   });
-  //   return;
-  // }
-
 
   User.findOne({
     username
@@ -89,8 +71,6 @@ router.post("/signup", (req, res, next) => {
       });
       return;
     }
-
-
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
@@ -103,12 +83,14 @@ router.post("/signup", (req, res, next) => {
     });
 
     newUser.save()
-    .then(() => {
-      res.redirect("/auth/login");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+      .then((newUser) => {
+        res.redirect("/auth/login");
+        sendWelcomeEmail(newUser);
+      })
+      .catch(err => {
+        console.log(err);
+        res.render("auth/signup", { message: "Something went wrong" });
+      })
   });
 });
 
@@ -116,5 +98,31 @@ router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
+var sendWelcomeEmail = (newUser) => {
+  console.log(newUser);
+  let subject = `Welcome ${newUser.username}, to JFCinema`
+  let message =
+    `<h2>Dear ${newUser.username} </h2>
+      <p>Welcome to JFCinema!</p><br/>`
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'JFCinema2019',
+      pass: process.env.GMAIL_PASS
+    }
+  });
+  transporter.sendMail({
+    from: '"JF Cinema 👻" <JFCinema2019@gmail.com>',
+    to: newUser.email,
+    subject: subject,
+    text: message,
+    html: templates.welcomeEmail(message)
+  }, (error, info) => {
+    if (error) {
+      console.log(error);
+    }
+  })
+}
 
 module.exports = router;
