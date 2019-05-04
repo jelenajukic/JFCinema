@@ -232,11 +232,7 @@ router.post('/add-screening/:id', (req, res, next) => {
   console.log(obj)
   // correct date format
   obj.date = moment.utc(obj.date).startOf('day').format();
-  obj.cinemaID = req.params.id;
-
-  // let roomId= req.body.roomID
-  // console.log(roomId)
-  //console.log(obj)
+  obj.cinemaID = req.params.id; 
   Cinema.findOne({
     'rooms._id': req.body.roomID
   }).then(cinema => {
