@@ -2,17 +2,18 @@
 // General changes - start
 * {
   box-sizing: border-box;
-} 
+}
+
 *:before,
 *:after {
- box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
   padding: 50px;
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #272727;
-  color: white; 
+  color: white;
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
@@ -37,6 +38,11 @@ li {
   color: white;
 }
 
+h4 {
+  margin: 0 0 0 10px;
+  font-size: 20px;
+}
+
 h1,
 h3 {
   color: #FE4A28;
@@ -47,7 +53,7 @@ h2 {
   color: #B5E5BF;
   margin-top: 10px;
 }
- 
+
 nav {
   margin-bottom: 10px;
 }
@@ -72,6 +78,7 @@ button {
   cursor: pointer;
 
 }
+
 // General changes - end
 // ------------------------------------
 
@@ -84,20 +91,21 @@ header {
   justify-content: space-between;
 }
 
-.header-authentication {  
+.header-authentication {
   margin-bottom: 10px;
   color: #FE4A28;
 }
 
 .header-authentication a {
   text-decoration: none;
-} 
+}
 
 .header-menu {
   display: flex;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
-.header-menu a { 
+
+.header-menu a {
   background-color: white;
   color: black;
   border-top: 3px solid #B5E5BF;
@@ -115,32 +123,34 @@ header {
 .header-menu-mobile a:hover {
   background-color: #FE4A28;
 }
+
 // Header - end
 // ------------------------------------
 
 
 // ------------------------------------
 // Footer - start
-footer { 
+footer {
   // background-color: #FE4A28;
   display: flex;
-  justify-content: center;  
-  align-items: center;  
-  color: #FE4A28; 
-  position: absolute; 
+  justify-content: center;
+  align-items: center;
+  color: #FE4A28;
+  position: absolute;
   bottom: 0;
-  width: 100%;   
+  width: 100%;
   // padding: 10px;
   margin: 0;
 }
 
-footer span, .header-authentication span {
+footer span,
+.header-authentication span {
   margin: 0px 5px;
 }
- 
+
 footer a {
   text-decoration: none;
-} 
+}
 
 footer a img {
   width: 16px;
@@ -148,7 +158,7 @@ footer a img {
 
 // Footer - end
 // ------------------------------------
- 
+
 
 // ------------------------------------
 // (User) status messages - start
@@ -168,6 +178,7 @@ footer a img {
   color: black;
   display: table;
 }
+
 // (User) status messages - end
 // ------------------------------------
 
@@ -192,6 +203,7 @@ footer a img {
 .movie-overview-button-mobile {
   display: none;
 }
+
 // Movie overview page - end
 // ------------------------------------
 
@@ -207,7 +219,7 @@ footer a img {
   max-width: 450px;
   margin-right: 20px;
 }
- 
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -215,13 +227,14 @@ footer a img {
   overflow: hidden;
 }
 
-.video-container iframe  {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%; 
-height: 100%;
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
+
 // Movie details page - end
 // ------------------------------------
 
@@ -243,7 +256,7 @@ height: 100%;
   color: white;
   border-radius: 5px;
   display: inline-block;
-} 
+}
 
 .screening-poster {
   max-height: 250px;
@@ -258,9 +271,9 @@ height: 100%;
 .movieTimesContainer {
   display: flex;
   justify-content: space-around;
-  background-color: rgb(0, 0, 0); 
+  background-color: rgb(0, 0, 0);
   padding: 10px;
-  margin: 0px 5px 10px ;
+  margin: 0px 5px 10px;
 }
 
 .movieTimesTimes {
@@ -272,7 +285,7 @@ height: 100%;
 
 a.buttonTime {
   float: left;
-  background-color: #FE4A28; 
+  background-color: #FE4A28;
   padding: 5px 15px;
   margin: 5px;
   text-decoration: none;
@@ -281,6 +294,7 @@ a.buttonTime {
 a.buttonTime:hover {
   box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(253, 253, 253, 0.19);
 }
+
 // Screening overview page - end
 // ------------------------------------
 
@@ -288,11 +302,11 @@ a.buttonTime:hover {
 // ------------------------------------
 // Ticket selection (seatplan) - start
 #tickets-container {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   margin-top: 10px;
   padding-bottom: 20px;
-  background-color: black; 
+  background-color: black;
 }
 
 #movie-img {
@@ -301,17 +315,18 @@ a.buttonTime:hover {
 }
 
 #chairs {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   margin-right: 20px;
 }
 
-.row { 
+.row {
   display: flex;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
-.col { // chair sizes
+.col {
+  // chair sizes
   width: 30px;
   height: 30px;
   border: 2px solid white;
@@ -335,8 +350,8 @@ a.buttonTime:hover {
 
 #info {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
 }
 
 #screen {
@@ -346,7 +361,7 @@ a.buttonTime:hover {
   margin: 20px auto;
   color: black;
   font-weight: bold;
-  text-align: center; 
+  text-align: center;
 }
 
 #legend {
@@ -376,16 +391,17 @@ a.buttonTime:hover {
 #reservation {
   margin-top: 40px;
   margin-left: 10px;
-  display:flex;
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
 }
 
 #book-movie {
   margin-top: 20px;
 }
+
 // Ticket selection (seatplan) - end
 // ------------------------------------
- 
+
 
 // ------------------------------------
 // Cinema overview - start 
@@ -400,6 +416,7 @@ a.buttonTime:hover {
 .cinema-overview-container h2 {
   margin-bottom: 0px;
 }
+
 // Cinema overview - end
 // ------------------------------------
 
@@ -411,6 +428,7 @@ a.buttonTime:hover {
   height: 500px;
   margin: 20px 0;
 }
+
 // Cinema details - end
 // ------------------------------------
 
@@ -440,6 +458,7 @@ label {
 ::placeholder {
   color: rgb(175, 174, 174);
 }
+
 // User forms - end
 // ------------------------------------ 
 
@@ -531,9 +550,10 @@ progress {
 .progress-100::-moz-progress-bar {
   background-color: green;
 }
+
 // progress bar - end
 // ------------------------------------ 
- 
+
 
 
 // ------------------------------------ 
@@ -545,6 +565,7 @@ progress {
 #changePassword:disabled {
   background-color: grey;
 }
+
 // button signup - end
 // ------------------------------------ 
 
@@ -560,41 +581,42 @@ progress {
 // ------------------------------------ 
 //span element for price in ticket-selection_sp.hbs
 
-.price{
+.price {
   display: inline;
-  color:#B5E5BF;
+  color: #B5E5BF;
   font-weight: bold;
 }
 
 
 //price input field on screening-to-add page
-#movie-price{
-width:150px;
+#movie-price {
+  width: 150px;
 }
 
 
 //buttons on admin-home page. buttons related to administrative part
-.admin-button{
-  background-color:#FFFFFF;
-  color:black;
+.admin-button {
+  background-color: #FFFFFF;
+  color: black;
 }
 
-.admin-button a{
-  color:black;
+.admin-button a {
+  color: black;
 }
+
 //class for div element in admin/create-screening. Div contains info about free time slots in room
 .not-visible {
-  display:none
+  display: none
 }
 
 #add-room {
   background-color: #FE4A28;
-  width:80px;
+  width: 80px;
   text-align: center;
   cursor: pointer;
-  height:20px;
-  margin-top:15px;
-  margin-left:10px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
   border-radius: 4px;
 }
 
@@ -602,9 +624,54 @@ width:150px;
   display: flex;
 }
 
-fieldset{
-  border:0
+fieldset {
+  border: 0
 }
+
+// ------------------------------------
+//confirmation page - start
+
+.ticket-div {
+  //display: flex;
+  margin-bottom: 20px;
+  // align-items: center;
+}
+
+.ticket-div-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // align-content: space-between;
+
+}
+
+.ticket-div h2,
+.ticket-div-seats h2 {
+  margin: 0;
+  color: #a3edbf;
+}
+
+
+.ticket-div-seats p {
+  margin: 0 0 0 10px;
+}
+
+.ticket-div-seats {
+  display: flex;
+  flex-direction: column;
+}
+
+#reservation-confirmation {
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+}
+
+// Confirmation page - end
+// ------------------------------------
+
+
 // ----------------------
 // MEDIA QUERIES
 // ------------------------------------ 
@@ -615,6 +682,7 @@ fieldset{
     align-items: center;
   }
 }
+
 @media screen and (min-width: 601px) and (max-width: 700px) {
   header {
     display: flex;
@@ -650,11 +718,13 @@ fieldset{
   .header-authentication a {
     font-size: 130%;
   }
+
   footer a {
     font-size: 130%;
   }
-  .video-container iframe  { 
-    width: 70%; 
+
+  .video-container iframe {
+    width: 70%;
     height: 70%;
   }
 }
@@ -668,13 +738,16 @@ fieldset{
   body {
     padding: 20px;
   }
+
   // hide regular menu 
-  .header-authentication { 
+  .header-authentication {
     align-self: flex-end;
   }
+
   .header-menu {
     display: none;
   }
+
   .header-menu-mobile {
     display: flex;
     justify-content: space-between;

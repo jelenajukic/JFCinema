@@ -2,9 +2,6 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/user");
-// var passwordValidator = require('password-validator');
-// var passSchema = new passwordValidator();
-
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -58,26 +55,6 @@ router.post("/signup", (req, res, next) => {
     res.render("auth/signup", { message: "Indicate username, password and e-mail" });
     return;
   }
-  // passSchema
-  //   .is().min(8) // Minimum length 8
-  //   .is().max(100) // Maximum length 100
-  //   .has().uppercase() // Must have uppercase letters
-  //   .has().lowercase() // Must have lowercase letters
-  //   .has().digits() // Must have digits
-  //   .has().not().spaces() // Should not have spaces
-  //   .has().symbols()
-  //   .is().not().oneOf(['Passw0rd', 'Password123', username]); // Blacklist these values
-
-  // let listArray = passSchema.validate(password, {
-  //   list: true
-  // })
-
-  // if(listArray.length!=0){
-  //   res.render("auth/signup", {
-  //     message: "Password is not strong enough. Valid passwor exp: MyCat345@"
-  //   });
-  //   return;
-  // }
 
 
   User.findOne({

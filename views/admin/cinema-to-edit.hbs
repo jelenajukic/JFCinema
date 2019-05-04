@@ -1,4 +1,4 @@
-Hello {{name}}, I will edit you
+{{!-- Hello {{name}}, I will edit you --}}
 
 
 <form id="update-cinema" action="/admin/edit-cinema/{{id}}" method="POST">
@@ -11,15 +11,15 @@ Hello {{name}}, I will edit you
     <input type="text" name="name" id="cinema-name" value="{{name}}"><br>
     <h2>Address</h2>
     <label for="street-name">Street name</label>
-    <input type="text" name="streetName" id="street-name" value={{address.name}}><br>
+    <input type="text" name="streetName" id="street-name" value="{{address.name}}"><br>
     <label for="street-number">Street number</label>
-    <input type="number" name="streetNumber" id="street-number" value={{address.streetNumber}}><br>
+    <input type="number" name="streetNumber" id="street-number" value="{{address.streetNumber}}"><br>
     <label for="postcode">Postcode</label>
-    <input type="text" name="postcode" id="postcode" value={{address.postcode}}><br>
+    <input type="text" name="postcode" id="postcode" value="{{address.postcode}}"><br>
     <label for="owner">Owner</label>
     <input type="text" name="owner" id="owner" value={{owner}}><br>
     <label for="city">City</label>
-    <input type="text" name="city" id="city" value={{address.city}}><br>
+    <input type="text" name="city" id="city" value="{{address.city}}"><br>
 
   </div>
 
@@ -47,7 +47,8 @@ Hello {{name}}, I will edit you
     {{#each rooms}}
     <h3>{{name}}</h3>
     <label for="roomName">Room name:</label>
-    <input type="text" name="roomName" class="room-name" value="{{name}}"><br><br>
+    <input type="text" name="roomName" class="room-name" value="{{name}}"><br>
+    <input type="text" name="roomID"  value={{_id}} style="display:none">
     {{!-- <label for="capacity">Room capacity:</label>
     <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br> --}}
     <label for="screenType">Screen Type:</label>
@@ -57,15 +58,15 @@ Hello {{name}}, I will edit you
       <option value="3D">3D</option>
     </select> <br><br>
     <label for="rows"># of rows</label>
-    <input type="number" name="rows" id="rows"  value="{{rows}}">
+    <input type="number" name="rows" id="rows"  value={{rows}}>
     <br><br>
     <label for="cols"># of columns</label>
-    <input type="number" name="cols" id="cols"  value="{{cols}}">
+    <input type="number" name="cols" id="cols"  value={{cols}}>
     {{/each}}
   </div>
 
   <br>
 
-   <input type="submit" value="UPDATE CINEMA INFO">
-
+   {{!-- <input type="submit" value="UPDATE CINEMA INFO"> --}}
+   <button type="submit" value="UPDATE CINEMA INFO">UPDATE CINEMA INFO</button>
 </form>
