@@ -8,6 +8,7 @@
   <img class="movie-details-poster" src="{{imageUrl}}" alt="Poster of {{title}}">
 </div>
 <button><a href="/cinema">tickets</a></button>
+
 {{#if videoUrl}}
 <h3>Movie trailer</h3>
 <div class="video-container">
@@ -15,5 +16,4 @@
     src="https://www.youtube.com/embed/{{videoUrl}}?autoplay=0&rel=0" frameborder="0">
   </iframe>
 </div>
-
 {{/if}}

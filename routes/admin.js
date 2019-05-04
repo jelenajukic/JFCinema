@@ -50,15 +50,15 @@ router.get('/edit-cinema/:id', (req, res, next) => {
 });
 
 // -> (POST) /admin/edit-cinema/:cinemaID
-router.post('/edit-cinema/:id', (req, res, next) => {  
+router.post('/edit-cinema/:id', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     let arrayRooms = []
     // multiple rooms
     if (Array.isArray(req.body.roomName)) {
       for (let i = 0; i < req.body.roomName.length; i++) {
         obj = {
-          _id:req.body.roomID[i],
-          name:req.body.roomName[i],
+          _id: req.body.roomID[i],
+          name: req.body.roomName[i],
           // name: req.body.roomName[i],
           capacity: Number(req.body.cols[i]) * Number(req.body.rows[i]),
           cols: req.body.cols[i],
@@ -70,9 +70,8 @@ router.post('/edit-cinema/:id', (req, res, next) => {
       // one room
     } else {
       arrayRooms = [{
-        _id:req.body.roomID,
-        name:req.body.roomName,
-        //name: req.body.roomName,
+        _id: req.body.roomID,
+        name: req.body.roomName,
         capacity: Number(req.body.cols) * Number(req.body.rows),
         cols: req.body.cols,
         rows: req.body.rows,
@@ -144,7 +143,7 @@ router.post('/add-cinema/', (req, res, next) => {
         cols: req.body.cols[i],
         rows: req.body.rows[i],
         screenType: req.body.screenType[i],
-        
+
       }
       arrayRooms.push(obj);
     }
@@ -156,7 +155,7 @@ router.post('/add-cinema/', (req, res, next) => {
       cols: req.body.cols,
       rows: req.body.rows,
       screenType: req.body.screenType,
-     
+
     }]
   }
 
@@ -201,7 +200,7 @@ router.post('/add-cinema/', (req, res, next) => {
 // Admin - Screenings 
 // -----------------------
 
-// i'm a bit confused by this code :) /FT
+// /Review
 router.get('/add-screening/:id', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Cinema.findOne({
@@ -210,7 +209,7 @@ router.get('/add-screening/:id', (req, res, next) => {
       .then(cinema => {
         return cinema
       })
-      .then(cinema => Movie.find({status: 'active'}).then(movie => res.render('admin/screening-to-add', {
+      .then(cinema => Movie.find({ status: 'active' }).then(movie => res.render('admin/screening-to-add', {
         movie: movie,
         cinema: cinema
       }))
@@ -222,16 +221,16 @@ router.get('/add-screening/:id', (req, res, next) => {
 });
 
 router.post('/add-screening/:id', (req, res, next) => {
-
-  let obj = req.body; 
+  let obj = req.body;
   // correct date format
   obj.date = moment.utc(obj.date).startOf('day').format();
-  obj.cinemaID = req.params.id; 
+  obj.cinemaID = req.params.id;
   Cinema.findOne({
     'rooms._id': req.body.roomID
-  }).then(cinema => {
-    return cinema.rooms.find(room => room._id == req.body.roomID)
   })
+    .then(cinema => {
+      return cinema.rooms.find(room => room._id == req.body.roomID)
+    })
     .then(room => {
       return {
         capacity: room.capacity,
@@ -239,7 +238,6 @@ router.post('/add-screening/:id', (req, res, next) => {
         cols: room.cols,
       }
     })
-
     .then(seatPlan => {
       return createSeatPlan(seatPlan, req.body.price)
     })
@@ -251,8 +249,7 @@ router.post('/add-screening/:id', (req, res, next) => {
     .then(() => res.redirect('/admin/admin-home'))
     .catch(error => console.log(error))
 
-
-  // Function create seatplan
+  // Function create seatplan /Review (placement)
   function createSeatPlan(obj, price) {
     let seatPlan = [];
     for (let i = 0; i < obj.rows; i++) {
@@ -261,7 +258,7 @@ router.post('/add-screening/:id', (req, res, next) => {
           row: i + 1,
           seatNo: j + 1,
           available: true,
-          price:price
+          price: price
         })
       }
     }
@@ -296,12 +293,10 @@ router.post('/add-movie', (req, res, next) => {
       .then(movieCreated => {
         console.log('movie added: ', movieCreated.title);
         res.redirect('/admin/admin-home');
-        // res.render('admin/admin-home.hbs', {messagePos: `Created movie: ${movieCreated.title} `})
       })
       .catch(err => {
         console.log(err);
         res.redirect('/admin/admin-home');
-        // res.render('admin/admin-home.hbs', {message: `An error occured`})
       })
   } else {
     res.render('auth/login');
@@ -333,7 +328,7 @@ router.get('/add-movie/check', (req, res, next) => {
 router.get('/edit-movie', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     Movie.find({})
-      .then(movies => { 
+      .then(movies => {
         res.render('admin/movie-to-edit', { movies: movies })
       })
       .catch(error => {
@@ -348,16 +343,14 @@ router.get('/edit-movie', (req, res, next) => {
 router.post('/edit-movie', (req, res, next) => {
   if (req.user.role === "ADMIN") {
     req.body.releaseDate = moment.utc(req.body.releaseDate).startOf('day').format();
-    Movie.findByIdAndUpdate({_id: req.body.movieId},{$set: req.body})
+    Movie.findByIdAndUpdate({ _id: req.body.movieId }, { $set: req.body })
       .then(movieUpdated => {
         console.log('movie updated: ', movieUpdated.title);
         res.redirect('/admin/admin-home');
-        // res.render('admin/admin-home.hbs', {messagePos: `Created movie: ${movieCreated.title} `})
       })
       .catch(err => {
         console.log(err);
         res.redirect('/admin/admin-home');
-        // res.render('admin/admin-home.hbs', {message: `An error occured`})
       })
   } else {
     res.render('auth/login');
@@ -367,7 +360,7 @@ router.post('/edit-movie', (req, res, next) => {
 // -> axios call to prefill EDIT movie with current details
 router.get('/edit-movie/check', (req, res, next) => {
   Movie.findById(req.query.id)
-    .then(movie => {  
+    .then(movie => {
       res.send(movie);
     })
     .catch(err => {

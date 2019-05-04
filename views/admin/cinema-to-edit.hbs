@@ -1,6 +1,3 @@
-{{!-- Hello {{name}}, I will edit you --}}
-
-
 <form id="update-cinema" action="/admin/edit-cinema/{{id}}" method="POST">
   <div>
     <h1>Update cinema {{name}}</h1>
@@ -20,7 +17,6 @@
     <input type="text" name="owner" id="owner" value={{owner}}><br>
     <label for="city">City</label>
     <input type="text" name="city" id="city" value="{{address.city}}"><br>
-
   </div>
 
   <br>
@@ -49,10 +45,7 @@
     <label for="roomName">Room name:</label>
     <input type="text" name="roomName" class="room-name" value="{{name}}"><br>
     <input type="text" name="roomID"  value={{_id}} style="display:none">
-    {{!-- <label for="capacity">Room capacity:</label>
-    <input type="number" name="capacity" class="capacity" value={{capacity}}><br><br> --}}
     <label for="screenType">Screen Type:</label>
-    {{!-- <input type="text" name="screenType" class="screenType" value={{screenType}}><br><br> --}}
     <select name="screenType" id="">
       <option value="2D">2D</option>
       <option value="3D">3D</option>
@@ -66,7 +59,5 @@
   </div>
 
   <br>
-
-   {{!-- <input type="submit" value="UPDATE CINEMA INFO"> --}}
-   <button type="submit" value="UPDATE CINEMA INFO">UPDATE CINEMA INFO</button>
+   <button type="submit">update cinema</button>
 </form>

@@ -19,6 +19,9 @@ node db/user-seeds.js && node db/cinema-seeds.js && node db/movie-seeds.js && no
 - Seed list scripts
 
 ### Preview
+### database schema
+![database schema](readme/database-schema.png)
+
 #### mobile
 ![preview mobile](readme/mobile-home.png)
 

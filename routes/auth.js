@@ -9,7 +9,6 @@ const templates = require('../templates/welcome-email');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 router.get("/login", (req, res, next) => {
   if (req.user) {
     res.redirect("/profile")
@@ -20,7 +19,6 @@ router.get("/login", (req, res, next) => {
   };
 });
 
-
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/profile",
   failureRedirect: "auth/login",
@@ -28,25 +26,19 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-
-//ADMIN-LOGIN
-
+// admin login
 router.get("/admin-login", (req, res, next) => {
-
   res.render("auth/admin-login", {
     "message": req.flash("error")
   });
 });
 
-
 router.post("/admin-login", passport.authenticate("local", {
-
   successRedirect: "/admin/admin-home",
   failureRedirect: "/auth/admin-login",
   failureFlash: true,
   passReqToCallback: true
 }));
-
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -57,6 +49,7 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
   const role = req.body.role || 'USER'; // take role when provided or USER
   const email = req.body.email;
+
   if (username === "" || password === "" || email === "") {
     res.render("auth/signup", { message: "Indicate username, password and e-mail" });
     return;
@@ -74,7 +67,6 @@ router.post("/signup", (req, res, next) => {
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
-
     const newUser = new User({
       username,
       password: hashPass,

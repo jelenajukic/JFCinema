@@ -25,7 +25,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/:date', (req, res, next) => { 
   Screening.find({cinemaID: req.params.id, date: {$gte: req.params.date, $lt: moment(req.params.date).add(1, 'Day')}}) 
     .sort({movieID: 1, timeStart: 1})
-    .populate('movieID') // add the movie details through the movieID 
+    .populate('movieID')
     .then(screenings => {  
       res.send(screenings);
     })
