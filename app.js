@@ -19,7 +19,7 @@ const ensureLogin = require('connect-ensure-login');
 const moment = require('moment');
 
 mongoose
-  .connect('mongodb://localhost/fjcinema', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {

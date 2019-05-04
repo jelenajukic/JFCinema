@@ -11,7 +11,7 @@ const moment = require('moment');
 // Cinema needs at least 2 rooms! (array)
 
 mongoose
-  .connect('mongodb://localhost/fjcinema', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {

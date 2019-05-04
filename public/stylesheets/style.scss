@@ -681,6 +681,10 @@ fieldset {
   margin: 0 0 0 10px;
 }
 
+.ticket-div-seats h2 {
+  margin-bottom: 15px;
+}
+
 //-------------------------------------
 // random
 .not-found-h1 {
@@ -696,6 +700,10 @@ fieldset {
   display: flex;
   justify-content: space-around;
   padding: 50px;
+}
+
+#reservation-confirmation img {
+  height: 100%;
 }
 
 // Confirmation page - end

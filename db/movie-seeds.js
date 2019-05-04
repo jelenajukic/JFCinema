@@ -3,7 +3,7 @@ const Movie = require('../models/movie');
 
 
 mongoose
-  .connect('mongodb://localhost/fjcinema', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {

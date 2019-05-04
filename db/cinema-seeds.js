@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const Cinema = require("../models/cinema");
 
 mongoose
-  .connect('mongodb://localhost/fjcinema', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {

@@ -449,8 +449,6 @@ progress {
 fieldset {
   border: 0; }
 
-.not-found-h1 {
-  font-size: 70px; }
 .ticket-div {
   margin-bottom: 20px; }
 
@@ -467,6 +465,12 @@ fieldset {
 .ticket-div-seats p {
   margin: 0 0 0 10px; }
 
+.ticket-div-seats h2 {
+  margin-bottom: 15px; }
+
+.not-found-h1 {
+  font-size: 70px; }
+
 .ticket-div-seats {
   display: flex;
   flex-direction: column; }
@@ -476,6 +480,9 @@ fieldset {
   display: flex;
   justify-content: space-around;
   padding: 50px; }
+
+#reservation-confirmation img {
+  height: 100%; }
 
 @media screen and (min-width: 701px) {
   header {
