@@ -1,12 +1,32 @@
- <h2>{{cinema.name}} - {{cinema.address.city}}</h2>
+<h2>{{cinema.name}} - {{cinema.address.city}}</h2>
 
-<div id="datePickerContainer"></div> 
+<div id="datePickerContainer">
+  <div class="glide" id="screening_glide_container">
+    <div class="glide__track glide__track__screening" data-glide-el="track">
+      <ul class="glide__slides" id="screening_glide_slides"> 
+        {{!-- Inserted in .Js --}}
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+        <</button> 
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">>
+      </button>
+    </div>
+  </div> 
+</div>
+
 <div id="datePickerContainer-mobile-div">
   <label for="">Pick a date: </label>
   <select id="datePickerContainer-mobile"></select>
-</div> 
+</div>
+
 <div id="screeningContainer"></div>
- 
+
 <script src="../javascripts/moment.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{{!-- For the library glide --}}
+<link rel="stylesheet" href="/stylesheets/glide.core.css">
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+
 <script src="../javascripts/screening-overview.js"></script>

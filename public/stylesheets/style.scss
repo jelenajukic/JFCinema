@@ -258,6 +258,21 @@ footer a img {
   display: inline-block;
 }
 
+.screeningDatePickGlide {
+  background-color: #B5E5BF;
+  color: black;
+  margin: 5px;
+  padding: 8px; 
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.screeningSelectedDate {
+  background-color: #FE4A28;
+  color: rgb(233, 232, 232);
+}
+
 .screening-poster {
   max-height: 250px;
   max-width: 150px;
