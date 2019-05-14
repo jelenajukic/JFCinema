@@ -50,6 +50,7 @@
     top: 50%;
     z-index: 2;
     color: white;
+    cursor: pointer;
     text-transform: uppercase;
     padding: 9px 12px;
     background-color: transparent;
@@ -69,6 +70,10 @@
     .glide__arrow--left {
       left: 1em; }
     .glide__arrow--right {
-      right: 1em; }
+      right: 1em;  }
     .glide__arrow--disabled {
       opacity: 0.33; }
+
+.glide__track__screening {
+  margin: 0px 70px;
+}

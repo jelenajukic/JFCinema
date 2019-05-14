@@ -1,31 +1,31 @@
 var URL = window.location.href;
 var screeningContent;
 
+window.addEventListener('load', function () {
+  initializeGlide();
+});
+
 // -- START document ready -- //
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('loaded js screening')
 
   const startdate = moment().startOf('day').format();
   const datePicker = createDates(startdate);
 
   // load date slots (today + 14 days)
-  let datePickerDiv = document.getElementById('datePickerContainer');
+  let datePickerDiv = document.getElementById('screening_glide_slides');
   let datePickerDivMobile = document.getElementById('datePickerContainer-mobile');
   datePicker.forEach(date => {
     dispDate = moment(date).format('dd D MMM');
-    // first date checked by default
-    // console.log('date : ', date, 'startdate : ', startdate);
+
+    // desktop (glide)
     if (date == startdate) {
-      datePickerDiv.innerHTML += `<input 
-      type="radio" name="datepick" class="screeningDatePick" value="${date}" checked="checked">
-      ${dispDate} (today)
-      </input>`
+      datePickerDiv.innerHTML +=
+        `<li class="glide__slide screeningDatePickGlide screeningSelectedDate" data="${date}">${dispDate}</li>`
     } else {
-      datePickerDiv.innerHTML += `<input 
-      type="radio" name="datepick" class="screeningDatePick" value="${date}">
-      ${dispDate}
-      </input>`
+      datePickerDiv.innerHTML +=
+        `<li class="glide__slide screeningDatePickGlide" data="${date}">${dispDate}</li>`
     }
+
     // mobile
     if (date == startdate) {
       datePickerDivMobile.innerHTML += `<option name="datepick" class="screeningDatePick" value="${date}" checked="checked">
@@ -42,10 +42,16 @@ document.addEventListener('DOMContentLoaded', function () {
   screeningContent = document.getElementById('screeningContainer')
   updateContent(startdate);
 
-  // add event listener to update content when picking another date
-  datePickerDiv.addEventListener('change', e => {
-    updateContent(e.target.value);
+  // add event listener to update content when picking another date (desktop)
+  datePickerDiv.addEventListener('click', e => {
+    // not fired when you click on the <ul>
+    if(e.target.getAttribute('data')) {
+    updateContent(e.target.getAttribute('data'));
+    updateSelectedDateColor(e.target);
+    }
   })
+
+  // event listener (mobile)
   datePickerDivMobile.addEventListener('change', e => {
     updateContent(e.target.value);
   })
@@ -63,6 +69,35 @@ function createDates(startdate) {
   // console.log(datesArray);
   return datesArray;
 };
+
+// initialize Glide for dates
+function initializeGlide() {
+  // let glide = document.getElementById('screening_glide_container')
+  new Glide('.glide', {
+    // options
+    startAt: 0,
+    perView: 8,
+    type: 'carousel',
+    peek: {
+      before: 0,
+      after: 100
+    },
+    breakpoints: {
+      700: {
+        perView: 4
+      },
+      810: {
+        perView: 5
+      },
+      920: {
+        perView: 6
+      },
+      1030: {
+        perView: 7
+      }
+    }
+  }).mount() // .mount - load it
+}
 
 function updateContent(dateInput) {
   var prevMovie = '';
@@ -107,7 +142,7 @@ function updateContent(dateInput) {
           timeNode.innerHTML += `${screening.timeStart} tickets`; // + @ ${screening.roomID}
           timeNode.href = `/tickets/${screening._id}`
           timeNodeCont.appendChild(timeNode);
-        };        
+        };
         prevMovie = screening.movieID._id;
       })
     })
@@ -115,3 +150,11 @@ function updateContent(dateInput) {
       console.log(err);
     })
 };
+
+const updateSelectedDateColor = (e) => { 
+  // delete class on previous selected
+  e.parentElement.querySelectorAll(".screeningSelectedDate").forEach(e =>
+    e.classList.remove("screeningSelectedDate"));
+  // add class to selected
+  e.classList.add('screeningSelectedDate')
+}
