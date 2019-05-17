@@ -670,19 +670,31 @@ fieldset {
 
 // ------------------------------------
 //confirmation page - start
+#reservation-confirmation {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+#reservation-confirmation img {
+  height: 100%;
+  display: none;
+}
 
 .ticket-div {
-  //display: flex;
   margin-bottom: 20px;
-  // align-items: center;
 }
 
 .ticket-div-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // align-content: space-between;
+}
 
+.ticket-div-seats {
+  display: flex;
+  flex-direction: column;
 }
 
 .ticket-div h2,
@@ -691,7 +703,6 @@ fieldset {
   color: #a3edbf;
 }
 
-
 .ticket-div-seats p {
   margin: 0 0 0 10px;
 }
@@ -699,30 +710,14 @@ fieldset {
 .ticket-div-seats h2 {
   margin-bottom: 15px;
 }
+// Confirmation page - end
+// ------------------------------------
 
 //-------------------------------------
 // random
 .not-found-h1 {
   font-size: 70px;
 }
-.ticket-div-seats {
-  display: flex;
-  flex-direction: column;
-}
-
-#reservation-confirmation {
-  background-color: black;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px;
-}
-
-#reservation-confirmation img {
-  height: 100%;
-}
-
-// Confirmation page - end
-// ------------------------------------
 
 
 // ----------------------
@@ -760,6 +755,11 @@ fieldset {
     width: 40px;
     height: 40px;
   }
+
+#reservation-confirmation img {
+  height: 100%;
+  display: inline-block;
+}
 
   #tickets-container {
     justify-content: space-around;

@@ -120,7 +120,7 @@ Promise.all([findMovies, findCinemas, deleteCurScreen, findUsers])
 function createDates(startdate) {
   var i;
   var datesArray = [];
-  for (i = 0; i <= 13; i++) { // 0-13 (14 records) 
+  for (i = 0; i <= 28; i++) { // 0-13 (14 records) => Longer period 
     datesArray.push(moment(startdate).add(i, 'days').format())
   }
   // console.log(datesArray);
