@@ -462,6 +462,16 @@ progress {
 fieldset {
   border: 0; }
 
+#reservation-confirmation {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px; }
+
+#reservation-confirmation img {
+  height: 100%;
+  display: none; }
+
 .ticket-div {
   margin-bottom: 20px; }
 
@@ -469,6 +479,10 @@ fieldset {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+
+.ticket-div-seats {
+  display: flex;
+  flex-direction: column; }
 
 .ticket-div h2,
 .ticket-div-seats h2 {
@@ -483,19 +497,6 @@ fieldset {
 
 .not-found-h1 {
   font-size: 70px; }
-
-.ticket-div-seats {
-  display: flex;
-  flex-direction: column; }
-
-#reservation-confirmation {
-  background-color: black;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px; }
-
-#reservation-confirmation img {
-  height: 100%; }
 
 @media screen and (min-width: 701px) {
   header {
@@ -516,6 +517,9 @@ fieldset {
   .col {
     width: 40px;
     height: 40px; }
+  #reservation-confirmation img {
+    height: 100%;
+    display: inline-block; }
   #tickets-container {
     justify-content: space-around; } }
 
